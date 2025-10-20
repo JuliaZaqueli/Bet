@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apostas Brasileirão</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #8A05BE, #6D0B9E);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #8A05BE;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #6D0B9E;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            color: #6D0B9E;
+            margin: 20px 0 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        .jogo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .jogo:hover {
+            background-color: #f9f9f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .jogo.selecionado {
+            border-color: #8A05BE;
+            background-color: #f3e6f8;
+        }
+        
+        .times {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        
+        .time {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .vs {
+            color: #777;
+            font-weight: bold;
+        }
+        
+        .data {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .odds {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .odd {
+            text-align: center;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .odd-valor {
+            font-weight: bold;
+            color: #8A05BE;
+        }
+        
+        .opcoes-aposta {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .opcao {
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .opcao:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .opcao.selecionada {
+            background-color: #8A05BE;
+            color: white;
+            border-color: #8A05BE;
+        }
+        
+        .odd-opcao {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: #8A05BE;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #6D0B9E;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .btn-secundario {
+            background-color: #6c757d;
+        }
+        
+        .btn-secundario:hover {
+            background-color: #545b62;
+        }
+        
+        .qrcode-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        #qrcode {
+            display: inline-block;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .success-message {
+            background-color: #e8f5e9;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .warning-message {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .valor-info {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            color: #8A05BE;
+        }
+        
+        .ganho-potencial {
+            background-color: #f3e6f8;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .pix-info {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .chave-pix {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #8A05BE;
+            margin: 10px 0;
+            word-break: break-all;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #8A05BE;
+        }
+        
+        .instrucoes-pix {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+        }
+        
+        .nubank-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            color: #8A05BE;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .btn-copiar {
+            background-color: #6D0B9E;
+            width: auto;
+            margin: 10px 0;
+        }
+        
+        .error-message {
+            background-color: #ffebee;
+            border: 1px solid #f44336;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .aposta-pendente {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .botoes-acao {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .botoes-acao button {
+            flex: 1;
+        }
+
+        /* Modal de confirmação */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .modal h3 {
+            color: #8A05BE;
+            margin-bottom: 15px;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .modal-botoes {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .modal-botoes button {
+            flex: 1;
+            max-width: 150px;
+        }
+
+        .btn-cancelar {
+            background-color: #6c757d;
+        }
+
+        .btn-cancelar:hover {
+            background-color: #545b62;
+        }
+
+        .loading-email {
+            text-align: center;
+            padding: 10px;
+            color: #8A05BE;
+        }
+
+        .categoria-aposta {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        .total-odds {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px solid #4caf50;
+        }
+
+        .opcao-multipla {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 5px;
+        }
+
+        .opcao-multipla:hover {
+            background-color: #f0f0f0;
+        }
+
+        .opcao-multipla.selecionada {
+            background-color: #8A05BE;
+            color: white;
+            border-color: #8A05BE;
+        }
+
+        .opcoes-multiplas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .subcategoria {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .subcategoria h4 {
+            color: #495057;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 600px) {
+            .times {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .opcoes-aposta {
+                flex-direction: column;
+            }
+            
+            .odds {
+                justify-content: center;
+            }
+            
+            .chave-pix {
+                font-size: 0.9rem;
+            }
+            
+            .botoes-acao {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                margin: 20% auto;
+                width: 95%;
+                padding: 20px;
+            }
+
+            .modal-botoes {
+                flex-direction: column;
+            }
+
+            .modal-botoes button {
+                max-width: 100%;
+            }
+
+            .opcao-multipla {
+                min-width: 100px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Apostas Brasileirão</h1>
+            <p class="subtitle">Faça suas apostas nos jogos do campeonato brasileiro</p>
+        </header>
+        
+        <div class="card">
+            <h2>Próximos Jogos</h2>
+            <div id="lista-jogos">
+                <!-- Jogos serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+        
+        <div id="form-aposta" class="card hidden">
+            <h2>Fazer Aposta</h2>
+            <div id="info-jogo"></div>
+            
+            <div class="form-group">
+                <label>Selecione sua aposta no resultado final (opcional):</label>
+                <div class="opcoes-aposta" id="opcoes-aposta">
+                    <!-- Opções de aposta serão inseridas aqui -->
+                </div>
+            </div>
+
+            <!-- Novas categorias de apostas -->
+            <div class="categoria-aposta">
+                <h3>⚽ Quantidade de Gols</h3>
+                <div class="subcategoria">
+                    <h4>Mais que:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-gols-mais">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+                <div class="subcategoria">
+                    <h4>Exatamente:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-gols-exato">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+                <div class="subcategoria">
+                    <h4>Menos que:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-gols-menos">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria-aposta">
+                <h3>⏰ Tempo com Mais Gols</h3>
+                <div class="opcoes-multiplas" id="opcoes-tempo-gols">
+                    <!-- Opções serão inseridas via JS -->
+                </div>
+            </div>
+
+            <div class="categoria-aposta">
+                <h3>🎯 Total de Finalizações</h3>
+                <div class="subcategoria">
+                    <h4>Mais que:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-finalizacoes-mais">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+                <div class="subcategoria">
+                    <h4>Menos que:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-finalizacoes-menos">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria-aposta">
+                <h3>🥅 Total de Chutes ao Gol</h3>
+                <div class="subcategoria">
+                    <h4>Mais que:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-chutes-gol-mais">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+                <div class="subcategoria">
+                    <h4>Menos que:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-chutes-gol-menos">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="categoria-aposta">
+                <h3>📐 Total de Escanteios</h3>
+                <div class="subcategoria">
+                    <h4>Mais que:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-escanteios-mais">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+                <div class="subcategoria">
+                    <h4>Menos que:</h4>
+                    <div class="opcoes-multiplas" id="opcoes-escanteios-menos">
+                        <!-- Opções serão inseridas via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="total-odds" id="total-odds">
+                Odd Total: <span id="valor-total-odds">1.00</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="valor">Valor da Aposta (R$):</label>
+                <input type="number" id="valor" min="5" step="0.01" placeholder="Ex: 10.00">
+            </div>
+            
+            <div class="ganho-potencial hidden" id="ganho-potencial">
+                Ganho potencial: R$ <span id="valor-ganho">0.00</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="nome">Seu Nome:</label>
+                <input type="text" id="nome" placeholder="Digite seu nome completo">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Seu Email:</label>
+                <input type="email" id="email" placeholder="Digite seu email">
+            </div>
+            
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" placeholder="(19) 98910-1879">
+            </div>
+            
+            <button id="btn-confirmar">Finalizar Aposta e Gerar PIX</button>
+            <div id="error-message" class="error-message hidden"></div>
+            <div id="loading-email" class="loading-email hidden">
+                <p>📧 Enviando confirmação por email...</p>
+            </div>
+        </div>
+        
+        <div id="pagamento" class="card hidden">
+            <h2>Pagamento via PIX</h2>
+            <div class="nubank-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#8A05BE">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2v-6h2v6z"/>
+                </svg>
+                PIX Nubank
+            </div>
+            
+            <div class="aposta-pendente">
+                <h3>📋 Resumo da Aposta</h3>
+                <p><strong>Jogo:</strong> <span id="resumo-jogo">-</span></p>
+                <p><strong>Aposta Principal:</strong> <span id="resumo-aposta">Nenhuma</span></p>
+                <p><strong>Apostas Adicionais:</strong> <span id="resumo-apostas-adicionais">-</span></p>
+                <p><strong>Odd Total:</strong> <span id="resumo-odd-total">1.00</span></p>
+                <p><strong>Valor:</strong> R$ <span id="resumo-valor">0.00</span></p>
+                <p><strong>Ganho Potencial:</strong> R$ <span id="resumo-ganho">0.00</span></p>
+            </div>
+            
+            <p class="valor-info">Valor a pagar: R$ <span id="valor-aposta">0.00</span></p>
+            
+            <div class="pix-info">
+                <p>Escaneie o QR Code abaixo com seu app bancário:</p>
+                <div class="qrcode-container">
+                    <div id="qrcode"></div>
+                </div>
+                
+                <p>Ou copie e cole a chave PIX do Nubank:</p>
+                <div class="chave-pix" id="chave-pix">00020126580014br.gov.bcb.pix0136123456789012345204000053039865802BR5925SEU NOME6008CIDADE62070503***6304</div>
+                <button class="btn-copiar" id="btn-copiar">Copiar Chave PIX</button>
+            </div>
+            
+            <div class="instrucoes-pix">
+                <p><strong>Instruções para pagamento:</strong></p>
+                <ol>
+                    <li>Abra o app do seu banco</li>
+                    <li>Selecione a opção PIX</li>
+                    <li>Escaneie o QR Code acima ou cole a chave PIX copiada</li>
+                    <li>Confirme o valor de <strong>R$ <span id="valor-instrucoes">0.00</span></strong></li>
+                    <li>Finalize o pagamento</li>
+                    <li><strong>Envie o comprovante para (19) 98910-1879</strong></li>
+                </ol>
+                
+                <p><strong>Importante:</strong> Sua aposta só será confirmada após o pagamento e envio do comprovante.</p>
+            </div>
+            
+            <div class="warning-message">
+                <p><strong>⚠️ Aposta Pendente</strong></p>
+                <p>Realize o pagamento PIX e envie o comprovante para (19) 98910-1879 para confirmar sua aposta.</p>
+            </div>
+            
+            <div class="botoes-acao">
+                <button class="btn-secundario" id="btn-voltar">Voltar</button>
+                <button id="btn-comprovante">Já Enviei o Comprovante</button>
+            </div>
+            
+            <div class="success-message hidden" id="success-message">
+                <h3>✅ Aposta confirmada com sucesso!</h3>
+                <p>Obrigado por apostar conosco. Boa sorte!</p>
+                <button id="btn-nova-aposta">Fazer Nova Aposta</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Site de apostas amador - Apenas para diversão entre amigos</p>
+            <p><strong>Contato para envio de comprovantes:</strong> (19) 98910-1879</p>
+        </footer>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div id="modal-confirmacao" class="modal">
+        <div class="modal-content">
+            <h3>📨 Confirmação de Comprovante</h3>
+            <p><strong>Sua aposta será confirmada em breve!</strong></p>
+            <p>Ao clicar em "Confirmar", você receberá um email com a confirmação da sua aposta.</p>
+            <p>Verifique se o comprovante foi enviado corretamente para <strong>(19) 98910-1879</strong> antes de confirmar.</p>
+            <div class="modal-botoes">
+                <button class="btn-cancelar" id="btn-modal-cancelar">Cancelar</button>
+                <button id="btn-modal-confirmar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar EmailJS com sua chave pública
+        (function() {
+            emailjs.init("gP-FJKwK1pL-13ok-");
+        })();
+
+        // DADOS JOGOS
+        const jogos = [
+            { 
+                id: 1, 
+                timeCasa: "Flamengo", 
+                timeFora: "Palmeiras", 
+                data: "15/05/2023 16:00",
+                odds: {
+                    casa: 2.10,
+                    empate: 3.20,
+                    fora: 3.50
+                },
+                // Novas odds para apostas adicionais com 5 opções cada
+                oddsAdicionais: {
+                    gols: {
+                        mais: [
+                            { tipo: "Mais que 0.5", odd: 1.30 },
+                            { tipo: "Mais que 1.5", odd: 1.80 },
+                            { tipo: "Mais que 2.5", odd: 2.50 },
+                            { tipo: "Mais que 3.5", odd: 3.80 },
+                            { tipo: "Mais que 4.5", odd: 6.00 }
+                        ],
+                        exato: [
+                            { tipo: "Exatamente 0", odd: 3.50 },
+                            { tipo: "Exatamente 1", odd: 3.20 },
+                            { tipo: "Exatamente 2", odd: 3.50 },
+                            { tipo: "Exatamente 3", odd: 4.20 },
+                            { tipo: "Exatamente 4", odd: 6.50 }
+                        ],
+                        menos: [
+                            { tipo: "Menos que 1.5", odd: 2.10 },
+                            { tipo: "Menos que 2.5", odd: 1.90 },
+                            { tipo: "Menos que 3.5", odd: 1.50 },
+                            { tipo: "Menos que 4.5", odd: 1.25 },
+                            { tipo: "Menos que 5.5", odd: 1.10 }
+                        ]
+                    },
+                    tempoGols: [
+                        { tipo: "1º Tempo", odd: 2.80 },
+                        { tipo: "2º Tempo", odd: 2.20 },
+                        { tipo: "Empate", odd: 3.50 },
+                        { tipo: "Ambos", odd: 4.50 },
+                        { tipo: "Nenhum", odd: 8.00 }
+                    ],
+                    finalizacoes: {
+                        mais: [
+                            { tipo: "Mais que 5.5", odd: 1.60 },
+                            { tipo: "Mais que 7.5", odd: 2.00 },
+                            { tipo: "Mais que 9.5", odd: 2.50 },
+                            { tipo: "Mais que 11.5", odd: 3.20 },
+                            { tipo: "Mais que 13.5", odd: 4.50 }
+                        ],
+                        menos: [
+                            { tipo: "Menos que 6.5", odd: 1.80 },
+                            { tipo: "Menos que 8.5", odd: 2.20 },
+                            { tipo: "Menos que 10.5", odd: 1.70 },
+                            { tipo: "Menos que 12.5", odd: 1.40 },
+                            { tipo: "Menos que 14.5", odd: 1.20 }
+                        ]
+                    },
+                    chutesGol: {
+                        mais: [
+                            { tipo: "Mais que 2.5", odd: 1.50 },
+                            { tipo: "Mais que 3.5", odd: 1.90 },
+                            { tipo: "Mais que 4.5", odd: 2.40 },
+                            { tipo: "Mais que 5.5", odd: 3.10 },
+                            { tipo: "Mais que 6.5", odd: 4.20 }
+                        ],
+                        menos: [
+                            { tipo: "Menos que 3.5", odd: 2.10 },
+                            { tipo: "Menos que 4.5", odd: 1.70 },
+                            { tipo: "Menos que 5.5", odd: 1.40 },
+                            { tipo: "Menos que 6.5", odd: 1.25 },
+                            { tipo: "Menos que 7.5", odd: 1.10 }
+                        ]
+                    },
+                    escanteios: {
+                        mais: [
+                            { tipo: "Mais que 4.5", odd: 1.60 },
+                            { tipo: "Mais que 6.5", odd: 2.00 },
+                            { tipo: "Mais que 8.5", odd: 2.60 },
+                            { tipo: "Mais que 10.5", odd: 3.50 },
+                            { tipo: "Mais que 12.5", odd: 5.00 }
+                        ],
+                        menos: [
+                            { tipo: "Menos que 5.5", odd: 1.80 },
+                            { tipo: "Menos que 7.5", odd: 2.20 },
+                            { tipo: "Menos que 9.5", odd: 1.70 },
+                            { tipo: "Menos que 11.5", odd: 1.40 },
+                            { tipo: "Menos que 13.5", odd: 1.20 }
+                        ]
+                    }
+                }
+            },
+            { 
+                id: 2, 
+                timeCasa: "Corinthians", 
+                timeFora: "São Paulo", 
+                data: "15/05/2023 19:00",
+                odds: {
+                    casa: 2.50,
+                    empate: 3.00,
+                    fora: 2.80
+                },
+                oddsAdicionais: {
+                    gols: {
+                        mais: [
+                            { tipo: "Mais que 0.5", odd: 1.25 },
+                            { tipo: "Mais que 1.5", odd: 1.75 },
+                            { tipo: "Mais que 2.5", odd: 2.30 },
+                            { tipo: "Mais que 3.5", odd: 3.50 },
+                            { tipo: "Mais que 4.5", odd: 5.50 }
+                        ],
+                        exato: [
+                            { tipo: "Exatamente 0", odd: 3.80 },
+                            { tipo: "Exatamente 1", odd: 3.40 },
+                            { tipo: "Exatamente 2", odd: 3.20 },
+                            { tipo: "Exatamente 3", odd: 4.00 },
+                            { tipo: "Exatamente 4", odd: 6.20 }
+                        ],
+                        menos: [
+                            { tipo: "Menos que 1.5", odd: 2.00 },
+                            { tipo: "Menos que 2.5", odd: 1.85 },
+                            { tipo: "Menos que 3.5", odd: 1.45 },
+                            { tipo: "Menos que 4.5", odd: 1.20 },
+                            { tipo: "Menos que 5.5", odd: 1.08 }
+                        ]
+                    },
+                    tempoGols: [
+                        { tipo: "1º Tempo", odd: 2.60 },
+                        { tipo: "2º Tempo", odd: 2.10 },
+                        { tipo: "Empate", odd: 3.20 },
+                        { tipo: "Ambos", odd: 4.20 },
+                        { tipo: "Nenhum", odd: 7.50 }
+                    ],
+                    finalizacoes: {
+                        mais: [
+                            { tipo: "Mais que 5.5", odd: 1.55 },
+                            { tipo: "Mais que 7.5", odd: 1.95 },
+                            { tipo: "Mais que 9.5", odd: 2.40 },
+                            { tipo: "Mais que 11.5", odd: 3.00 },
+                            { tipo: "Mais que 13.5", odd: 4.20 }
+                        ],
+                        menos: [
+                            { tipo: "Menos que 6.5", odd: 1.75 },
+                            { tipo: "Menos que 8.5", odd: 2.10 },
+                            { tipo: "Menos que 10.5", odd: 1.65 },
+                            { tipo: "Menos que 12.5", odd: 1.35 },
+                            { tipo: "Menos que 14.5", odd: 1.15 }
+                        ]
+                    },
+                    chutesGol: {
+                        mais: [
+                            { tipo: "Mais que 2.5", odd: 1.45 },
+                            { tipo: "Mais que 3.5", odd: 1.85 },
+                            { tipo: "Mais que 4.5", odd: 2.30 },
+                            { tipo: "Mais que 5.5", odd: 2.90 },
+                            { tipo: "Mais que 6.5", odd: 3.80 }
+                        ],
+                        menos: [
+                            { tipo: "Menos que 3.5", odd: 2.00 },
+                            { tipo: "Menos que 4.5", odd: 1.65 },
+                            { tipo: "Menos que 5.5", odd: 1.35 },
+                            { tipo: "Menos que 6.5", odd: 1.20 },
+                            { tipo: "Menos que 7.5", odd: 1.08 }
+                        ]
+                    },
+                    escanteios: {
+                        mais: [
+                            { tipo: "Mais que 4.5", odd: 1.55 },
+                            { tipo: "Mais que 6.5", odd: 1.95 },
+                            { tipo: "Mais que 8.5", odd: 2.50 },
+                            { tipo: "Mais que 10.5", odd: 3.30 },
+                            { tipo: "Mais que 12.5", odd: 4.50 }
+                        ],
+                        menos: [
+                            { tipo: "Menos que 5.5", odd: 1.75 },
+                            { tipo: "Menos que 7.5", odd: 2.10 },
+                            { tipo: "Menos que 9.5", odd: 1.65 },
+                            { tipo: "Menos que 11.5", odd: 1.35 },
+                            { tipo: "Menos que 13.5", odd: 1.15 }
+                        ]
+                    }
+                }
+            }
+        ];
+
+        // Elementos DOM
+        const listaJogos = document.getElementById('lista-jogos');
+        const formAposta = document.getElementById('form-aposta');
+        const infoJogo = document.getElementById('info-jogo');
+        const opcoesAposta = document.getElementById('opcoes-aposta');
+        const pagamento = document.getElementById('pagamento');
+        const valorAposta = document.getElementById('valor-aposta');
+        const valorInstrucoes = document.getElementById('valor-instrucoes');
+        const ganhoPotencial = document.getElementById('ganho-potencial');
+        const valorGanho = document.getElementById('valor-ganho');
+        const btnConfirmar = document.getElementById('btn-confirmar');
+        const successMessage = document.getElementById('success-message');
+        const valorInput = document.getElementById('valor');
+        const chavePix = document.getElementById('chave-pix');
+        const btnCopiar = document.getElementById('btn-copiar');
+        const errorMessage = document.getElementById('error-message');
+        const btnVoltar = document.getElementById('btn-voltar');
+        const btnComprovante = document.getElementById('btn-comprovante');
+        const btnNovaAposta = document.getElementById('btn-nova-aposta');
+        const resumoJogo = document.getElementById('resumo-jogo');
+        const resumoAposta = document.getElementById('resumo-aposta');
+        const resumoApostasAdicionais = document.getElementById('resumo-apostas-adicionais');
+        const resumoOddTotal = document.getElementById('resumo-odd-total');
+        const resumoValor = document.getElementById('resumo-valor');
+        const resumoGanho = document.getElementById('resumo-ganho');
+        const loadingEmail = document.getElementById('loading-email');
+        const totalOdds = document.getElementById('total-odds');
+        const valorTotalOdds = document.getElementById('valor-total-odds');
+        
+        // Elementos do Modal
+        const modalConfirmacao = document.getElementById('modal-confirmacao');
+        const btnModalCancelar = document.getElementById('btn-modal-cancelar');
+        const btnModalConfirmar = document.getElementById('btn-modal-confirmar');
+        
+        // Variáveis para armazenar dados da aposta
+        let jogoSelecionado = null;
+        let apostaSelecionada = null;
+        let oddSelecionada = null;
+        let dadosApostaAtual = null;
+        let apostasAdicionais = {
+            gols: { mais: null, exato: null, menos: null },
+            tempoGols: null,
+            finalizacoes: { mais: null, menos: null },
+            chutesGol: { mais: null, menos: null },
+            escanteios: { mais: null, menos: null }
+        };
+
+        // SUA CHAVE PIX
+        const CHAVE_PIX_NUBANK = "bbaa097c-d285-4663-9775-f1ed59a97665";
+
+        // Carregar lista de jogos
+        function carregarJogos() {
+            listaJogos.innerHTML = '';
+            
+            jogos.forEach((jogo, index) => {
+                const jogoElement = document.createElement('div');
+                jogoElement.className = 'jogo';
+                jogoElement.innerHTML = `
+                    <div>
+                        <div class="times">
+                            <div class="time">${jogo.timeCasa}</div>
+                            <div class="vs">vs</div>
+                            <div class="time">${jogo.timeFora}</div>
+                        </div>
+                        <div class="data">${jogo.data}</div>
+                        <div class="odds">
+                            <div class="odd">${jogo.timeCasa} <span class="odd-valor">${jogo.odds.casa}</span></div>
+                            <div class="odd">Empate <span class="odd-valor">${jogo.odds.empate}</span></div>
+                            <div class="odd">${jogo.timeFora} <span class="odd-valor">${jogo.odds.fora}</span></div>
+                        </div>
+                    </div>
+                `;
+                
+                // CORREÇÃO: Usar arrow function para manter o contexto do jogo
+                jogoElement.addEventListener('click', () => {
+                    console.log('Jogo clicado:', jogo.timeCasa, 'x', jogo.timeFora);
+                    selecionarJogo(jogo, jogoElement);
+                });
+                
+                listaJogos.appendChild(jogoElement);
+            });
+        }
+
+        // Selecionar jogo - CORRIGIDA
+        function selecionarJogo(jogo, elemento) {
+            console.log('Selecionando jogo:', jogo.timeCasa, 'x', jogo.timeFora);
+            
+            // Remover seleção anterior
+            document.querySelectorAll('.jogo').forEach(el => {
+                el.classList.remove('selecionado');
+            });
+            
+            // Adicionar seleção atual
+            elemento.classList.add('selecionado');
+            
+            jogoSelecionado = jogo;
+            
+            // Atualizar informações do jogo
+            infoJogo.innerHTML = `
+                <div class="jogo selecionado">
+                    <div>
+                        <div class="times">
+                            <div class="time">${jogo.timeCasa}</div>
+                            <div class="vs">vs</div>
+                            <div class="time">${jogo.timeFora}</div>
+                        </div>
+                        <div class="data">${jogo.data}</div>
+                        <div class="odds">
+                            <div class="odd">${jogo.timeCasa} <span class="odd-valor">${jogo.odds.casa}</span></div>
+                            <div class="odd">Empate <span class="odd-valor">${jogo.odds.empate}</span></div>
+                            <div class="odd">${jogo.timeFora} <span class="odd-valor">${jogo.odds.fora}</span></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Criar opções de aposta principal (agora opcional)
+            opcoesAposta.innerHTML = '';
+            
+            const opcoes = [
+                { valor: 'casa', texto: jogo.timeCasa, odd: jogo.odds.casa },
+                { valor: 'empate', texto: 'Empate', odd: jogo.odds.empate },
+                { valor: 'fora', texto: jogo.timeFora, odd: jogo.odds.fora }
+            ];
+            
+            opcoes.forEach(opcao => {
+                const opcaoElement = document.createElement('div');
+                opcaoElement.className = 'opcao';
+                opcaoElement.innerHTML = `
+                    ${opcao.texto}
+                    <div class="odd-opcao">Odd: ${opcao.odd}</div>
+                `;
+                opcaoElement.dataset.valor = opcao.valor;
+                opcaoElement.dataset.odd = opcao.odd;
+                
+                opcaoElement.addEventListener('click', () => {
+                    console.log('Aposta selecionada:', opcao.texto);
+                    document.querySelectorAll('.opcao').forEach(el => {
+                        el.classList.remove('selecionada');
+                    });
+                    opcaoElement.classList.add('selecionada');
+                    apostaSelecionada = opcao.valor;
+                    oddSelecionada = opcao.odd;
+                    
+                    // Calcular odd total
+                    calcularOddTotal();
+                    
+                    // Calcular ganho potencial se já tiver valor
+                    if (valorInput.value) {
+                        calcularGanhoPotencial();
+                    }
+                });
+                
+                opcoesAposta.appendChild(opcaoElement);
+            });
+
+            // Criar opções de apostas adicionais
+            criarOpcoesAdicionais('gols', 'mais', jogo.oddsAdicionais.gols.mais);
+            criarOpcoesAdicionais('gols', 'exato', jogo.oddsAdicionais.gols.exato);
+            criarOpcoesAdicionais('gols', 'menos', jogo.oddsAdicionais.gols.menos);
+            criarOpcoesAdicionais('tempoGols', null, jogo.oddsAdicionais.tempoGols);
+            criarOpcoesAdicionais('finalizacoes', 'mais', jogo.oddsAdicionais.finalizacoes.mais);
+            criarOpcoesAdicionais('finalizacoes', 'menos', jogo.oddsAdicionais.finalizacoes.menos);
+            criarOpcoesAdicionais('chutesGol', 'mais', jogo.oddsAdicionais.chutesGol.mais);
+            criarOpcoesAdicionais('chutesGol', 'menos', jogo.oddsAdicionais.chutesGol.menos);
+            criarOpcoesAdicionais('escanteios', 'mais', jogo.oddsAdicionais.escanteios.mais);
+            criarOpcoesAdicionais('escanteios', 'menos', jogo.oddsAdicionais.escanteios.menos);
+            
+            // Resetar apostas adicionais
+            apostasAdicionais = {
+                gols: { mais: null, exato: null, menos: null },
+                tempoGols: null,
+                finalizacoes: { mais: null, menos: null },
+                chutesGol: { mais: null, menos: null },
+                escanteios: { mais: null, menos: null }
+            };
+            
+            // Atualizar odd total
+            calcularOddTotal();
+            
+            // Mostrar formulário de aposta
+            formAposta.classList.remove('hidden');
+            pagamento.classList.add('hidden');
+            ganhoPotencial.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+            
+            console.log('Formulário de aposta mostrado');
+        }
+
+        // Criar opções para apostas adicionais - CORRIGIDA
+        function criarOpcoesAdicionais(categoria, subcategoria, opcoes) {
+            // Converter camelCase para hífen (tempoGols → tempo-gols)
+            const categoriaComHifen = categoria.replace(/([A-Z])/g, '-$1').toLowerCase();
+            let containerId = `opcoes-${categoriaComHifen}`;
+            
+            if (subcategoria) {
+                containerId += `-${subcategoria}`;
+            }
+            
+            const container = document.getElementById(containerId);
+            
+            // Verificar se o container existe
+            if (!container) {
+                console.error(`Container não encontrado: ${containerId}`);
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            opcoes.forEach(opcao => {
+                const opcaoElement = document.createElement('div');
+                opcaoElement.className = 'opcao-multipla';
+                opcaoElement.innerHTML = `
+                    ${opcao.tipo}
+                    <div class="odd-opcao">Odd: ${opcao.odd}</div>
+                `;
+                opcaoElement.dataset.tipo = opcao.tipo;
+                opcaoElement.dataset.odd = opcao.odd;
+                
+                opcaoElement.addEventListener('click', () => {
+                    // Desselecionar outras opções da mesma subcategoria
+                    document.querySelectorAll(`#${containerId} .opcao-multipla`).forEach(el => {
+                        el.classList.remove('selecionada');
+                    });
+                    
+                    // Selecionar esta opção
+                    opcaoElement.classList.add('selecionada');
+                    
+                    // Salvar a aposta
+                    if (subcategoria) {
+                        apostasAdicionais[categoria][subcategoria] = {
+                            tipo: opcao.tipo,
+                            odd: opcao.odd
+                        };
+                    } else {
+                        apostasAdicionais[categoria] = {
+                            tipo: opcao.tipo,
+                            odd: opcao.odd
+                        };
+                    }
+                    
+                    // Calcular odd total
+                    calcularOddTotal();
+                    
+                    // Calcular ganho potencial se já tiver valor
+                    if (valorInput.value) {
+                        calcularGanhoPotencial();
+                    }
+                });
+                
+                container.appendChild(opcaoElement);
+            });
+        }
+
+        // Calcular odd total multiplicando todas as odds selecionadas
+        function calcularOddTotal() {
+            let oddTotal = 1.00;
+            
+            // Odd da aposta principal (agora opcional)
+            if (oddSelecionada) {
+                oddTotal *= parseFloat(oddSelecionada);
+            }
+            
+            // Odds das apostas adicionais
+            Object.values(apostasAdicionais).forEach(categoria => {
+                if (categoria && typeof categoria === 'object') {
+                    // Para categorias com subcategorias (gols, finalizacoes, etc.)
+                    Object.values(categoria).forEach(subcategoria => {
+                        if (subcategoria && subcategoria.odd) {
+                            oddTotal *= parseFloat(subcategoria.odd);
+                        }
+                    });
+                } else if (categoria && categoria.odd) {
+                    // Para categorias sem subcategorias (tempoGols)
+                    oddTotal *= parseFloat(categoria.odd);
+                }
+            });
+            
+            // Atualizar display
+            valorTotalOdds.textContent = oddTotal.toFixed(2);
+            
+            return oddTotal;
+        }
+
+        // Calcular ganho potencial
+        function calcularGanhoPotencial() {
+            const valor = parseFloat(valorInput.value);
+            const oddTotal = calcularOddTotal();
+            
+            if (valor && oddTotal > 1.00) {
+                const ganho = valor * oddTotal;
+                valorGanho.textContent = ganho.toFixed(2);
+                ganhoPotencial.classList.remove('hidden');
+            } else {
+                ganhoPotencial.classList.add('hidden');
+            }
+        }
+
+        // Gerar QR Code PIX simplificado
+        function gerarQRCodePIX(valor) {
+            const qrcodeContainer = document.getElementById('qrcode');
+            qrcodeContainer.innerHTML = '';
+            
+            // Texto simples para o QR Code
+            const textoQRCode = `PIX: R$ ${valor.toFixed(2)} - Aposta ${jogoSelecionado.timeCasa} x ${jogoSelecionado.timeFora}`;
+            
+            // Gerar QR Code simples
+            try {
+                QRCode.toCanvas(qrcodeContainer, textoQRCode, {
+                    width: 200,
+                    margin: 2,
+                    color: {
+                        dark: '#8A05BE',
+                        light: '#FFFFFF'
+                    }
+                }, function(error) {
+                    if (error) {
+                        console.error('Erro ao gerar QR Code:', error);
+                        // Fallback: mostrar texto se QR Code falhar
+                        qrcodeContainer.innerHTML = `<p>${textoQRCode}</p>`;
+                    }
+                });
+            } catch (error) {
+                console.error('Erro no QR Code:', error);
+                qrcodeContainer.innerHTML = `<p>${textoQRCode}</p>`;
+            }
+            
+            // Chave PIX para copiar
+            chavePix.textContent = CHAVE_PIX_NUBANK;
+        }
+
+        // Validar formulário - CORRIGIDA (aposta principal não é mais obrigatória)
+        function validarFormulario() {
+            const valor = document.getElementById('valor').value;
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            
+            if (!jogoSelecionado) {
+                return "Por favor, selecione um jogo";
+            }
+            
+            // Verificar se pelo menos uma aposta foi selecionada (principal ou adicional)
+            const temApostaPrincipal = apostaSelecionada !== null;
+            const temApostaAdicional = Object.values(apostasAdicionais).some(categoria => {
+                if (categoria && typeof categoria === 'object') {
+                    return Object.values(categoria).some(subcategoria => subcategoria !== null);
+                }
+                return categoria !== null;
+            });
+            
+            if (!temApostaPrincipal && !temApostaAdicional) {
+                return "Por favor, selecione pelo menos uma aposta (principal ou adicional)";
+            }
+            
+            if (!valor || valor < 5) {
+                return "Por favor, insira um valor válido (mínimo R$ 5,00)";
+            }
+            
+            if (!nome || nome.trim().length < 3) {
+                return "Por favor, insira seu nome completo";
+            }
+            
+            if (!email || !isValidEmail(email)) {
+                return "Por favor, insira um email válido";
+            }
+            
+            if (!telefone || telefone.replace(/\D/g, '').length < 10) {
+                return "Por favor, insira um telefone válido";
+            }
+            
+            return null;
+        }
+
+        // Validar email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Função para enviar email - CORRIGIDA
+        async function enviarEmailAposta(dadosAposta) {
+            const textoAposta = dadosAposta.aposta === 'casa' ? dadosAposta.jogo.timeCasa :
+                                dadosAposta.aposta === 'fora' ? dadosAposta.jogo.timeFora :
+                                dadosAposta.aposta === 'empate' ? 'Empate' : 'Nenhuma';
+
+            // Preparar texto das apostas adicionais
+            const apostasAdicionaisArray = [];
+            
+            Object.entries(dadosAposta.apostasAdicionais).forEach(([categoria, valor]) => {
+                if (valor && typeof categoria === 'object') {
+                    Object.entries(valor).forEach(([subcategoria, aposta]) => {
+                        if (aposta && aposta.tipo) {
+                            apostasAdicionaisArray.push(`${categoria} - ${subcategoria}: ${aposta.tipo} (Odd: ${aposta.odd})`);
+                        }
+                    });
+                } else if (valor && valor.tipo) {
+                    apostasAdicionaisArray.push(`${categoria}: ${valor.tipo} (Odd: ${valor.odd})`);
+                }
+            });
+
+            const apostasAdicionaisTexto = apostasAdicionaisArray.join('\n') || 'Nenhuma';
+
+            const templateParams = {
+                to_email: 'juliazaqueli08@gmail.com', // APENAS PARA VOCÊ
+                from_name: 'Sistema de Apostas',
+                reply_to: 'juliazaqueli08@gmail.com',
+                subject: `🎯 Nova Aposta - ${dadosAposta.nome}`,
+                nome: dadosAposta.nome,
+                email: dadosAposta.email,
+                telefone: dadosAposta.telefone,
+                jogo: `${dadosAposta.jogo.timeCasa} x ${dadosAposta.jogo.timeFora}`,
+                aposta_principal: textoAposta,
+                apostas_adicionais: apostasAdicionaisTexto,
+                odd_total: dadosAposta.oddTotal.toFixed(2),
+                valor_apostado: `R$ ${dadosAposta.valor.toFixed(2)}`,
+                ganho_potencial: `R$ ${dadosAposta.ganhoPotencial}`,
+                data: new Date().toLocaleString('pt-BR'),
+                status: dadosAposta.status,
+                aposta_id: `AP${Date.now()}`,
+                valor_pagar: `R$ ${(dadosAposta.valor * dadosAposta.oddTotal).toFixed(2)}`
+            };
+
+            try {
+                console.log('📧 Tentando enviar email...', templateParams);
+                
+                // Enviar email usando EmailJS
+                const response = await emailjs.send(
+                    'service_cnsqjyf', // Service ID
+                    'template_ivk32qb', // Template ID  
+                    templateParams
+                );
+                
+                console.log('✅ Email enviado com sucesso:', response);
+                return true;
+            } catch (error) {
+                console.error('❌ Erro ao enviar email:', error);
+                return false;
+            }
+        }
+
+        // Confirmar aposta
+        btnConfirmar.addEventListener('click', async () => {
+            // Validar formulário
+            const erro = validarFormulario();
+            if (erro) {
+                errorMessage.textContent = erro;
+                errorMessage.classList.remove('hidden');
+                return;
+            }
+            
+            errorMessage.classList.add('hidden');
+            
+            const valor = parseFloat(document.getElementById('valor').value);
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const oddTotal = calcularOddTotal();
+            
+            // Salvar dados da aposta
+            dadosApostaAtual = {
+                jogo: jogoSelecionado,
+                aposta: apostaSelecionada,
+                odd: oddSelecionada,
+                apostasAdicionais: { ...apostasAdicionais },
+                oddTotal: oddTotal,
+                valor: valor,
+                nome: nome,
+                email: email,
+                telefone: telefone,
+                ganhoPotencial: (valor * oddTotal).toFixed(2),
+                status: 'pendente'
+            };
+            
+            // Atualizar resumo
+            atualizarResumoAposta();
+            
+            // Atualizar valor da aposta
+            valorAposta.textContent = valor.toFixed(2);
+            valorInstrucoes.textContent = valor.toFixed(2);
+            
+            // Gerar QR Code PIX
+            gerarQRCodePIX(valor);
+            
+            // ENVIAR EMAIL APENAS AQUI - quando finalizar a aposta
+            await enviarEmailAposta(dadosApostaAtual);
+            
+            // Enviar dados da aposta (simulação - aposta pendente)
+            enviarApostaPendente(dadosApostaAtual);
+            
+            // Mostrar tela de pagamento
+            formAposta.classList.add('hidden');
+            pagamento.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+        });
+
+        // Atualizar resumo da aposta
+        function atualizarResumoAposta() {
+            if (!dadosApostaAtual) return;
+            
+            const textoAposta = dadosApostaAtual.aposta === 'casa' ? dadosApostaAtual.jogo.timeCasa :
+                              dadosApostaAtual.aposta === 'fora' ? dadosApostaAtual.jogo.timeFora :
+                              dadosApostaAtual.aposta === 'empate' ? 'Empate' : 'Nenhuma';
+            
+            // Preparar texto das apostas adicionais
+            const apostasAdicionaisArray = [];
+            
+            Object.entries(dadosApostaAtual.apostasAdicionais).forEach(([categoria, valor]) => {
+                if (valor && typeof valor === 'object') {
+                    Object.entries(valor).forEach(([subcategoria, aposta]) => {
+                        if (aposta && aposta.tipo) {
+                            apostasAdicionaisArray.push(`${aposta.tipo}`);
+                        }
+                    });
+                } else if (valor && valor.tipo) {
+                    apostasAdicionaisArray.push(`${valor.tipo}`);
+                }
+            });
+
+            const apostasAdicionaisTexto = apostasAdicionaisArray.join(', ') || 'Nenhuma';
+            
+            resumoJogo.textContent = `${dadosApostaAtual.jogo.timeCasa} x ${dadosApostaAtual.jogo.timeFora}`;
+            resumoAposta.textContent = textoAposta;
+            resumoApostasAdicionais.textContent = apostasAdicionaisTexto;
+            resumoOddTotal.textContent = dadosApostaAtual.oddTotal.toFixed(2);
+            resumoValor.textContent = dadosApostaAtual.valor.toFixed(2);
+            resumoGanho.textContent = dadosApostaAtual.ganhoPotencial;
+        }
+
+        // Voltar para lista de jogos
+        btnVoltar.addEventListener('click', () => {
+            pagamento.classList.add('hidden');
+            formAposta.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            
+            // Limpar seleções
+            document.querySelectorAll('.jogo').forEach(el => {
+                el.classList.remove('selecionado');
+            });
+            document.querySelectorAll('.opcao').forEach(el => {
+                el.classList.remove('selecionada');
+            });
+            document.querySelectorAll('.opcao-multipla').forEach(el => {
+                el.classList.remove('selecionada');
+            });
+        });
+
+        // Mostrar modal de confirmação
+        btnComprovante.addEventListener('click', () => {
+            modalConfirmacao.style.display = 'block';
+        });
+
+        // Cancelar modal
+        btnModalCancelar.addEventListener('click', () => {
+            modalConfirmacao.style.display = 'none';
+        });
+
+        // Confirmar envio de comprovante
+        btnModalConfirmar.addEventListener('click', async () => {
+            // Fechar modal
+            modalConfirmacao.style.display = 'none';
+            
+            // Atualizar status da aposta
+            dadosApostaAtual.status = 'confirmada';
+            dadosApostaAtual.dataConfirmacao = new Date().toLocaleString();
+            
+            // Enviar email de confirmação para o cliente
+            //await enviarEmailAposta(dadosApostaAtual);
+            
+            // Enviar confirmação para o sistema
+            enviarApostaConfirmada(dadosApostaAtual);
+            
+            // Mostrar mensagem de sucesso
+            successMessage.classList.remove('hidden');
+            
+            // Esconder botões de ação
+            document.querySelector('.botoes-acao').classList.add('hidden');
+            document.querySelector('.warning-message').classList.add('hidden');
+        });
+
+        // Fechar modal ao clicar fora
+        window.addEventListener('click', (event) => {
+            if (event.target === modalConfirmacao) {
+                modalConfirmacao.style.display = 'none';
+            }
+        });
+
+        // Nova aposta
+        btnNovaAposta.addEventListener('click', () => {
+            // Limpar formulário
+            document.getElementById('valor').value = '';
+            document.getElementById('nome').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('telefone').value = '';
+            
+            // Resetar seleções
+            jogoSelecionado = null;
+            apostaSelecionada = null;
+            oddSelecionada = null;
+            dadosApostaAtual = null;
+            apostasAdicionais = {
+                gols: { mais: null, exato: null, menos: null },
+                tempoGols: null,
+                finalizacoes: { mais: null, menos: null },
+                chutesGol: { mais: null, menos: null },
+                escanteios: { mais: null, menos: null }
+            };
+            
+            // Mostrar lista de jogos
+            pagamento.classList.add('hidden');
+            formAposta.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            
+            // Restaurar botões
+            document.querySelector('.botoes-acao').classList.remove('hidden');
+            document.querySelector('.warning-message').classList.remove('hidden');
+            
+            // Remover seleção dos jogos
+            document.querySelectorAll('.jogo').forEach(el => {
+                el.classList.remove('selecionado');
+            });
+        });
+
+        // Copiar chave PIX
+        btnCopiar.addEventListener('click', () => {
+            const texto = chavePix.textContent;
+            navigator.clipboard.writeText(texto).then(() => {
+                const originalText = btnCopiar.textContent;
+                btnCopiar.textContent = 'Chave Copiada!';
+                btnCopiar.style.backgroundColor = '#4CAF50';
+                setTimeout(() => {
+                    btnCopiar.textContent = originalText;
+                    btnCopiar.style.backgroundColor = '#6D0B9E';
+                }, 2000);
+            }).catch(err => {
+                console.error('Erro ao copiar:', err);
+            });
+        });
+
+        // Função para enviar dados da aposta pendente
+        function enviarApostaPendente(dadosAposta) {
+            console.log('📋 Aposta Pendente Registrada:', dadosAposta);
+        }
+
+        // Função para enviar dados da aposta confirmada
+        function enviarApostaConfirmada(dadosAposta) {
+            console.log('✅ Aposta Confirmada:', dadosAposta);
+        }
+
+        // Event listener para calcular ganho quando o valor mudar
+        valorInput.addEventListener('input', calcularGanhoPotencial);
+
+        // Inicializar - CORRIGIDA: Garantir que o DOM está carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarJogos();
+            console.log('Site carregado com sucesso!');
+        });
+    </script>
+</body>
+</html>
