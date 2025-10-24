@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento PIX - Apostas Esportivas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pagamento via PIX</h1>
+            <p class="subtitle">Realize o pagamento para confirmar sua aposta</p>
+        </header>
+        
+        <div class="card">
+            <div class="nubank-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#8A05BE">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2v-6h2v6z"/>
+                </svg>
+                PIX Nubank
+            </div>
+            
+            <div class="aposta-pendente">
+                <h3>📋 Resumo da Aposta</h3>
+                <p><strong>Campeonato:</strong> <span id="resumo-campeonato">-</span></p>
+                <p><strong>Odd Total:</strong> <span id="resumo-odd-total">1.00</span></p>
+                <p><strong>Valor:</strong> R$ <span id="resumo-valor">0.00</span></p>
+                <p><strong>Ganho Potencial:</strong> R$ <span id="resumo-ganho">0.00</span></p>
+            </div>
+            
+            <p class="valor-info">Valor a pagar: R$ <span id="valor-aposta">0.00</span></p>
+            
+            <div class="pix-info">
+                <p>Escaneie o QR Code abaixo com seu app bancário:</p>
+                <div class="qrcode-container">
+                    <div id="qrcode"></div>
+                </div>
+                
+                <p>Ou copie e cole a chave PIX do Nubank:</p>
+                <div class="chave-pix" id="chave-pix">00020126580014br.gov.bcb.pix0136123456789012345204000053039865802BR5925SEU NOME6008CIDADE62070503***6304</div>
+                <button class="btn-copiar" id="btn-copiar">Copiar Chave PIX</button>
+            </div>
+            
+            <div class="instrucoes-pix">
+                <p><strong>Instruções para pagamento:</strong></p>
+                <ol>
+                    <li>Abra o app do seu banco</li>
+                    <li>Selecione a opção PIX</li>
+                    <li>Escaneie o QR Code acima ou cole a chave PIX copiada</li>
+                    <li>Confirme o valor de <strong>R$ <span id="valor-instrucoes">0.00</span></strong></li>
+                    <li>Finalize o pagamento</li>
+                    <li><strong>Envie o comprovante para (19) 98910-1879</strong></li>
+                </ol>
+                
+                <p><strong>Importante:</strong> Sua aposta só será confirmada após o pagamento e envio do comprovante.</p>
+            </div>
+            
+            <div class="warning-message">
+                <p><strong>⚠️ Aposta Pendente</strong></p>
+                <p>Realize o pagamento PIX e envie o comprovante para (19) 98910-1879 para confirmar sua aposta.</p>
+            </div>
+            
+            <div class="botoes-acao">
+                <button class="btn-secundario" id="btn-voltar">Voltar</button>
+                <button id="btn-comprovante">Já Enviei o Comprovante</button>
+            </div>
+            
+            <div class="success-message hidden" id="success-message">
+                <h3>✅ Aposta confirmada com sucesso!</h3>
+                <p>Obrigado por apostar conosco. Boa sorte!</p>
+                <button id="btn-nova-aposta">Fazer Nova Aposta</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>AS APOSTAS SÓ SERÃO ACEITAS ATÉ O INÍCIO DO JOGO APOSTADO</strong></p>
+            <p><strong>Contato para envio de comprovantes:</strong> (19) 98910-1879</p>
+        </footer>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div id="modal-confirmacao" class="modal">
+        <div class="modal-content">
+            <h3>📨 Confirmação de Comprovante</h3>
+            <p><strong>Sua aposta será confirmada em breve!</strong></p>
+            <p>Verifique se o comprovante foi enviado corretamente para <strong>(19) 98910-1879</strong> antes de confirmar.</p>
+            <div class="modal-botoes">
+                <button class="btn-cancelar" id="btn-modal-cancelar">Cancelar</button>
+                <button id="btn-modal-confirmar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-pagamento.js"></script>
+</body>
+</html>
