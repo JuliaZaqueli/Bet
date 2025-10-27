@@ -84,50 +84,43 @@ const campeonatos = {
         jogos: [
             { 
                 id: 1, 
-                timeCasa: "Atlético Mineiro", 
+                timeCasa: "Fluminense", 
                 timeFora: "Ceará", 
-                data: "25/10/2025 16:00",
+                data: "29/10/2025 19:00",
                 odds: {
-                    casa: 1.90,
-                    empate: 3.40,
-                    fora: 4.00
+                    casa: 1.57,
+                    empate: 3.60,
+                    fora: 6.25
                 },
                 oddsAdicionais: {
                     gols: {
                         mais: [
-                            { tipo: "Mais que 0", odd: 1.10 },
-                            { tipo: "Mais que 1", odd: 1.50 },
-                            { tipo: "Mais que 2", odd: 2.40 }
+                            { tipo: "Mais que 0", odd: 1.08 },
+                            { tipo: "Mais que 1", odd: 1.44 },
+                            { tipo: "Mais que 2", odd: 2.30 }
                         ],
                         exato: [
-                            { tipo: "Exatamente 0", odd: 7.00 },
-                            { tipo: "Exatamente 1", odd: 3.60 },
+                            { tipo: "Exatamente 0", odd: 7.50 },
+                            { tipo: "Exatamente 1", odd: 4.00 },
                             { tipo: "Exatamente 2", odd: 3.40 }
                         ]
                     },
                     tempoGols: [
                         { tipo: "1º Tempo", odd: 3.10 },
                         { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.10}
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 4", odd: 1.02 },
-                            { tipo: "Mais que 6", odd: 1.14 },
-                            { tipo: "Mais que 8", odd: 1.50}
-                        ]
-                    }
+                        { tipo: "Empate", odd: 3.25}
+                    ]
                 }
             },
             { 
                 id: 2, 
-                timeCasa: "Vitória", 
-                timeFora: "Corinthians", 
-                data: "25/10/2025 16:00",
+                timeCasa: "Cruzeiro", 
+                timeFora: "Vitória", 
+                data: "01/11/2025 16:00",
                 odds: {
-                    casa: 2.62,
-                    empate: 3.10,
-                    fora: 2.80
+                    casa: 1.48,
+                    empate: 4.10,
+                    fora: 7.00
                 },
                 oddsAdicionais: {
                     gols: {
@@ -143,28 +136,21 @@ const campeonatos = {
                         ]
                     },
                     tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.10}
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 4", odd: 1.02 },
-                            { tipo: "Mais que 6", odd: 1.12 },
-                            { tipo: "Mais que 8", odd: 1.44}
-                        ]
-                    }
+                        { tipo: "1º Tempo", odd: 3.00 },
+                        { tipo: "2º Tempo", odd: 2.10 },
+                        { tipo: "Empate", odd: 3.40}
+                    ]
                 }
             },
             { 
                 id: 3, 
-                timeCasa: "Fluminense", 
-                timeFora: "Internacional", 
-                data: "25/10/2025 17:30",
+                timeCasa: "Santos", 
+                timeFora: "Fortaleza", 
+                data: "01/11/2025 16:00",
                 odds: {
-                    casa: 1.80,
-                    empate: 3.30,
-                    fora: 5.00
+                    casa: 1.70,
+                    empate: 3.80,
+                    fora: 4.50
                 },
                 oddsAdicionais: {
                     gols: {
@@ -180,28 +166,81 @@ const campeonatos = {
                         ]
                     },
                     tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
+                        { tipo: "1º Tempo", odd: 3.00 },
                         { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.25}
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 4", odd: 1.02 },
-                            { tipo: "Mais que 6", odd: 1.16 },
-                            { tipo: "Mais que 8", odd: 1.50}
-                        ]
-                    }
+                        { tipo: "Empate", odd: 3.50}
+                    ]
                 }
             },
             { 
                 id: 4, 
-                timeCasa: "Sport Recife", 
-                timeFora: "Mirassol", 
-                data: "25/10/2025 18:30",
+                timeCasa: "Mirassol", 
+                timeFora: "Botafogo", 
+                data: "01/11/2025 18:30",
                 odds: {
-                    casa: 2.70,
-                    empate: 3.00,
-                    fora: 2.62
+                    casa: 2.15,
+                    empate: 3.50,
+                    fora: 3.20
+                },
+                oddsAdicionais: {
+                    gols: {
+                        mais: [
+                            { tipo: "Mais que 0", odd: 1.06 },
+                            { tipo: "Mais que 1", odd: 1.33 },
+                            { tipo: "Mais que 2", odd: 2.00 }
+                        ],
+                        exato: [
+                            { tipo: "Exatamente 0", odd: 10.00 },
+                            { tipo: "Exatamente 1", odd: 4.33 },
+                            { tipo: "Exatamente 2", odd: 3.60 }
+                        ]
+                    },
+                    tempoGols: [
+                        { tipo: "1º Tempo", odd: 3.00 },
+                        { tipo: "2º Tempo", odd: 2.10 },
+                        { tipo: "Empate", odd: 3.40}
+                    ]
+                }
+            },
+            { 
+                id: 5, 
+                timeCasa: "Flamengo", 
+                timeFora: "Sport Recife", 
+                data: "01/11/2025 21:00",
+                odds: {
+                    casa: 1.18,
+                    empate: 7.00,
+                    fora: 13.00
+                },
+                oddsAdicionais: {
+                    gols: {
+                        mais: [
+                            { tipo: "Mais que 0", odd: 1.03 },
+                            { tipo: "Mais que 1", odd: 1.20 },
+                            { tipo: "Mais que 2", odd: 1.65 }
+                        ],
+                        exato: [
+                            { tipo: "Exatamente 0", odd: 15.00 },
+                            { tipo: "Exatamente 1", odd: 5.50 },
+                            { tipo: "Exatamente 2", odd: 4.00 }
+                        ]
+                    },
+                    tempoGols: [
+                        { tipo: "1º Tempo", odd: 2.87 },
+                        { tipo: "2º Tempo", odd: 2.05 },
+                        { tipo: "Empate", odd: 3.75 }
+                    ]
+                }
+            },
+            { 
+                id: 6, 
+                timeCasa: "Bahia", 
+                timeFora: "Bragantino", 
+                data: "02/11/2025 16:00",
+                odds: {
+                    casa: 1.17,
+                    empate: 3.80,
+                    fora: 4.75
                 },
                 oddsAdicionais: {
                     gols: {
@@ -212,70 +251,56 @@ const campeonatos = {
                         ],
                         exato: [
                             { tipo: "Exatamente 0", odd: 10.00 },
-                            { tipo: "Exatamente 1", odd: 4.75 },
-                            { tipo: "Exatamente 2", odd: 3.50 }
+                            { tipo: "Exatamente 1", odd: 4.50 },
+                            { tipo: "Exatamente 2", odd: 3.60 }
                         ]
                     },
                     tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.05 },
+                        { tipo: "1º Tempo", odd: 3.00 },
+                        { tipo: "2º Tempo", odd: 2.10 },
                         { tipo: "Empate", odd: 3.50 }
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 5", odd: 1.02 },
-                            { tipo: "Mais que 6", odd: 1.06 },
-                            { tipo: "Mais que 8", odd: 1.14 }
-                        ]
-                    }
+                    ]
                 }
             },
             { 
-                id: 5, 
-                timeCasa: "Fortaleza", 
-                timeFora: "Flamengo", 
-                data: "25/10/2025 19:30",
+                id: 7, 
+                timeCasa: "Ceara", 
+                timeFora: "Fluminense", 
+                data: "02/11/2025 16:00",
                 odds: {
-                    casa: 5.50,
-                    empate: 3.60,
-                    fora: 1.66
+                    casa: 2.70,
+                    empate: 3.00,
+                    fora: 2.75
                 },
                 oddsAdicionais: {
                     gols: {
                         mais: [
-                            { tipo: "Mais que 0", odd: 1.07 },
-                            { tipo: "Mais que 2", odd: 2.10 },
-                            { tipo: "Mais que 4", odd: 8.40 }
+                            { tipo: "Mais que 0", odd: 1.10 },
+                            { tipo: "Mais que 1", odd: 1.44 },
+                            { tipo: "Mais que 2", odd: 2.40 }
                         ],
                         exato: [
-                            { tipo: "Exatamente 0", odd: 8.50 },
-                            { tipo: "Exatamente 1", odd: 4.33 },
-                            { tipo: "Exatamente 2", odd: 3.40 }
+                            { tipo: "Exatamente 0", odd: 7.00 },
+                            { tipo: "Exatamente 1", odd: 3.75 },
+                            { tipo: "Exatamente 2", odd: 3.25 }
                         ]
                     },
                     tempoGols: [
                         { tipo: "1º Tempo", odd: 3.10 },
                         { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.10}
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 5", odd: 1.05 },
-                            { tipo: "Mais que 7", odd: 1.22 },
-                            { tipo: "Mais que 9", odd: 1.66}
-                        ]
-                    }
+                        { tipo: "Empate", odd: 3.20 }
+                    ]
                 }
             },
             { 
-                id: 6, 
-                timeCasa: "São Paulo", 
-                timeFora: "Bahía", 
-                data: "25/10/2025 21:30",
+                id: 8, 
+                timeCasa: "Corinthians", 
+                timeFora: "Grêmio", 
+                data: "02/11/2025 16:00",
                 odds: {
-                    casa: 1.90,
-                    empate: 3.40,
-                    fora: 4.20
+                    casa: 1.72,
+                    empate: 3.70,
+                    fora: 4.75
                 },
                 oddsAdicionais: {
                     gols: {
@@ -286,29 +311,147 @@ const campeonatos = {
                         ],
                         exato: [
                             { tipo: "Exatamente 0", odd: 8.00 },
-                            { tipo: "Exatamente 1", odd: 4.00 },
+                            { tipo: "Exatamente 1", odd: 3.75 },
                             { tipo: "Exatamente 2", odd: 3.40 }
                         ]
                     },
                     tempoGols: [
                         { tipo: "1º Tempo", odd: 3.10 },
                         { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.10}
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 4", odd: 1.02 },
-                            { tipo: "Mais que 6", odd: 1.16 },
-                            { tipo: "Mais que 8", odd: 1.53 }
-                        ]
-                    }
+                        { tipo: "Empate", odd: 3.20 }
+                    ]
                 }
             },
             { 
-                id: 7, 
-                timeCasa: "Botafogo",   
-                timeFora: "Santos", 
-                data: "26/10/2025 16:00",
+                id: 9, 
+                timeCasa: "Internacional", 
+                timeFora: "Atlético Mineiro", 
+                data: "02/11/2025 18:30",
+                odds: {
+                    casa: 2.05,
+                    empate: 3.25,
+                    fora: 3.75
+                },
+                oddsAdicionais: {
+                    gols: {
+                        mais: [
+                            { tipo: "Mais que 0", odd: 1.10 },
+                            { tipo: "Mais que 1", odd: 1.44 },
+                            { tipo: "Mais que 2", odd: 2.40 }
+                        ],
+                        exato: [
+                            { tipo: "Exatamente 0", odd: 7.00 },
+                            { tipo: "Exatamente 1", odd: 3.75 },
+                            { tipo: "Exatamente 2", odd: 3.40 }
+                        ]
+                    },
+                    tempoGols: [
+                        { tipo: "1º Tempo", odd: 3.10 },
+                        { tipo: "2º Tempo", odd: 2.20 },
+                        { tipo: "Empate", odd: 3.20 }
+                    ]
+                }
+            },
+            { 
+                id: 10, 
+                timeCasa: "Juventude", 
+                timeFora: "Palmeiras", 
+                data: "02/11/2025 20:30",
+                odds: {
+                    casa: 6.00,
+                    empate: 4.20,
+                    fora: 1.50
+                },
+                oddsAdicionais: {
+                    gols: {
+                        mais: [
+                            { tipo: "Mais que 0", odd: 1.06 },
+                            { tipo: "Mais que 1", odd: 1.33 },
+                            { tipo: "Mais que 2", odd: 2.00 }
+                        ],
+                        exato: [
+                            { tipo: "Exatamente 0", odd: 10.00 },
+                            { tipo: "Exatamente 1", odd: 4.50 },
+                            { tipo: "Exatamente 2", odd: 3.60 }
+                        ]
+                    },
+                    tempoGols: [
+                        { tipo: "1º Tempo", odd: 3.00 },
+                        { tipo: "2º Tempo", odd: 2.10 },
+                        { tipo: "Empate", odd: 3.40 }
+                    ]
+                }
+            },
+            { 
+                id: 11, 
+                timeCasa: "Vasco da Gama", 
+                timeFora: "São Paulo", 
+                data: "02/11/2025 20:30",
+                odds: {
+                    casa: 2.20,
+                    empate: 3.20,
+                    fora: 3.30
+                },
+                oddsAdicionais: {
+                    gols: {
+                        mais: [
+                            { tipo: "Mais que 0", odd: 1.08 },
+                            { tipo: "Mais que 1", odd: 1.44 },
+                            { tipo: "Mais que 2", odd: 2.35 }
+                        ],
+                        exato: [
+                            { tipo: "Exatamente 0", odd: 7.50 },
+                            { tipo: "Exatamente 1", odd: 3.75 },
+                            { tipo: "Exatamente 2", odd: 3.40 }
+                        ]
+                    },
+                    tempoGols: [
+                        { tipo: "1º Tempo", odd: 3.10 },
+                        { tipo: "2º Tempo", odd: 2.20 },
+                        { tipo: "Empate", odd: 3.20 }
+                    ]
+                }
+            }
+        ]
+    },
+    "sul-americana": {
+        nome: "Copa Sul-Americana",
+        jogos: [
+            { 
+                id: 1, 
+                timeCasa: "Atlético Mineiro", 
+                timeFora: "Independiente del Valle", 
+                data: "28/10/2025 21:30",
+                odds: {
+                    casa: 1.65,
+                    empate: 3.75,
+                    fora: 4.25
+                },
+                oddsAdicionais: {
+                    gols: {
+                        mais: [
+                            { tipo: "Mais que 0", odd: 1.06 },
+                            { tipo: "Mais que 1", odd: 1.36 },
+                            { tipo: "Mais que 2", odd: 2.10 }
+                        ],
+                        exato: [
+                            { tipo: "Exatamente 0", odd: 10.00 },
+                            { tipo: "Exatamente 1", odd: 4.80 },
+                            { tipo: "Exatamente 2", odd: 3.60 }
+                        ]
+                    },
+                    tempoGols: [
+                        { tipo: "1º Tempo", odd: 3.00 },
+                        { tipo: "2º Tempo", odd: 2.10 },
+                        { tipo: "Empate", odd: 3.40 }
+                    ],
+                }
+            },
+            { 
+                id: 2, 
+                timeCasa: "Lanús", 
+                timeFora: "Universidad de Chile", 
+                data: "30/10/2025 19:00",
                 odds: {
                     casa: 1.85,
                     empate: 3.50,
@@ -319,141 +462,24 @@ const campeonatos = {
                         mais: [
                             { tipo: "Mais que 0", odd: 1.07 },
                             { tipo: "Mais que 1", odd: 1.40 },
-                            { tipo: "Mais que 2", odd: 2.15 }
+                            { tipo: "Mais que 2", odd: 2.25 }
                         ],
                         exato: [
-                            { tipo: "Exatamente 0", odd: 8.50 },
-                            { tipo: "Exatamente 1", odd: 4.33 },
-                            { tipo: "Exatamente 2", odd: 3.40 }
+                            { tipo: "Exatamente 0", odd: 9.00 },
+                            { tipo: "Exatamente 1", odd: 4.00 },
+                            { tipo: "Exatamente 2", odd: 3.50 }
                         ]
                     },
                     tempoGols: [
                         { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.10 },
+                        { tipo: "2º Tempo", odd: 2.20 },
                         { tipo: "Empate", odd: 3.25 }
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 4", odd: 1.02 },
-                            { tipo: "Mais que 6", odd: 1.16 },
-                            { tipo: "Mais que 8", odd: 1.53 }
-                        ]
-                    }
-                }
-            },
-            { 
-                id: 8, 
-                timeCasa: "Gremio",   
-                timeFora: "Juventude", 
-                data: "26/10/2025 16:00",
-                odds: {
-                    casa: 1.75,
-                    empate: 3.50,
-                    fora: 5.00
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.08 },
-                            { tipo: "Mais que 1", odd: 1.36 },
-                            { tipo: "Mais que 2", odd: 2.15 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 8.00 },
-                            { tipo: "Exatamente 1", odd: 4.33 },
-                            { tipo: "Exatamente 2", odd: 3.40 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.40 }
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 5", odd: 1.05 },
-                            { tipo: "Mais que 7", odd: 1.22 },
-                            { tipo: "Mais que 9", odd: 1.72 }
-                        ]
-                    }
-                }
-            },
-            { 
-                id: 9, 
-                timeCasa: "Bragantino",   
-                timeFora: "Vasco da Gama", 
-                data: "26/10/2025 18:30",
-                odds: {
-                    casa: 2.10,
-                    empate: 3.50,
-                    fora: 3.50
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.06 },
-                            { tipo: "Mais que 1", odd: 1.33 },
-                            { tipo: "Mais que 2", odd: 2.05 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 9.50 },
-                            { tipo: "Exatamente 1", odd: 4.50 },
-                            { tipo: "Exatamente 2", odd: 3.50 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.40 }
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 5", odd: 1.04 },
-                            { tipo: "Mais que 7", odd: 1.20 },
-                            { tipo: "Mais que 9", odd: 1.61 }
-                        ]
-                    }
-                }
-            },
-            { 
-                id: 10, 
-                timeCasa: "Palmeiras",   
-                timeFora: "Cruzeiro", 
-                data: "26/10/2025 20:30",
-                odds: {
-                    casa: 1.80,
-                    empate: 3.70,
-                    fora: 4.50
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.06 },
-                            { tipo: "Mais que 1", odd: 1.33 },
-                            { tipo: "Mais que 2", odd: 2.00 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 9.50 },
-                            { tipo: "Exatamente 1", odd: 4.50 },
-                            { tipo: "Exatamente 2", odd: 3.50 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.00 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.40 }
-                    ],
-                    escanteios: {
-                        mais: [
-                            { tipo: "Mais que 5", odd: 1.05 },
-                            { tipo: "Mais que 7", odd: 1.22 },
-                            { tipo: "Mais que 9", odd: 1.72 }
-                        ]
-                    }
+                    ]
                 }
             }
         ]
     }
+    
 };
 
 // Elementos DOM
@@ -588,7 +614,7 @@ function toggleJogo(header, jogo) {
     carregarConteudoJogo(jogo, conteudo);
 }
 
-// Carregar conteúdo do jogo (odds principais e adicionais)
+// Substituir a função carregarConteudoJogo por esta versão corrigida:
 function carregarConteudoJogo(jogo, conteudo) {
     let html = `
         <div class="odds-principais">
@@ -610,59 +636,71 @@ function carregarConteudoJogo(jogo, conteudo) {
         </div>
     `;
     
-    // Adicionar odds adicionais se existirem
+    // Adicionar odds adicionais se existirem e tiverem a estrutura correta
     if (jogo.oddsAdicionais) {
-        // No trecho onde cria as odds adicionais, substitua a parte de gols por:
-    html += `
-        <div class="categoria-aposta">
-            <div class="categoria-titulo">⚽ Quantidade de Gols</div>
-            <div class="opcoes-multiplas" id="gols-${jogo.id}">
-    `;
+        // Categoria de Gols - com verificação de segurança
+        if (jogo.oddsAdicionais.gols && jogo.oddsAdicionais.gols.mais && jogo.oddsAdicionais.gols.exato) {
+            html += `
+                <div class="categoria-aposta">
+                    <div class="categoria-titulo">⚽ Quantidade de Gols</div>
+                    <div class="opcoes-multiplas" id="gols-${jogo.id}">
+            `;
 
-    // Combinar TODAS as opções de gols em uma única categoria
-    const todasOpcoesGols = [
-        ...jogo.oddsAdicionais.gols.mais.map(opcao => ({...opcao, subcategoria: 'mais'})),
-        ...jogo.oddsAdicionais.gols.exato.map(opcao => ({...opcao, subcategoria: 'exato'}))
-    ];
+            // Combinar TODAS as opções de gols em uma única categoria
+            const todasOpcoesGols = [
+                ...(jogo.oddsAdicionais.gols.mais || []).map(opcao => ({...opcao, subcategoria: 'mais'})),
+                ...(jogo.oddsAdicionais.gols.exato || []).map(opcao => ({...opcao, subcategoria: 'exato'}))
+            ];
 
-    // Adicionar todas as opções de gols como uma única categoria
-    todasOpcoesGols.forEach(opcao => {
-        html += `
-            <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="gols" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
-                ${opcao.tipo}
-                <div class="odd-opcao">${opcao.odd}</div>
-            </div>
-        `;
-    });
-
-    html += `
-            </div>
-        </div>
-        
-        <div class="categoria-aposta">
-            <div class="categoria-titulo">⏰ Tempo com Mais Gols</div>
-            <div class="opcoes-multiplas" id="tempo-gols-${jogo.id}">
-                ${jogo.oddsAdicionais.tempoGols.map(opcao => `
-                    <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="tempo_gols" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
+            // Adicionar todas as opções de gols como uma única categoria
+            todasOpcoesGols.forEach(opcao => {
+                html += `
+                    <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="gols" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
                         ${opcao.tipo}
                         <div class="odd-opcao">${opcao.odd}</div>
                     </div>
-                `).join('')}
-            </div>
-        </div>
-        
-        <div class="categoria-aposta">
-            <div class="categoria-titulo">📐 Total de Escanteios</div>
-            <div class="opcoes-multiplas" id="escanteios-${jogo.id}">
-                ${jogo.oddsAdicionais.escanteios.mais.map(opcao => `
-                    <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="escanteios" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
-                        ${opcao.tipo}
-                        <div class="odd-opcao">${opcao.odd}</div>
+                `;
+            });
+
+            html += `
                     </div>
-                `).join('')}
-            </div>
-        </div>
-    `;
+                </div>
+            `;
+        }
+        
+        // Categoria de Tempo de Gols - com verificação de segurança
+        if (jogo.oddsAdicionais.tempoGols && Array.isArray(jogo.oddsAdicionais.tempoGols)) {
+            html += `
+                <div class="categoria-aposta">
+                    <div class="categoria-titulo">⏰ Tempo com Mais Gols</div>
+                    <div class="opcoes-multiplas" id="tempo-gols-${jogo.id}">
+                        ${jogo.oddsAdicionais.tempoGols.map(opcao => `
+                            <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="tempo_gols" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
+                                ${opcao.tipo}
+                                <div class="odd-opcao">${opcao.odd}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Categoria de Escanteios - com verificação de segurança
+        if (jogo.oddsAdicionais.escanteios && jogo.oddsAdicionais.escanteios.mais) {
+            html += `
+                <div class="categoria-aposta">
+                    <div class="categoria-titulo">📐 Total de Escanteios</div>
+                    <div class="opcoes-multiplas" id="escanteios-${jogo.id}">
+                        ${(jogo.oddsAdicionais.escanteios.mais || []).map(opcao => `
+                            <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="escanteios" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
+                                ${opcao.tipo}
+                                <div class="odd-opcao">${opcao.odd}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
     }
     
     html += `<button class="btn-adicionar-carrinho" data-jogo="${jogo.id}">Adicionar ao Carrinho</button>`;
@@ -689,7 +727,6 @@ function carregarConteudoJogo(jogo, conteudo) {
     // Atualizar seleções atuais
     atualizarSelecoesJogo(jogo);
 }
-
 // Selecionar aposta principal
 function selecionarApostaPrincipal(elemento, jogo) {
     const jogoId = jogo.id;
