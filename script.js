@@ -562,12 +562,18 @@ function carregarConteudoJogo(jogo, conteudo) {
     conteudo.innerHTML = html;
     
     // Adicionar event listeners
-    conteudo.querySelectorAll('.odd').forEach(odd => {
-        odd.addEventListener('click', function() {
-            selecionarApostaPrincipal(this, jogo);
+        conteudo.querySelectorAll('.odd').forEach(odd => {
+            odd.addEventListener('click', function() {
+                selecionarApostaPrincipal(this, jogo);
+            });
         });
-    });
-    
+
+        // ADICIONAR ESTAS LINhas - Event listeners para apostas adicionais
+        conteudo.querySelectorAll('.opcao-multipla').forEach(opcao => {
+            opcao.addEventListener('click', function() {
+                selecionarApostaAdicional(this, jogo);
+            });
+        });
     
     const btnAdicionar = conteudo.querySelector('.btn-adicionar-carrinho');
     if (btnAdicionar) {
@@ -599,23 +605,24 @@ function selecionarApostaPrincipal(elemento, jogo) {
 
 function selecionarApostaAdicional(elemento, jogo) {
     const jogoId = jogo.id;
-    const categoria = elemento.dataset.categoria;
     
-    // Verificar se já está selecionada (desselecionar)
+    // Verificar se já está selecionada (toggle)
     if (elemento.classList.contains('selecionada')) {
         elemento.classList.remove('selecionada');
         return;
     }
     
-    // PARA TODAS AS CATEGORIAS: desselecionar outras opções da MESMA CATEGORIA
+    // Desselecionar outras opções da MESMA CATEGORIA
+    const categoria = elemento.dataset.categoria;
     document.querySelectorAll(`#conteudo-${jogoId} .opcao-multipla[data-categoria="${categoria}"]`).forEach(opcao => {
         opcao.classList.remove('selecionada');
     });
     
     // Selecionar esta opção
     elemento.classList.add('selecionada');
+    
+    console.log(`✅ Aposta adicional selecionada: ${elemento.dataset.tipo} - Odd: ${elemento.dataset.valor}`);
 }
-
 // Adicionar apostas selecionadas ao carrinho - VERSÃO SIMPLIFICADA
 function adicionarApostasAoCarrinho(jogo) {
     const jogoId = jogo.id;
