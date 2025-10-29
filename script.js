@@ -3,18 +3,30 @@ let campeonatos = {};
 
 // Função para carregar dados do localStorage ou usar padrão
 async function carregarDadosCampeonatos() {
-    // Primeiro tenta carregar do localStorage (dados do admin)
-    const dadosAdmin = localStorage.getItem('campeonatosSistema');
-    const dadosAdmin2 = localStorage.getItem('campeonatosAdmin');
+    console.log('🔄 Iniciando carregamento de dados...');
+    
+    // PRIORIDADE: Dados do admin no localStorage
+    const dadosAdmin = localStorage.getItem('campeonatosAdmin');
+    const dadosSistema = localStorage.getItem('campeonatosSistema');
     
     if (dadosAdmin) {
-        campeonatos = JSON.parse(dadosAdmin);
-        console.log('✅ Dados carregados do sistema admin');
-        return;
-    } else if (dadosAdmin2) {
-        campeonatos = JSON.parse(dadosAdmin2);
-        console.log('✅ Dados carregados do localStorage admin');
-        return;
+        try {
+            campeonatos = JSON.parse(dadosAdmin);
+            console.log('✅ Dados carregados do localStorage admin:', Object.keys(campeonatos));
+            return;
+        } catch (error) {
+            console.error('❌ Erro ao parsear dados do admin:', error);
+        }
+    }
+    
+    if (dadosSistema) {
+        try {
+            campeonatos = JSON.parse(dadosSistema);
+            console.log('✅ Dados carregados do localStorage sistema:', Object.keys(campeonatos));
+            return;
+        } catch (error) {
+            console.error('❌ Erro ao parsear dados do sistema:', error);
+        }
     }
     
     // Se não tem dados no localStorage, carrega do arquivo JSON
@@ -27,15 +39,8 @@ async function carregarDadosCampeonatos() {
         }
         
         const dadosJson = await response.json();
-        
-        // Verifica a estrutura do arquivo
-        if (dadosJson.campeonatos) {
-            campeonatos = dadosJson.campeonatos;
-            console.log('✅ Dados carregados do arquivo dados.json');
-        } else {
-            campeonatos = dadosJson; // Assume que é direto os campeonatos
-            console.log('✅ Dados carregados do arquivo JSON (estrutura direta)');
-        }
+        campeonatos = dadosJson;
+        console.log('✅ Dados carregados do arquivo JSON:', Object.keys(campeonatos));
         
         // Salva no localStorage para futuras sessões
         localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
@@ -56,19 +61,56 @@ async function carregarDadosCampeonatos() {
             "sul-americana": {
                 nome: "Copa Sul-Americana", 
                 jogos: []
-            },
-            "libertadores": {
-                nome: "Copa Libertadores", 
-                jogos: []
-            },
-            "serie-b": {
-                nome: "Série B", 
-                jogos: []
             }
         };
         console.log('ℹ️ Usando estrutura básica de campeonatos');
     }
 }
+
+function configurarSincronizacao() {
+    // Ouvir mudanças no localStorage
+    window.addEventListener('storage', function(e) {
+        console.log('🔄 Evento storage detectado:', e.key);
+        
+        if (e.key === 'campeonatosAdmin' || e.key === 'campeonatosSistema') {
+            console.log('📢 Dados atualizados detectados, recarregando...');
+            
+            // Recarregar dados
+            carregarDadosCampeonatos().then(() => {
+                // Recarregar interface
+                carregarOpcoesCampeonato();
+                
+                // Se um campeonato estava selecionado, recarregar os jogos
+                if (campeonatoSelecionado) {
+                    console.log('🔄 Recarregando jogos do campeonato:', campeonatoSelecionado);
+                    carregarJogos();
+                }
+                
+                // Forçar atualização visual
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 100);
+            });
+        }
+    });
+    
+    // Também verificar a cada 2 segundos (fallback)
+    setInterval(() => {
+        const dadosAtuais = JSON.stringify(campeonatos);
+        const dadosStorage = localStorage.getItem('campeonatosAdmin');
+        
+        if (dadosStorage && dadosStorage !== dadosAtuais) {
+            console.log('🔄 Mudanças detectadas (polling), atualizando...');
+            carregarDadosCampeonatos().then(() => {
+                carregarOpcoesCampeonato();
+                if (campeonatoSelecionado) {
+                    carregarJogos();
+                }
+            });
+        }
+    }, 2000);
+}
+
 function configurarSincronizacao() {
     window.addEventListener('storage', function(e) {
         if (e.key === 'campeonatosSistema' || e.key === 'campeonatosAdmin') {
@@ -122,54 +164,58 @@ function inicializarElementosDOM() {
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Sistema de Apostas - Página Principal');
+    console.log('Sistema de Apostas - Página Principal - Iniciando...');
     
     // Inicializar elementos DOM
     inicializarElementosDOM();
     
     // Carregar dados primeiro
-    carregarDadosCampeonatos();
-    
-    // Configurar sincronização
-    configurarSincronizacao();
-
-    // Carregar opções de campeonato
-    carregarOpcoesCampeonato();
-    
-    // Event listeners para seleção de campeonato
-    if (selecaoCampeonato) {
-        document.querySelectorAll('.opcao-campeonato').forEach(opcao => {
-            opcao.addEventListener('click', function() {
-                document.querySelectorAll('.opcao-campeonato').forEach(el => {
-                    el.classList.remove('selecionada');
-                });
-                this.classList.add('selecionada');
-                
-                campeonatoSelecionado = this.dataset.campeonato;
-                carregarJogos();
-                
-                if (listaJogosContainer) {
-                    listaJogosContainer.classList.remove('hidden');
+    carregarDadosCampeonatos().then(() => {
+        // Configurar sincronização
+        configurarSincronizacao();
+        
+        // Carregar opções de campeonato
+        carregarOpcoesCampeonato();
+        
+        // Event listeners para seleção de campeonato (delegado)
+        if (selecaoCampeonato) {
+            selecaoCampeonato.addEventListener('click', function(e) {
+                if (e.target.classList.contains('opcao-campeonato')) {
+                    document.querySelectorAll('.opcao-campeonato').forEach(el => {
+                        el.classList.remove('selecionada');
+                    });
+                    e.target.classList.add('selecionada');
+                    
+                    campeonatoSelecionado = e.target.dataset.campeonato;
+                    carregarJogos();
+                    
+                    if (listaJogosContainer) {
+                        listaJogosContainer.classList.remove('hidden');
+                    }
+                    
+                    carrinho = [];
+                    atualizarCarrinho();
                 }
-                
-                carrinho = [];
-                atualizarCarrinho();
             });
-        });
-    }
-    
-    // Event listeners para os botões do carrinho
-    if (btnLimparCarrinho) {
-        btnLimparCarrinho.addEventListener('click', limparCarrinho);
-    }
-    
-    if (btnFazerAposta) {
-        btnFazerAposta.addEventListener('click', mostrarFormUsuario);
-    }
-    
-    if (btnExpandirCarrinho) {
-        btnExpandirCarrinho.addEventListener('click', toggleCarrinho);
-    }
+        }
+        
+        // Event listeners para os botões do carrinho
+        if (btnLimparCarrinho) {
+            btnLimparCarrinho.addEventListener('click', limparCarrinho);
+        }
+        
+        if (btnFazerAposta) {
+            btnFazerAposta.addEventListener('click', mostrarFormUsuario);
+        }
+        
+        if (btnExpandirCarrinho) {
+            btnExpandirCarrinho.addEventListener('click', toggleCarrinho);
+        }
+        
+        console.log('✅ Sistema inicializado com sucesso');
+    }).catch(error => {
+        console.error('❌ Erro na inicialização:', error);
+    });
 });
 
 // Alternar entre carrinho compacto e expandido

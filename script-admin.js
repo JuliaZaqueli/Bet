@@ -610,33 +610,39 @@ function converterParaDatetimeLocal(dataString) {
 }
 
 function forcarAtualizacaoPaginaPrincipal() {
+    console.log('🔄 Forçando atualização da página principal...');
+    
     try {
-        // Método 1: window.opener (se admin foi aberto a partir do principal)
-        if (window.opener && typeof window.opener.carregarDadosCampeonatos === 'function') {
-            window.opener.carregarDadosCampeonatos();
-            if (window.opener.campeonatoSelecionado) {
-                window.opener.carregarJogos();
-            }
-            console.log('✅ Página principal atualizada via window.opener');
-        }
+        // Método 1: Salvar em AMBAS as chaves do localStorage
+        localStorage.setItem('campeonatosAdmin', JSON.stringify(campeonatos));
+        localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
         
         // Método 2: Disparar evento storage manualmente
         const event = new StorageEvent('storage', {
-            key: 'campeonatosSistema',
+            key: 'campeonatosAdmin',
             newValue: JSON.stringify(campeonatos),
-            oldValue: localStorage.getItem('campeonatosSistema'),
+            oldValue: localStorage.getItem('campeonatosAdmin'),
             url: window.location.href,
             storageArea: localStorage
         });
         window.dispatchEvent(event);
         
-        // Método 3: Salvar em ambas as chaves do localStorage
-        localStorage.setItem('campeonatosAdmin', JSON.stringify(campeonatos));
-        localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
+        // Método 3: window.opener (se admin foi aberto a partir do principal)
+        if (window.opener && !window.opener.closed) {
+            try {
+                window.opener.postMessage({
+                    type: 'CAMPEONATOS_ATUALIZADOS',
+                    data: campeonatos
+                }, '*');
+                console.log('✅ Mensagem enviada para página principal via postMessage');
+            } catch (error) {
+                console.warn('⚠️ Não foi possível enviar mensagem para página principal:', error);
+            }
+        }
         
         console.log('✅ Sincronização forçada com página principal');
         
     } catch (error) {
-        console.warn('⚠️ Não foi possível forçar atualização:', error);
+        console.warn('⚠️ Erro na sincronização:', error);
     }
 }
