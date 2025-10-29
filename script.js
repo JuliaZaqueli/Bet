@@ -6,9 +6,8 @@ let campeonatos = {};
 async function carregarDadosCampeonatos() {
     console.log('🔄 Iniciando carregamento de dados...');
     
-    // PRIORIDADE: Dados do admin no localStorage
+    // PRIORIDADE 1: Dados do admin no localStorage (modificações do usuário)
     const dadosAdmin = localStorage.getItem('campeonatosAdmin');
-    const dadosSistema = localStorage.getItem('campeonatosSistema');
     
     if (dadosAdmin) {
         try {
@@ -17,9 +16,12 @@ async function carregarDadosCampeonatos() {
             return;
         } catch (error) {
             console.error('❌ Erro ao parsear dados do admin:', error);
+            // Se der erro, continua para carregar outros dados
         }
     }
     
+    // PRIORIDADE 2: Dados do sistema no localStorage (backup)
+    const dadosSistema = localStorage.getItem('campeonatosSistema');
     if (dadosSistema) {
         try {
             campeonatos = JSON.parse(dadosSistema);
@@ -30,7 +32,7 @@ async function carregarDadosCampeonatos() {
         }
     }
     
-    // Se não tem dados no localStorage, carrega do arquivo JSON
+    // PRIORIDADE 3: Carregar do arquivo dados.json (dados iniciais)
     try {
         console.log('🔄 Tentando carregar dados do arquivo JSON...');
         const response = await fetch('dados.json');
@@ -43,7 +45,7 @@ async function carregarDadosCampeonatos() {
         campeonatos = dadosJson;
         console.log('✅ Dados carregados do arquivo JSON:', Object.keys(campeonatos));
         
-        // Salva no localStorage para futuras sessões
+        // Salva no localStorage do sistema para futuras sessões
         localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
         
     } catch (error) {
@@ -65,6 +67,9 @@ async function carregarDadosCampeonatos() {
             }
         };
         console.log('ℹ️ Usando estrutura básica de campeonatos');
+        
+        // Salva a estrutura básica
+        localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
     }
 }
 
@@ -106,18 +111,90 @@ function configurarSincronizacao() {
         }
     }, 2000);
 }
+
+function salvarModificacoesAdmin(novosDados) {
+    try {
+        // Atualiza os dados locais
+        campeonatos = novosDados;
+        
+        // Salva no localStorage do admin (prioridade máxima)
+        localStorage.setItem('campeonatosAdmin', JSON.stringify(novosDados));
+        
+        // Também atualiza o localStorage do sistema como backup
+        localStorage.setItem('campeonatosSistema', JSON.stringify(novosDados));
+        
+        console.log('💾 Modificações do admin salvas com sucesso!');
+        
+        // Dispara evento para sincronizar outras abas/páginas
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'campeonatosAdmin',
+            newValue: JSON.stringify(novosDados)
+        }));
+        
+        return true;
+    } catch (error) {
+        console.error('❌ Erro ao salvar modificações do admin:', error);
+        return false;
+    }
+}
+
+function resetarParaDadosOriginais() {
+    if (confirm('Tem certeza que deseja resetar todos os dados para o original? Isso apagará todas as modificações feitas.')) {
+        // Remove os dados do admin para forçar recarregar do JSON
+        localStorage.removeItem('campeonatosAdmin');
+        localStorage.removeItem('campeonatosSistema');
+        
+        // Recarrega a página para aplicar as mudanças
+        location.reload();
+    }
+}
+
+
 function configurarSincronizacao() {
+    // Ouvir mudanças no localStorage entre abas
     window.addEventListener('storage', function(e) {
-        if (e.key === 'campeonatosSistema' || e.key === 'campeonatosAdmin') {
-            console.log('🔄 Dados atualizados detectados, recarregando...');
-            carregarDadosCampeonatos();
+        console.log('🔄 Evento storage detectado:', e.key);
+        
+        if (e.key === 'campeonatosAdmin') {
+            console.log('📢 Modificações do admin detectadas em outra aba, recarregando...');
             
-            // Se um campeonato estava selecionado, recarregar os jogos
-            if (campeonatoSelecionado) {
-                carregarJogos();
+            if (e.newValue) {
+                try {
+                    campeonatos = JSON.parse(e.newValue);
+                    console.log('✅ Dados atualizados via storage event');
+                    
+                    // Recarregar interface
+                    carregarOpcoesCampeonato();
+                    
+                    // Recarregar jogos se houver seleção
+                    if (campeonatoSelecionadoGlobal) {
+                        carregarJogos();
+                    }
+                } catch (error) {
+                    console.error('❌ Erro ao processar dados do storage event:', error);
+                }
             }
         }
     });
+    
+    // Verificar mudanças a cada 3 segundos (fallback para alguns navegadores)
+    setInterval(() => {
+        const dadosAtuais = JSON.stringify(campeonatos);
+        const dadosStorageAdmin = localStorage.getItem('campeonatosAdmin');
+        
+        if (dadosStorageAdmin && dadosStorageAdmin !== dadosAtuais) {
+            console.log('🔄 Mudanças detectadas (polling), atualizando...');
+            try {
+                campeonatos = JSON.parse(dadosStorageAdmin);
+                carregarOpcoesCampeonato();
+                if (campeonatoSelecionadoGlobal) {
+                    carregarJogos();
+                }
+            } catch (error) {
+                console.error('❌ Erro ao atualizar via polling:', error);
+            }
+        }
+    }, 3000);
 }
 
 

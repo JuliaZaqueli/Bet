@@ -206,11 +206,12 @@
                 <!-- Tabs serão geradas dinamicamente -->
             </div>
 
+            <!-- Botões de gerenciamento no admin -->
             <div class="admin-actions">
-                <button id="btn-novo-jogo" class="btn-success">➕ Adicionar Novo Jogo</button>
-                <button id="btn-salvar-tudo" class="btn">💾 Salvar Todas as Alterações</button>
-                <button id="btn-exportar-dados" class="btn-info">📤 Exportar Dados</button>
-                <button id="btn-importar-dados" class="btn-info">📥 Importar Dados</button>
+                <button onclick="sistemaApostas.exportarDados()">📥 Exportar Dados</button>
+                <button onclick="document.getElementById('importFile').click()">📤 Importar Dados</button>
+                <button onclick="sistemaApostas.resetarParaDadosOriginais()">🔄 Resetar para Original</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="sistemaApostas.importarDados(event)">
             </div>
 
             <div id="lista-jogos-admin">
