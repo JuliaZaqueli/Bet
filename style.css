@@ -1000,3 +1000,49 @@ footer {
         font-size: 0.8rem !important;
     }
 }
+/* Estilos específicos para o modal do admin */
+#modal-novo-jogo .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: 5% auto;
+}
+
+#modal-novo-jogo .modal-botoes {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#modal-novo-jogo .modal-botoes button {
+    min-width: 120px;
+}
+
+/* Garantir que o modal fique sempre visível */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    position: relative;
+}

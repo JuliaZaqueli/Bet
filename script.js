@@ -1,526 +1,126 @@
 // Dados dos campeonatos com odds adicionais
-const campeonatos = {
-    champions: {
-        nome: "Champions League",
-        jogos: [
-            // { 
-            //     id: 1, 
-            //     timeCasa: "Barcelona", 
-            //     timeFora: "Olympiakos", 
-            //     data: "16/05/2023 21:00",
-            //     odds: {
-            //         casa: 1.80,
-            //         empate: 3.40,
-            //         fora: 4.20
-            //     },
-            //     oddsAdicionais: {
-            //         gols: {
-            //             mais: [
-            //                 { tipo: "Mais que 0.5", odd: 1.30 },
-            //                 { tipo: "Mais que 1.5", odd: 1.80 },
-            //                 { tipo: "Mais que 2.5", odd: 2.50 }
-            //             ],
-            //             exato: [
-            //                 { tipo: "Exatamente 0", odd: 3.50 },
-            //                 { tipo: "Exatamente 1", odd: 3.20 },
-            //                 { tipo: "Exatamente 2", odd: 3.50 }
-            //             ]
-            //         },
-            //         tempoGols: [
-            //             { tipo: "1º Tempo", odd: 2.80 },
-            //             { tipo: "2º Tempo", odd: 2.20 },
-            //             { tipo: "Empate", odd: 3.50 }
-            //         ],
-            //         escanteios: {
-            //             mais: [
-            //                 { tipo: "Mais que 4.5", odd: 1.60 },
-            //                 { tipo: "Mais que 6.5", odd: 2.00 },
-            //                 { tipo: "Mais que 8.5", odd: 2.60 }
-            //             ]
-            //         }
-            //     }
-            // },
-            // { 
-            //     id: 2, 
-            //     timeCasa: "Kairat Almaty", 
-            //     timeFora: "Pafos FC", 
-            //     data: "16/05/2023 18:00",
-            //     odds: {
-            //         casa: 2.10,
-            //         empate: 3.20,
-            //         fora: 3.50
-            //     },
-            //     oddsAdicionais: {
-            //         gols: {
-            //             mais: [
-            //                 { tipo: "Mais que 0.5", odd: 1.25 },
-            //                 { tipo: "Mais que 1.5", odd: 1.75 },
-            //                 { tipo: "Mais que 2.5", odd: 2.30 }
-            //             ],
-            //             exato: [
-            //                 { tipo: "Exatamente 0", odd: 3.80 },
-            //                 { tipo: "Exatamente 1", odd: 3.40 },
-            //                 { tipo: "Exatamente 2", odd: 3.20 }
-            //             ]
-            //         },
-            //         tempoGols: [
-            //             { tipo: "1º Tempo", odd: 2.60 },
-            //             { tipo: "2º Tempo", odd: 2.10 },
-            //             { tipo: "Empate", odd: 3.20 }
-            //         ],
-            //         escanteios: {
-            //             mais: [
-            //                 { tipo: "Mais que 4.5", odd: 1.55 },
-            //                 { tipo: "Mais que 6.5", odd: 1.95 },
-            //                 { tipo: "Mais que 8.5", odd: 2.50 }
-            //             ]
-            //         }
-            //     }
-            // }
-        ]
-    },
-    "serie-a": {
-        nome: "Série A",
-        jogos: [
-            { 
-                id: 1, 
-                timeCasa: "Fluminense", 
-                timeFora: "Ceará", 
-                data: "29/10/2025 19:00",
-                odds: {
-                    casa: 1.57,
-                    empate: 3.60,
-                    fora: 6.25
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.08 },
-                            { tipo: "Mais que 1", odd: 1.44 },
-                            { tipo: "Mais que 2", odd: 2.30 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 7.50 },
-                            { tipo: "Exatamente 1", odd: 4.00 },
-                            { tipo: "Exatamente 2", odd: 3.40 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.25}
-                    ]
-                }
-            },
-            { 
-                id: 2, 
-                timeCasa: "Cruzeiro", 
-                timeFora: "Vitória", 
-                data: "01/11/2025 16:00",
-                odds: {
-                    casa: 1.48,
-                    empate: 4.10,
-                    fora: 7.00
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.11 },
-                            { tipo: "Mais que 1", odd: 1.50 },
-                            { tipo: "Mais que 2", odd: 2.50 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 6.50 },
-                            { tipo: "Exatamente 1", odd: 3.75 },
-                            { tipo: "Exatamente 2", odd: 3.25 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.00 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.40}
-                    ]
-                }
-            },
-            { 
-                id: 3, 
-                timeCasa: "Santos", 
-                timeFora: "Fortaleza", 
-                data: "01/11/2025 16:00",
-                odds: {
-                    casa: 1.70,
-                    empate: 3.80,
-                    fora: 4.50
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.08 },
-                            { tipo: "Mais que 1", odd: 1.40 },
-                            { tipo: "Mais que 2", odd: 2.20 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 8.00 },
-                            { tipo: "Exatamente 1", odd: 4.33 },
-                            { tipo: "Exatamente 2", odd: 3.40 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.00 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.50}
-                    ]
-                }
-            },
-            { 
-                id: 4, 
-                timeCasa: "Mirassol", 
-                timeFora: "Botafogo", 
-                data: "01/11/2025 18:30",
-                odds: {
-                    casa: 2.15,
-                    empate: 3.50,
-                    fora: 3.20
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.06 },
-                            { tipo: "Mais que 1", odd: 1.33 },
-                            { tipo: "Mais que 2", odd: 2.00 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 10.00 },
-                            { tipo: "Exatamente 1", odd: 4.33 },
-                            { tipo: "Exatamente 2", odd: 3.60 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.00 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.40}
-                    ]
-                }
-            },
-            { 
-                id: 5, 
-                timeCasa: "Flamengo", 
-                timeFora: "Sport Recife", 
-                data: "01/11/2025 21:00",
-                odds: {
-                    casa: 1.18,
-                    empate: 7.00,
-                    fora: 13.00
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.03 },
-                            { tipo: "Mais que 1", odd: 1.20 },
-                            { tipo: "Mais que 2", odd: 1.65 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 15.00 },
-                            { tipo: "Exatamente 1", odd: 5.50 },
-                            { tipo: "Exatamente 2", odd: 4.00 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 2.87 },
-                        { tipo: "2º Tempo", odd: 2.05 },
-                        { tipo: "Empate", odd: 3.75 }
-                    ]
-                }
-            },
-            { 
-                id: 6, 
-                timeCasa: "Bahia", 
-                timeFora: "Bragantino", 
-                data: "02/11/2025 16:00",
-                odds: {
-                    casa: 1.17,
-                    empate: 3.80,
-                    fora: 4.75
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.06 },
-                            { tipo: "Mais que 1", odd: 1.30 },
-                            { tipo: "Mais que 2", odd: 1.95 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 10.00 },
-                            { tipo: "Exatamente 1", odd: 4.50 },
-                            { tipo: "Exatamente 2", odd: 3.60 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.00 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.50 }
-                    ]
-                }
-            },
-            { 
-                id: 7, 
-                timeCasa: "Ceara", 
-                timeFora: "Fluminense", 
-                data: "02/11/2025 16:00",
-                odds: {
-                    casa: 2.70,
-                    empate: 3.00,
-                    fora: 2.75
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.10 },
-                            { tipo: "Mais que 1", odd: 1.44 },
-                            { tipo: "Mais que 2", odd: 2.40 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 7.00 },
-                            { tipo: "Exatamente 1", odd: 3.75 },
-                            { tipo: "Exatamente 2", odd: 3.25 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.20 }
-                    ]
-                }
-            },
-            { 
-                id: 8, 
-                timeCasa: "Corinthians", 
-                timeFora: "Grêmio", 
-                data: "02/11/2025 16:00",
-                odds: {
-                    casa: 1.72,
-                    empate: 3.70,
-                    fora: 4.75
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.08 },
-                            { tipo: "Mais que 1", odd: 1.44 },
-                            { tipo: "Mais que 2", odd: 2.30 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 8.00 },
-                            { tipo: "Exatamente 1", odd: 3.75 },
-                            { tipo: "Exatamente 2", odd: 3.40 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.20 }
-                    ]
-                }
-            },
-            { 
-                id: 9, 
-                timeCasa: "Internacional", 
-                timeFora: "Atlético Mineiro", 
-                data: "02/11/2025 18:30",
-                odds: {
-                    casa: 2.05,
-                    empate: 3.25,
-                    fora: 3.75
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.10 },
-                            { tipo: "Mais que 1", odd: 1.44 },
-                            { tipo: "Mais que 2", odd: 2.40 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 7.00 },
-                            { tipo: "Exatamente 1", odd: 3.75 },
-                            { tipo: "Exatamente 2", odd: 3.40 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.20 }
-                    ]
-                }
-            },
-            { 
-                id: 10, 
-                timeCasa: "Juventude", 
-                timeFora: "Palmeiras", 
-                data: "02/11/2025 20:30",
-                odds: {
-                    casa: 6.00,
-                    empate: 4.20,
-                    fora: 1.50
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.06 },
-                            { tipo: "Mais que 1", odd: 1.33 },
-                            { tipo: "Mais que 2", odd: 2.00 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 10.00 },
-                            { tipo: "Exatamente 1", odd: 4.50 },
-                            { tipo: "Exatamente 2", odd: 3.60 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.00 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.40 }
-                    ]
-                }
-            },
-            { 
-                id: 11, 
-                timeCasa: "Vasco da Gama", 
-                timeFora: "São Paulo", 
-                data: "02/11/2025 20:30",
-                odds: {
-                    casa: 2.20,
-                    empate: 3.20,
-                    fora: 3.30
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.08 },
-                            { tipo: "Mais que 1", odd: 1.44 },
-                            { tipo: "Mais que 2", odd: 2.35 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 7.50 },
-                            { tipo: "Exatamente 1", odd: 3.75 },
-                            { tipo: "Exatamente 2", odd: 3.40 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.20 }
-                    ]
-                }
-            }
-        ]
-    },
-    "sul-americana": {
-        nome: "Copa Sul-Americana",
-        jogos: [
-            { 
-                id: 1, 
-                timeCasa: "Atlético Mineiro", 
-                timeFora: "Independiente del Valle", 
-                data: "28/10/2025 21:30",
-                odds: {
-                    casa: 1.65,
-                    empate: 3.75,
-                    fora: 4.25
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.06 },
-                            { tipo: "Mais que 1", odd: 1.36 },
-                            { tipo: "Mais que 2", odd: 2.10 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 10.00 },
-                            { tipo: "Exatamente 1", odd: 4.80 },
-                            { tipo: "Exatamente 2", odd: 3.60 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.00 },
-                        { tipo: "2º Tempo", odd: 2.10 },
-                        { tipo: "Empate", odd: 3.40 }
-                    ],
-                }
-            },
-            { 
-                id: 2, 
-                timeCasa: "Lanús", 
-                timeFora: "Universidad de Chile", 
-                data: "30/10/2025 19:00",
-                odds: {
-                    casa: 1.85,
-                    empate: 3.50,
-                    fora: 4.33
-                },
-                oddsAdicionais: {
-                    gols: {
-                        mais: [
-                            { tipo: "Mais que 0", odd: 1.07 },
-                            { tipo: "Mais que 1", odd: 1.40 },
-                            { tipo: "Mais que 2", odd: 2.25 }
-                        ],
-                        exato: [
-                            { tipo: "Exatamente 0", odd: 9.00 },
-                            { tipo: "Exatamente 1", odd: 4.00 },
-                            { tipo: "Exatamente 2", odd: 3.50 }
-                        ]
-                    },
-                    tempoGols: [
-                        { tipo: "1º Tempo", odd: 3.10 },
-                        { tipo: "2º Tempo", odd: 2.20 },
-                        { tipo: "Empate", odd: 3.25 }
-                    ]
-                }
-            }
-        ]
-    }
+let campeonatos = {};
+
+// Função para carregar dados do localStorage ou usar padrão
+function carregarDadosCampeonatos() {
+    const dadosAdmin = localStorage.getItem('campeonatosSistema');
+    const dadosAdmin2 = localStorage.getItem('campeonatosAdmin');
     
-};
+    // Priorizar dados do admin
+    if (dadosAdmin) {
+        campeonatos = JSON.parse(dadosAdmin);
+        console.log('✅ Dados carregados do sistema admin');
+    } else if (dadosAdmin2) {
+        campeonatos = JSON.parse(dadosAdmin2);
+        console.log('✅ Dados carregados do localStorage admin');
+    } else {
+        // Usar estrutura básica se não houver dados
+        campeonatos = {
+            "serie-a": {
+                nome: "Série A",
+                jogos: []
+            },
+            "champions": {
+                nome: "Champions League", 
+                jogos: []
+            },
+            "sul-americana": {
+                nome: "Copa Sul-Americana",
+                jogos: []
+            }
+        };
+        console.log('ℹ️ Usando estrutura básica de campeonatos');
+    }
+}
+
+function configurarSincronizacao() {
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'campeonatosSistema' || e.key === 'campeonatosAdmin') {
+            console.log('🔄 Dados atualizados detectados, recarregando...');
+            carregarDadosCampeonatos();
+            
+            // Se um campeonato estava selecionado, recarregar os jogos
+            if (campeonatoSelecionado) {
+                carregarJogos();
+            }
+        }
+    });
+}
+
+
+// Função para atualizar dados (usada pelo admin)
+function atualizarDadosCampeonatos(novosDados) {
+    campeonatos = novosDados;
+    console.log('✅ Dados atualizados pelo admin');
+    
+    // Recarregar a interface se um campeonato estiver selecionado
+    if (campeonatoSelecionado) {
+        carregarJogos();
+    }
+}
 
 // Elementos DOM
-const selecaoCampeonato = document.getElementById('selecao-campeonato');
-const listaJogosContainer = document.getElementById('lista-jogos-container');
-const tituloCampeonato = document.getElementById('titulo-campeonato');
-const listaJogos = document.getElementById('lista-jogos');
-const carrinhoFlutuante = document.getElementById('carrinho-flutuante');
-const carrinhoBody = document.getElementById('carrinho-body');
-const carrinhoContador = document.querySelector('.carrinho-contador');
-const oddTotal = document.getElementById('odd-total');
-const btnLimparCarrinho = document.getElementById('btn-limpar-carrinho');
-const btnFazerAposta = document.getElementById('btn-fazer-aposta');
-const btnExpandirCarrinho = document.getElementById('btn-expandir-carrinho');
+let selecaoCampeonato, listaJogosContainer, tituloCampeonato, listaJogos;
+let carrinhoFlutuante, carrinhoBody, carrinhoContador, oddTotal;
+let btnLimparCarrinho, btnFazerAposta, btnExpandirCarrinho;
 
 // Variáveis
 let campeonatoSelecionado = null;
 let jogoAberto = null;
 let carrinho = [];
 
+// Inicializar elementos DOM
+function inicializarElementosDOM() {
+    selecaoCampeonato = document.getElementById('selecao-campeonato');
+    listaJogosContainer = document.getElementById('lista-jogos-container');
+    tituloCampeonato = document.getElementById('titulo-campeonato');
+    listaJogos = document.getElementById('lista-jogos');
+    carrinhoFlutuante = document.getElementById('carrinho-flutuante');
+    carrinhoBody = document.getElementById('carrinho-body');
+    carrinhoContador = document.querySelector('.carrinho-contador');
+    oddTotal = document.getElementById('odd-total');
+    btnLimparCarrinho = document.getElementById('btn-limpar-carrinho');
+    btnFazerAposta = document.getElementById('btn-fazer-aposta');
+    btnExpandirCarrinho = document.getElementById('btn-expandir-carrinho');
+}
+
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Sistema de Apostas - Página Principal');
     
+    // Inicializar elementos DOM
+    inicializarElementosDOM();
+    
+    // Carregar dados primeiro
+    carregarDadosCampeonatos();
+    
+    // Configurar sincronização
+    configurarSincronizacao();
+
+    // Carregar opções de campeonato
+    carregarOpcoesCampeonato();
+    
     // Event listeners para seleção de campeonato
-    document.querySelectorAll('.opcao-campeonato').forEach(opcao => {
-        opcao.addEventListener('click', function() {
-            document.querySelectorAll('.opcao-campeonato').forEach(el => {
-                el.classList.remove('selecionada');
+    if (selecaoCampeonato) {
+        document.querySelectorAll('.opcao-campeonato').forEach(opcao => {
+            opcao.addEventListener('click', function() {
+                document.querySelectorAll('.opcao-campeonato').forEach(el => {
+                    el.classList.remove('selecionada');
+                });
+                this.classList.add('selecionada');
+                
+                campeonatoSelecionado = this.dataset.campeonato;
+                carregarJogos();
+                
+                if (listaJogosContainer) {
+                    listaJogosContainer.classList.remove('hidden');
+                }
+                
+                carrinho = [];
+                atualizarCarrinho();
             });
-            this.classList.add('selecionada');
-            
-            campeonatoSelecionado = this.dataset.campeonato;
-            carregarJogos();
-            
-            listaJogosContainer.classList.remove('hidden');
-            
-            carrinho = [];
-            atualizarCarrinho();
         });
-    });
+    }
     
     // Event listeners para os botões do carrinho
     if (btnLimparCarrinho) {
@@ -542,13 +142,78 @@ function toggleCarrinho() {
         carrinhoFlutuante.classList.toggle('expandido');
     }
 }
+function obterDescricaoCampeonato(campeonatoId) {
+    const descricoes = {
+        'champions': 'Liga dos Campeões da Europa',
+        'serie-a': 'Campeonato Brasileiro Série A', 
+        'sul-americana': 'Copa Sul-Americana',
+        'copa-do-brasil': 'Copa do Brasil',
+        'premier-league': 'Campeonato Inglês',
+        'la-liga': 'Campeonato Espanhol',
+        'serie-b': 'Campeonato Brasileiro Série B'
+    };
+    
+    return descricoes[campeonatoId] || 'Campeonato de Futebol';
+}
+
+function carregarOpcoesCampeonato() {
+    const opcoesCampeonato = document.getElementById('opcoes-campeonato');
+    if (!opcoesCampeonato) return;
+    
+    opcoesCampeonato.innerHTML = '';
+    
+    Object.keys(campeonatos).forEach(campeonatoId => {
+        const campeonato = campeonatos[campeonatoId];
+        const opcaoElement = document.createElement('div');
+        opcaoElement.className = 'opcao-campeonato';
+        opcaoElement.dataset.campeonato = campeonatoId;
+        opcaoElement.innerHTML = `
+            <div class="icone-campeonato">⚽</div>
+            <div class="nome-campeonato">${campeonato.nome}</div>
+            <p>${obterDescricaoCampeonato(campeonatoId)}</p>
+        `;
+        opcoesCampeonato.appendChild(opcaoElement);
+    });
+    
+    // Reatribuir event listeners
+    document.querySelectorAll('.opcao-campeonato').forEach(opcao => {
+        opcao.addEventListener('click', function() {
+            document.querySelectorAll('.opcao-campeonato').forEach(el => {
+                el.classList.remove('selecionada');
+            });
+            this.classList.add('selecionada');
+            
+            campeonatoSelecionado = this.dataset.campeonato;
+            carregarJogos();
+            
+            if (listaJogosContainer) {
+                listaJogosContainer.classList.remove('hidden');
+            }
+            
+            carrinho = [];
+            atualizarCarrinho();
+        });
+    });
+}
+
 
 // Carregar lista de jogos
 function carregarJogos() {
-    if (!campeonatoSelecionado) return;
+    if (!campeonatoSelecionado || !listaJogos) return;
     
-    const jogos = campeonatos[campeonatoSelecionado].jogos;
+    const jogos = campeonatos[campeonatoSelecionado]?.jogos || [];
+    
+    if (!listaJogos) {
+        console.error('Elemento listaJogos não encontrado');
+        return;
+    }
+    
     listaJogos.innerHTML = '';
+    
+    if (jogos.length === 0) {
+        listaJogos.innerHTML = '<div class="carrinho-vazio">Nenhum jogo disponível</div>';
+        return;
+    }
     
     jogos.forEach(jogo => {
         const jogoElement = document.createElement('div');
@@ -579,13 +244,17 @@ function carregarJogos() {
         listaJogos.appendChild(jogoElement);
     });
     
-    tituloCampeonato.textContent = `Próximos Jogos - ${campeonatos[campeonatoSelecionado].nome}`;
+    if (tituloCampeonato) {
+        tituloCampeonato.textContent = `Próximos Jogos - ${campeonatos[campeonatoSelecionado]?.nome || 'Campeonato'}`;
+    }
 }
 
 // Abrir/fechar jogo
 function toggleJogo(header, jogo) {
     const jogoId = jogo.id;
     const conteudo = document.getElementById(`conteudo-${jogoId}`);
+    
+    if (!conteudo) return;
     
     // Se já está aberto, fecha
     if (header.classList.contains('ativo')) {
@@ -616,6 +285,8 @@ function toggleJogo(header, jogo) {
 
 // Substituir a função carregarConteudoJogo por esta versão corrigida:
 function carregarConteudoJogo(jogo, conteudo) {
+    if (!conteudo) return;
+    
     let html = `
         <div class="odds-principais">
             <h4>🎯 Aposta Principal</h4>
@@ -720,13 +391,19 @@ function carregarConteudoJogo(jogo, conteudo) {
         });
     });
     
-    conteudo.querySelector('.btn-adicionar-carrinho').addEventListener('click', function() {
-        adicionarApostasAoCarrinho(jogo);
-    });
+    const btnAdicionar = conteudo.querySelector('.btn-adicionar-carrinho');
+    if (btnAdicionar) {
+        btnAdicionar.addEventListener('click', function() {
+            adicionarApostasAoCarrinho(jogo);
+        });
+    }
     
     // Atualizar seleções atuais
     atualizarSelecoesJogo(jogo);
 }
+
+// ... (o resto das funções permanecem iguais - selecionarApostaPrincipal, selecionarApostaAdicional, etc.)
+
 // Selecionar aposta principal
 function selecionarApostaPrincipal(elemento, jogo) {
     const jogoId = jogo.id;
@@ -850,9 +527,11 @@ function atualizarSelecoesJogo(jogo) {
         });
     }
 }
+
 // Atualizar carrinho
 function atualizarCarrinho() {
-    const totalApostas = carrinho.length; // Agora conta por JOGO, não por seleção
+    const totalApostas = carrinho.length;
+    
     if (carrinhoContador) {
         carrinhoContador.textContent = totalApostas;
     }
@@ -874,10 +553,10 @@ function atualizarCarrinho() {
         return;
     }
     
-    // Calcular odd total para múltipla (multiplica as odds combinadas de cada jogo)
+    // Calcular odd total para múltipla
     let oddTotalValor = 1;
     carrinho.forEach(aposta => {
-        oddTotalValor *= aposta.valor; // Já é a odd combinada do jogo
+        oddTotalValor *= aposta.valor;
     });
     
     if (oddTotal) {
@@ -938,7 +617,7 @@ function atualizarCarrinho() {
         `;
     });
     
-    html += `</div></div>`; // Fecha lista-apostas-individuais e apostas-individuais
+    html += `</div></div>`;
     
     // Seção de Aposta Múltipla
     html += `
@@ -1031,7 +710,7 @@ function atualizarGanhoIndividual(apostaId) {
     const aposta = encontrarApostaPorId(apostaId);
     
     if (aposta) {
-        const ganho = (valor * aposta.valor).toFixed(2); // Usa a odd combinada do jogo
+        const ganho = (valor * aposta.valor).toFixed(2);
         ganhoElement.textContent = `Ganho: R$ ${ganho}`;
     }
 }
@@ -1066,8 +745,10 @@ function removerApostaIndividual(apostaId) {
     
     // Atualizar seleções no jogo se estiver aberto
     if (jogoAberto === jogoId) {
-        const jogo = campeonatos[campeonatoSelecionado].jogos.find(j => j.id === jogoId);
-        atualizarSelecoesJogo(jogo);
+        const jogo = campeonatos[campeonatoSelecionado]?.jogos?.find(j => j.id === jogoId);
+        if (jogo) {
+            atualizarSelecoesJogo(jogo);
+        }
     }
 }
 
@@ -1080,8 +761,10 @@ function removerAposta(jogoId, categoria, tipo) {
     
     // Atualizar seleções no jogo se estiver aberto
     if (jogoAberto === jogoId) {
-        const jogo = campeonatos[campeonatoSelecionado].jogos.find(j => j.id === jogoId);
-        atualizarSelecoesJogo(jogo);
+        const jogo = campeonatos[campeonatoSelecionado]?.jogos?.find(j => j.id === jogoId);
+        if (jogo) {
+            atualizarSelecoesJogo(jogo);
+        }
     }
 }
 
@@ -1111,7 +794,7 @@ function mostrarFormUsuario() {
     
     const tipoSelecionado = tipoSelecionadoElement.dataset.tipo;
     let dadosAposta = {
-        campeonato: campeonatos[campeonatoSelecionado].nome,
+        campeonato: campeonatos[campeonatoSelecionado]?.nome || 'Campeonato',
         apostas: [...carrinho],
         oddTotal: calcularOddTotal(),
         tipo: tipoSelecionado,
@@ -1172,6 +855,7 @@ function calcularOddTotal() {
     });
     return total.toFixed(2);
 }
+
 // Verificar se há seleções conflitantes
 function verificarSelecoesConflitantes(jogoId) {
     const selecoesGolsMais = document.querySelectorAll(`#conteudo-${jogoId} .opcao-multipla[data-categoria="gols_mais"].selecionada`);
