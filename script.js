@@ -1,6 +1,7 @@
 // Dados dos campeonatos com odds adicionais
 let campeonatos = {};
 
+
 // Função para carregar dados do localStorage ou usar padrão
 async function carregarDadosCampeonatos() {
     console.log('🔄 Iniciando carregamento de dados...');
@@ -81,15 +82,10 @@ function configurarSincronizacao() {
                 carregarOpcoesCampeonato();
                 
                 // Se um campeonato estava selecionado, recarregar os jogos
-                if (campeonatoSelecionado) {
-                    console.log('🔄 Recarregando jogos do campeonato:', campeonatoSelecionado);
+                if (campeonatoSelecionadoGlobal) {
+                    console.log('🔄 Recarregando jogos do campeonato:', campeonatoSelecionadoGlobal);
                     carregarJogos();
                 }
-                
-                // Forçar atualização visual
-                setTimeout(() => {
-                    window.dispatchEvent(new Event('resize'));
-                }, 100);
             });
         }
     });
@@ -103,14 +99,13 @@ function configurarSincronizacao() {
             console.log('🔄 Mudanças detectadas (polling), atualizando...');
             carregarDadosCampeonatos().then(() => {
                 carregarOpcoesCampeonato();
-                if (campeonatoSelecionado) {
+                if (campeonatoSelecionadoGlobal) {
                     carregarJogos();
                 }
             });
         }
     }, 2000);
 }
-
 function configurarSincronizacao() {
     window.addEventListener('storage', function(e) {
         if (e.key === 'campeonatosSistema' || e.key === 'campeonatosAdmin') {
@@ -136,7 +131,6 @@ function atualizarDadosCampeonatos(novosDados) {
         carregarJogos();
     }
 }
-
 // Elementos DOM
 let selecaoCampeonato, listaJogosContainer, tituloCampeonato, listaJogos;
 let carrinhoFlutuante, carrinhoBody, carrinhoContador, oddTotal;
@@ -144,6 +138,7 @@ let btnLimparCarrinho, btnFazerAposta, btnExpandirCarrinho;
 
 // Variáveis
 let campeonatoSelecionado = null;
+let campeonatoSelecionadoGlobal = null; // ← ADICIONE ESTA LINHA AQUI
 let jogoAberto = null;
 let carrinho = [];
 
@@ -174,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Configurar sincronização
         configurarSincronizacao();
         
-        // Carregar opções de campeonato
+        // Carregar opções de campeonato (isso já vai carregar os jogos de hoje automaticamente)
         carregarOpcoesCampeonato();
         
         // Event listeners para seleção de campeonato (delegado)
@@ -186,8 +181,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     e.target.classList.add('selecionada');
                     
-                    campeonatoSelecionado = e.target.dataset.campeonato;
-                    carregarJogos();
+                    const campeonatoSelecionado = e.target.dataset.campeonato;
+                    if (campeonatoSelecionado === 'hoje') {
+                        campeonatoSelecionadoGlobal = null; // Reseta para modo "hoje"
+                        carregarJogosDeHoje();
+                    } else {
+                        campeonatoSelecionadoGlobal = campeonatoSelecionado;
+                        carregarJogosPorCampeonato(campeonatoSelecionado);
+                    }
                     
                     if (listaJogosContainer) {
                         listaJogosContainer.classList.remove('hidden');
@@ -244,20 +245,29 @@ function carregarOpcoesCampeonato() {
     
     opcoesCampeonato.innerHTML = '';
     
+    // Adiciona opção "Jogos de Hoje" como primeira opção
+    const hojeElement = document.createElement('div');
+    hojeElement.className = 'opcao-campeonato selecionada';
+    hojeElement.dataset.campeonato = 'hoje';
+    hojeElement.innerHTML = `
+        <div class="nome-campeonato">⏰ Hoje</div>
+    `;
+    opcoesCampeonato.appendChild(hojeElement);
+    
+    // Adiciona os campeonatos normais
     Object.keys(campeonatos).forEach(campeonatoId => {
         const campeonato = campeonatos[campeonatoId];
         const opcaoElement = document.createElement('div');
         opcaoElement.className = 'opcao-campeonato';
         opcaoElement.dataset.campeonato = campeonatoId;
         opcaoElement.innerHTML = `
-            <div class="icone-campeonato">⚽</div>
             <div class="nome-campeonato">${campeonato.nome}</div>
-            <p>${obterDescricaoCampeonato(campeonatoId)}</p>
         `;
+        
         opcoesCampeonato.appendChild(opcaoElement);
     });
     
-    // Reatribuir event listeners
+    // ADICIONAR EVENT LISTENERS PARA AS OPÇÕES
     document.querySelectorAll('.opcao-campeonato').forEach(opcao => {
         opcao.addEventListener('click', function() {
             document.querySelectorAll('.opcao-campeonato').forEach(el => {
@@ -265,8 +275,15 @@ function carregarOpcoesCampeonato() {
             });
             this.classList.add('selecionada');
             
-            campeonatoSelecionado = this.dataset.campeonato;
-            carregarJogos();
+            const campeonatoSelecionado = this.dataset.campeonato;
+            
+            if (campeonatoSelecionado === 'hoje') {
+                campeonatoSelecionadoGlobal = null;
+                carregarJogosDeHoje();
+            } else {
+                campeonatoSelecionadoGlobal = campeonatoSelecionado;
+                carregarJogosPorCampeonato(campeonatoSelecionado);
+            }
             
             if (listaJogosContainer) {
                 listaJogosContainer.classList.remove('hidden');
@@ -276,8 +293,15 @@ function carregarOpcoesCampeonato() {
             atualizarCarrinho();
         });
     });
+    
+    // MOSTRAR JOGOS DE HOJE IMEDIATAMENTE
+    console.log('🔄 Carregando jogos de hoje automaticamente...');
+    carregarJogosDeHoje();
+    
+    if (listaJogosContainer) {
+        listaJogosContainer.classList.remove('hidden');
+    }
 }
-
 
 // Carregar lista de jogos
 function carregarJogos() {
@@ -467,11 +491,6 @@ function carregarConteudoJogo(jogo, conteudo) {
         });
     });
     
-    conteudo.querySelectorAll('.opcao-multipla').forEach(opcao => {
-        opcao.addEventListener('click', function() {
-            selecionarApostaAdicional(this, jogo);
-        });
-    });
     
     const btnAdicionar = conteudo.querySelector('.btn-adicionar-carrinho');
     if (btnAdicionar) {
@@ -957,4 +976,252 @@ function verificarSelecoesConflitantes(jogoId) {
     }
     
     return false;
+}
+// Melhorias para mobile
+function melhoriasMobile() {
+    // Prevenir zoom duplo em elementos interativos
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // Melhor feedback tátil
+    document.addEventListener('touchstart', function() {}, { passive: true });
+
+    // Otimizar carregamento para conexões lentas
+    if ('connection' in navigator) {
+        if (navigator.connection.saveData === true) {
+            console.log('Modo economia de dados ativado');
+        }
+        
+        if (navigator.connection.effectiveType.includes('2g')) {
+            console.log('Conexão lida detectada - otimizando...');
+        }
+    }
+}
+
+// Inicializar melhorias mobile
+document.addEventListener('DOMContentLoaded', function() {
+    melhoriasMobile();
+});
+
+// Swipe para carrinho (opcional)
+let startX = 0;
+document.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+});
+
+document.addEventListener('touchend', function(e) {
+    if (!startX) return;
+    
+    const endX = e.changedTouches[0].clientX;
+    const diffX = startX - endX;
+    
+    // Swipe da direita para esquerda abre carrinho
+    if (diffX > 50 && carrinho.length > 0) {
+        if (carrinhoFlutuante) {
+            carrinhoFlutuante.classList.add('expandido');
+        }
+    }
+    
+    startX = 0;
+});
+
+function carregarJogosDeHoje() {
+    if (!listaJogos) {
+        console.error('❌ Elemento listaJogos não encontrado');
+        return;
+    }
+    
+    console.log('🔄 Buscando jogos de hoje...');
+    listaJogos.innerHTML = '<div class="carrinho-vazio">Carregando jogos de hoje...</div>';
+    
+    // Obtém a data de hoje no formato DD/MM/AAAA
+    const hoje = new Date();
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const ano = hoje.getFullYear();
+    const dataHoje = `${dia}/${mes}/${ano}`;
+    
+    console.log('📅 Data de hoje:', dataHoje);
+    
+    // Pequeno delay para garantir que o DOM foi atualizado
+    setTimeout(() => {
+        // Coleta todos os jogos de hoje de todos os campeonatos
+        const todosJogosHoje = [];
+        
+        Object.keys(campeonatos).forEach(campeonatoId => {
+            const campeonato = campeonatos[campeonatoId];
+            const jogosHoje = (campeonato.jogos || []).filter(jogo => {
+                // Verifica se a data do jogo é hoje (só compara a parte da data, não a hora)
+                const jogoData = jogo.data ? jogo.data.split(' ')[0] : '';
+                return jogoData === dataHoje;
+            });
+            
+            // Adiciona informações do campeonato a cada jogo
+            jogosHoje.forEach(jogo => {
+                todosJogosHoje.push({
+                    ...jogo,
+                    campeonatoId: campeonatoId,
+                    campeonatoNome: campeonato.nome
+                });
+            });
+        });
+        
+        console.log(`📊 Total de jogos encontrados: ${todosJogosHoje.length}`);
+        
+        // Ordena jogos por horário
+        todosJogosHoje.sort((a, b) => {
+            const horaA = a.data.split(' ')[1] || '00:00';
+            const horaB = b.data.split(' ')[1] || '00:00';
+            return horaA.localeCompare(horaB);
+        });
+        
+        if (todosJogosHoje.length === 0) {
+            listaJogos.innerHTML = `
+                <div class="carrinho-vazio">
+                    Nenhum jogo encontrado para hoje (${dataHoje})<br>
+                    <small>Selecione um campeonato específico para ver todos os jogos</small>
+                </div>
+            `;
+            return;
+        }
+        
+        listaJogos.innerHTML = '';
+        
+        // Agrupa jogos por campeonato para melhor organização
+        const jogosPorCampeonato = {};
+        todosJogosHoje.forEach(jogo => {
+            if (!jogosPorCampeonato[jogo.campeonatoNome]) {
+                jogosPorCampeonato[jogo.campeonatoNome] = [];
+            }
+            jogosPorCampeonato[jogo.campeonatoNome].push(jogo);
+        });
+        
+        // Renderiza os jogos agrupados por campeonato
+        Object.keys(jogosPorCampeonato).forEach(campeonatoNome => {
+            const jogosDoCampeonato = jogosPorCampeonato[campeonatoNome];
+            
+            // Header do campeonato
+            const headerCampeonato = document.createElement('div');
+            headerCampeonato.className = 'header-campeonato';
+            headerCampeonato.innerHTML = `
+                <div style="background: #f3e6f8; padding: 10px 15px; border-radius: 8px; margin: 15px 0 10px 0; border-left: 4px solid #8A05BE;">
+                    <h4 style="margin: 0; color: #6D0B9E; font-size: 1rem;">
+                        🏆 ${campeonatoNome}
+                    </h4>
+                    <small style="color: #666;">${jogosDoCampeonato.length} jogo(s) hoje</small>
+                </div>
+            `;
+            listaJogos.appendChild(headerCampeonato);
+            
+            // Jogos deste campeonato
+            jogosDoCampeonato.forEach(jogo => {
+                const jogoElement = document.createElement('div');
+                jogoElement.className = 'jogo-acordeao';
+                jogoElement.innerHTML = `
+                    <div class="jogo-header" data-jogo="${jogo.id}">
+                        <div class="jogo-info">
+                            <div class="times">
+                                <div class="time">${jogo.timeCasa}</div>
+                                <div class="vs">vs</div>
+                                <div class="time">${jogo.timeFora}</div>
+                            </div>
+                            <div class="data">${jogo.data}</div>
+                        </div>
+                        <div class="seta">▼</div>
+                    </div>
+                    <div class="jogo-conteudo" id="conteudo-${jogo.id}">
+                        <!-- Conteúdo será preenchido via JavaScript -->
+                    </div>
+                `;
+                
+                // Event listener para abrir/fechar o jogo
+                const header = jogoElement.querySelector('.jogo-header');
+                header.addEventListener('click', function() {
+                    toggleJogo(this, jogo);
+                });
+                
+                listaJogos.appendChild(jogoElement);
+            });
+        });
+        
+        if (tituloCampeonato) {
+            tituloCampeonato.textContent = `🎯 Jogos de Hoje (${dataHoje})`;
+        }
+        
+        console.log('✅ Jogos de hoje carregados com sucesso');
+    }, 100);
+}
+
+function carregarJogosPorCampeonato(campeonatoId) {
+    if (!campeonatoId || !listaJogos) return;
+    
+    console.log(`🔄 Carregando jogos do campeonato: ${campeonatoId}`);
+    
+    const campeonato = campeonatos[campeonatoId];
+    if (!campeonato) {
+        console.error('❌ Campeonato não encontrado:', campeonatoId);
+        return;
+    }
+    
+    const jogos = campeonato.jogos || [];
+    
+    listaJogos.innerHTML = '';
+    
+    if (jogos.length === 0) {
+        listaJogos.innerHTML = '<div class="carrinho-vazio">Nenhum jogo disponível neste campeonato</div>';
+        return;
+    }
+    
+    // Ordena jogos por data
+    const jogosOrdenados = [...jogos].sort((a, b) => {
+        const dataA = a.data ? new Date(a.data.split(' ').reverse().join('-')) : new Date();
+        const dataB = b.data ? new Date(b.data.split(' ').reverse().join('-')) : new Date();
+        return dataA - dataB;
+    });
+    
+    jogosOrdenados.forEach(jogo => {
+        const jogoElement = document.createElement('div');
+        jogoElement.className = 'jogo-acordeao';
+        jogoElement.innerHTML = `
+            <div class="jogo-header" data-jogo="${jogo.id}">
+                <div class="jogo-info">
+                    <div class="times">
+                        <div class="time">${jogo.timeCasa}</div>
+                        <div class="vs">vs</div>
+                        <div class="time">${jogo.timeFora}</div>
+                    </div>
+                    <div class="data">${jogo.data}</div>
+                </div>
+                <div class="seta">▼</div>
+            </div>
+            <div class="jogo-conteudo" id="conteudo-${jogo.id}">
+                <!-- Conteúdo será preenchido via JavaScript -->
+            </div>
+        `;
+        
+        // Event listener para abrir/fechar o jogo
+        const header = jogoElement.querySelector('.jogo-header');
+        header.addEventListener('click', function() {
+            toggleJogo(this, jogo);
+        });
+        
+        listaJogos.appendChild(jogoElement);
+    });
+    
+    if (tituloCampeonato) {
+        tituloCampeonato.textContent = `Próximos Jogos - ${campeonato.nome}`;
+    }
+    
+    console.log(`✅ Carregados ${jogos.length} jogos do campeonato ${campeonatoId}`);
+}
+// Atualizar a função carregarJogos (se existir) ou substituir por:
+function carregarJogos() {
+    if (campeonatoSelecionadoGlobal) {
+        carregarJogosPorCampeonato(campeonatoSelecionadoGlobal);
+    } else {
+        carregarJogosDeHoje();
+    }
 }

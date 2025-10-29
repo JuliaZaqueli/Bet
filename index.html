@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BetZ - Apostas Esportivas</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#8A05BE">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFkSURBVHgB7ZbNDcIwDIVfB8gGjMAIHYEROkI3YARGoBuwAR3BHaEjsAEdgQ3gH5QqVZWUfKQ2Uv3k5Cf2e/6wY4wx5l+oAe2AO/ACPsAHeANP4A6cgQZQoBKwB27AC0iJN+AM1IIKcAAeQEq8AgegAlSAA/CUkBL3wB4oDBXgCDyBlHgD9kBBqABH4AUkxRuwBwpBBTgCLyAp3oA9UAAqwBF4AUnxBuwBz1ABjsALSIo3YA94hgpwBF5AUrwBe8AzVIAj8AKS4g3YA56hAhyBF5AUb8Ae8AwV4Ai8gKR4A/aAZ6gAR+AFJMUbsAc8QwU4Ai8gKd6APeAZKsAReAFJ8QbsAc9QAY7AC0iKN2APeIYKcAReQFK8AXvAM1SAI/ACkuIN2AOeoQIcgReQFG/AHvAMFeAIvICkeAP2gGeoAEfgBSTFG7AHPEMFOAIvICnegD3gGSrAEXgBSfEG7AHPUAGOwAtIijdgD3iGCnAEXkBSvAF7wDNUgCPwApLiDdgDnqECHIEXkBRvwB7wDBXgCLyApHgD9oBnqABH4AUkxRuwBzzyBfpi0YpNfTZ0AAAAAElFTkSuQmCC">
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="header-com-campeonatos">
             <h1>Apostas Esportivas</h1>
             <p class="subtitle">Selecione suas apostas - Carrinho automático</p>
+            
+            <div class="campeonatos-header">
+                <h3 style="color: white; margin-bottom: 10px;">🏆 Escolha o Campeonato</h3>
+                <div class="opcoes-campeonato" id="opcoes-campeonato">
+                    <!-- As opções serão geradas dinamicamente via JavaScript -->
+                </div>
+            </div>
         </header>
         
-        <!-- Seleção de Campeonato -->
-        <div id="selecao-campeonato" class="card">
-            <h2>🏆 Escolha o Campeonato</h2>
-            <div class="opcoes-campeonato" id="opcoes-campeonato">
-                <!-- As opções serão geradas dinamicamente via JavaScript -->
-            </div>
-        </div>
         
         <!-- Lista de Jogos -->
         <div id="lista-jogos-container" class="card hidden">

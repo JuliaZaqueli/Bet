@@ -3,47 +3,112 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     background-color: #f5f5f5;
     color: #333;
-    line-height: 1.6;
-    padding-bottom: 90px;
+    line-height: 1.5;
+    padding-bottom: 100px;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 15px;
 }
 
+/* ===== HEADER MOBILE ===== */
 header {
     background: linear-gradient(135deg, #8A05BE, #6D0B9E);
     color: white;
     text-align: center;
-    padding: 30px 0;
-    border-radius: 10px 10px 0 0;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     opacity: 0.9;
+    font-weight: 400;
 }
 
+/* ===== CAMPENATOS HORIZONTAIS MOBILE ===== */
+#selecao-campeonato.card {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+}
+
+#selecao-campeonato.card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #6D0B9E;
+    color: #8A05BE;
+}
+
+.opcoes-campeonato {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 8px 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    white-space: nowrap;
+}
+
+.opcoes-campeonato::-webkit-scrollbar {
+    display: none;
+}
+
+.opcao-campeonato {
+    flex: 0 0 auto;
+    min-width: 100px;
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: white;
+    text-align: center;
+    border-bottom: 3px solid transparent;
+}
+
+.opcao-campeonato:active {
+    transform: scale(0.98);
+}
+
+.opcao-campeonato.selecionada {
+    border-color: #8A05BE;
+    background-color: #f3e6f8;
+    border-bottom: 3px solid #8A05BE;
+}
+
+.nome-campeonato {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #8A05BE;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* ===== CARD MOBILE ===== */
 .card {
     background: white;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 h2 {
@@ -59,31 +124,32 @@ h3 {
     font-size: 1.1rem;
 }
 
-/* Jogo como acordeão */
+/* ===== JOGOS MOBILE ===== */
 .jogo-acordeao {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
     margin-bottom: 10px;
     overflow: hidden;
+    background: white;
 }
 
 .jogo-header {
-    padding: 15px;
+    padding: 16px;
     background: white;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease;
 }
 
-.jogo-header:hover {
-    background-color: #f9f9f9;
+.jogo-header:active {
+    background-color: #f8f9fa;
 }
 
 .jogo-header.ativo {
     background-color: #f3e6f8;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .jogo-info {
@@ -93,27 +159,31 @@ h3 {
 .times {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 5px;
+    gap: 8px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
 }
 
 .time {
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .vs {
-    color: #777;
-    font-weight: bold;
+    color: #666;
+    font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .data {
-    color: #777;
-    font-size: 0.9rem;
+    color: #666;
+    font-size: 0.8rem;
 }
 
 .seta {
     transition: transform 0.3s ease;
+    font-size: 0.9rem;
+    color: #8A05BE;
 }
 
 .jogo-header.ativo .seta {
@@ -124,40 +194,40 @@ h3 {
     padding: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .jogo-header.ativo + .jogo-conteudo {
-    padding: 15px;
-    max-height: 1000px;
+    padding: 16px;
+    max-height: 2000px;
 }
 
-/* Odds principais */
+/* ===== ODDS MOBILE ===== */
 .odds-principais {
     margin-bottom: 20px;
 }
 
 .odds {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
 }
 
 .odd {
     flex: 1;
-    min-width: 80px;
+    min-width: 70px;
     text-align: center;
-    padding: 10px 5px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    padding: 12px 6px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.2s ease;
     border: 2px solid transparent;
 }
 
-.odd:hover {
-    background-color: #e0e0e0;
+.odd:active {
+    transform: scale(0.95);
 }
 
 .odd.selecionada {
@@ -167,52 +237,52 @@ h3 {
 }
 
 .odd-valor {
-    font-weight: bold;
+    font-weight: 700;
     color: #8A05BE;
     display: block;
-    margin-top: 2px;
+    margin-top: 4px;
+    font-size: 0.9rem;
 }
 
 .odd.selecionada .odd-valor {
     color: white;
 }
 
-/* Odds Adicionais */
+/* ===== ODDS ADICIONAIS MOBILE ===== */
 .categoria-aposta {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
     background-color: #fafafa;
 }
 
 .categoria-titulo {
-    font-size: 0.9rem;
-    font-weight: bold;
+    font-size: 0.85rem;
+    font-weight: 600;
     color: #6D0B9E;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .opcoes-multiplas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 6px;
 }
 
 .opcao-multipla {
-    flex: 1;
-    min-width: 100px;
     text-align: center;
-    padding: 8px 5px;
+    padding: 10px 6px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 0.8rem;
+    background: white;
 }
 
-.opcao-multipla:hover {
-    background-color: #f0f0f0;
+.opcao-multipla:active {
+    transform: scale(0.95);
 }
 
 .opcao-multipla.selecionada {
@@ -222,9 +292,9 @@ h3 {
 }
 
 .odd-opcao {
-    font-size: 0.7rem;
-    margin-top: 2px;
-    font-weight: bold;
+    font-size: 0.75rem;
+    margin-top: 4px;
+    font-weight: 600;
 }
 
 .subcategoria {
@@ -252,25 +322,40 @@ label {
 
 input, select {
     width: 100%;
-    padding: 10px;
+    padding: 14px 12px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 1rem;
+    background: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
+input:focus, select:focus {
+    border-color: #8A05BE;
+    outline: none;
+}
+
+/* ===== BOTÕES MOBILE ===== */
 button {
     background-color: #8A05BE;
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
+    padding: 14px 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
-button:hover {
+button:active {
+    transform: scale(0.98);
     background-color: #6D0B9E;
 }
 
@@ -285,6 +370,18 @@ button:disabled {
 
 .btn-secundario:hover {
     background-color: #545b62;
+}
+
+.btn-adicionar-carrinho {
+    background: #28a745;
+    margin-top: 16px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.btn-adicionar-carrinho:active {
+    background: #218838;
 }
 
 .qrcode-container {
@@ -384,9 +481,10 @@ button:disabled {
 
 footer {
     text-align: center;
-    margin-top: 30px;
-    color: #777;
-    font-size: 0.9rem;
+    margin-top: 25px;
+    color: #666;
+    font-size: 0.8rem;
+    line-height: 1.4;
 }
 
 .btn-copiar {
@@ -423,84 +521,30 @@ footer {
     flex: 1;
 }
 
-/* Modal de confirmação */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 30px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-}
-
-.modal h3 {
-    color: #8A05BE;
-    margin-bottom: 15px;
-}
-
-.modal p {
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.modal-botoes {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.modal-botoes button {
-    flex: 1;
-    max-width: 150px;
-}
-
-.btn-cancelar {
-    background-color: #6c757d;
-}
-
-.btn-cancelar:hover {
-    background-color: #545b62;
-}
-
-/* Carrinho Flutuante COMPACTO */
+/* ===== CARRINHO MOBILE ===== */
 .carrinho-flutuante {
     position: fixed;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%) translateY(100%);
-    width: 100%;
-    max-width: 800px;
+    width: calc(100% - 30px);
+    max-width: 400px;
     background: white;
-    box-shadow: 0 -2px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
     border: 2px solid #8A05BE;
     z-index: 1000;
-    padding: 10px 20px;
-    transition: transform 0.3s ease, max-height 0.3s ease;
-    max-height: 70px; /* Altura quando minimizado */
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    max-height: 80px;
     overflow: hidden;
-    border-radius: 15px;
-    margin: 0 20px;
+    border-radius: 16px;
 }
 
 .carrinho-flutuante.ativo {
     transform: translateX(-50%) translateY(0);
 }
-
 .carrinho-flutuante.expandido {
-    max-height: 400px; /* Altura quando expandido */
+    max-height: 70vh;
     overflow-y: auto;
 }
 
@@ -508,14 +552,12 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
-    min-height: 30px; /* Garante altura mínima para o header */
+    margin-bottom: 10px;
 }
-
 
 .carrinho-titulo {
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 700;
     color: #8A05BE;
     cursor: pointer;
     display: flex;
@@ -527,12 +569,13 @@ footer {
     background: #8A05BE;
     color: white;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 .carrinho-body {
@@ -540,11 +583,13 @@ footer {
     overflow: hidden;
     transition: max-height 0.3s ease;
 }
+
 .carrinho-flutuante.expandido .carrinho-body {
-    max-height: 320px; /* Reduzido para caber melhor */
-    margin-bottom: 10px;
+    max-height: calc(70vh - 100px);
+    margin-bottom: 12px;
     overflow-y: auto;
 }
+
 .carrinho-vazio {
     text-align: center;
     color: #777;
@@ -648,63 +693,7 @@ footer {
     gap: 6px;
 }
 
-.selecao-campeonato {
-    text-align: center;
-}
-
-.opcoes-campeonato {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.opcao-campeonato {
-    flex: 1;
-    max-width: 300px;
-    text-align: center;
-    padding: 20px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: white;
-}
-
-.opcao-campeonato:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.opcao-campeonato.selecionada {
-    border-color: #8A05BE;
-    background-color: #f3e6f8;
-}
-
-.icone-campeonato {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.nome-campeonato {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #8A05BE;
-    margin-bottom: 8px;
-}
-
-/* Botão adicionar ao carrinho */
-.btn-adicionar-carrinho {
-    background: #28a745;
-    width: 100%;
-    margin-top: 15px;
-    padding: 10px;
-    font-size: 0.9rem;
-}
-
-/* Novos estilos para o sistema de apostas flexível */
-
-/* Form Group para valores */
+/* ===== SISTEMA DE APOSTAS FLEXÍVEL ===== */
 .form-group-valor {
     margin: 8px 0;
 }
@@ -724,7 +713,6 @@ footer {
     width: 100%;
 }
 
-/* Aposta Individual no Carrinho */
 .aposta-individual {
     background: #f8f9fa;
     border: 1px solid #e9ecef;
@@ -788,7 +776,6 @@ footer {
     background: #c82333;
 }
 
-/* Aposta Múltipla */
 .aposta-multipla {
     background: #e8f5e8;
     border: 1px solid #28a745;
@@ -809,7 +796,6 @@ footer {
     margin: 2px 0;
 }
 
-/* Ganhos Potenciais */
 .ganho-potencial {
     background: #d4edda;
     border: 1px solid #c3e6cb;
@@ -826,7 +812,6 @@ footer {
     font-weight: bold;
 }
 
-/* Tipo de Aposta Selector */
 .selector-tipo-aposta {
     display: flex;
     gap: 10px;
@@ -845,20 +830,20 @@ footer {
     font-size: 0.8rem;
     font-weight: bold;
     transition: all 0.3s ease;
-    color: #6c757d; /* Cor do texto quando não selecionado */
+    color: #6c757d;
 }
 
 .btn-tipo-aposta.selecionado {
     border-color: #8A05BE;
     background: #f3e6f8;
-    color: #8A05BE; /* Cor do texto quando selecionado */
+    color: #8A05BE;
 }
 
 .btn-tipo-aposta:hover {
     border-color: #8A05BE;
     color: #8A05BE;
 }
-/* Estilos para detalhes das seleções combinadas */
+
 .detalhes-selecoes {
     background: #f8f9fa;
     border-radius: 4px;
@@ -894,7 +879,185 @@ footer {
     transform: translateY(-2px);
 }
 
-@media (max-width: 600px) {
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ===== HEADER DE CAMPENATO NA LISTA DE JOGOS ===== */
+.header-campeonato {
+    margin: 20px 0 10px 0;
+}
+
+.header-campeonato h4 {
+    color: #6D0B9E;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.header-campeonato small {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.modal h3 {
+    color: #8A05BE;
+    margin-bottom: 15px;
+}
+
+.modal p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.modal-botoes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.modal-botoes button {
+    flex: 1;
+    max-width: 150px;
+}
+
+.btn-cancelar {
+    background-color: #6c757d;
+}
+
+.btn-cancelar:hover {
+    background-color: #545b62;
+}
+
+/* ===== SCROLL SMOOTH ===== */
+.carrinho-body, .opcoes-campeonato {
+    scroll-behavior: smooth;
+}
+
+.carrinho-body::-webkit-scrollbar, .opcoes-campeonato::-webkit-scrollbar {
+    width: 4px;
+}
+
+.carrinho-body::-webkit-scrollbar-thumb, .opcoes-campeonato::-webkit-scrollbar-thumb {
+    background: #8A05BE;
+    border-radius: 2px;
+}
+
+.carrinho-body::-webkit-scrollbar-track, .opcoes-campeonato::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+/* ===== DESKTOP OTIMIZADO ===== */
+@media (min-width: 768px) {
+    .container {
+        max-width: 800px;
+        padding: 20px;
+    }
+    
+    .carrinho-flutuante {
+        max-width: 500px;
+    }
+    
+    .opcao-campeonato {
+        min-width: 120px;
+    }
+    
+    header {
+        padding: 25px 0;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    /* CORREÇÃO: Apostas individuais no desktop */
+    .aposta-individual-valor {
+        flex-direction: row; /* Mantém lado a lado no desktop */
+        gap: 8px;
+    }
+    
+    .aposta-individual-valor input {
+        width: auto; /* Não ocupa 100% no desktop */
+        flex: 1; /* Ocupa espaço disponível */
+        min-width: 100px; /* Largura mínima adequada */
+    }
+    
+    .btn-remover-individual {
+        width: auto; /* Não ocupa 100% no desktop */
+        min-width: 60px; /* Largura fixa adequada */
+        padding: 4px 8px; /* Padding melhor para desktop */
+    }
+
+    /* Carrinho mais espaçoso no desktop */
+    .carrinho-body {
+        padding: 10px 5px;
+    }
+
+    /* Botões do carrinho maiores no desktop */
+    .btn-fazer-aposta, .btn-limpar-carrinho {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    /* Odds com melhor espaçamento no desktop */
+    .odds {
+        gap: 10px;
+    }
+
+    .odd {
+        min-width: 80px;
+        padding: 12px 8px;
+    }
+
+    /* Opções múltiplas com mais espaço no desktop */
+    .opcoes-multiplas {
+        gap: 8px;
+    }
+
+    .opcao-multipla {
+        min-width: 110px;
+        padding: 10px 8px;
+    }
+}
+
+/* ===== MOBILE OTIMIZADO ===== */
+@media (max-width: 768px) {
+    button, .odd, .opcao-multipla, .jogo-header {
+        min-height: 44px;
+    }
+    
+    input, select {
+        min-height: 48px;
+    }
+    
+    body {
+        font-size: 16px;
+    }
+    
+    input, select, textarea {
+        font-size: 16px;
+    }
+    
     .container {
         padding: 10px;
     }
@@ -930,15 +1093,6 @@ footer {
         max-width: 100%;
     }
 
-    .opcoes-campeonato {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .opcao-campeonato {
-        max-width: 100%;
-    }
-
     .carrinho-footer {
         flex-direction: column;
         gap: 8px;
@@ -966,10 +1120,11 @@ footer {
     
     .carrinho-flutuante {
         border-radius: 15px;
-        max-width: calc(100% - 40px);
-        margin: 0 20px;
+        max-width: calc(100% - 30px);
+        /* REMOVA esta linha: margin: 0 15px; */
     }
     
+    /* CORREÇÃO: No mobile, input e botão ficam em coluna */
     .aposta-individual-valor {
         flex-direction: column;
         gap: 4px;
@@ -992,57 +1147,58 @@ footer {
         padding: 10px;
     }
     
-        .jogo-titulo {
-        font-size: 0.9rem !important;
+    .jogo-titulo {
+        font-size: 0.9rem;
     }
     
     .selecao-item {
-        font-size: 0.8rem !important;
+        font-size: 0.8rem;
+    }
+
+    /* Mobile para campeonatos */
+    .opcao-campeonato {
+        min-width: 90px;
+        padding: 8px 10px;
+    }
+    
+    .nome-campeonato {
+        font-size: 0.8rem;
+    }
+    
+    .opcoes-campeonato {
+        gap: 6px;
+        padding: 6px 3px;
     }
 }
-/* Estilos específicos para o modal do admin */
-#modal-novo-jogo .modal-content {
-    max-height: 90vh;
-    overflow-y: auto;
-    margin: 5% auto;
-}
 
-#modal-novo-jogo .modal-botoes {
-    position: sticky;
-    bottom: 0;
-    background: white;
-    padding: 15px 0;
-    border-top: 1px solid #ddd;
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-#modal-novo-jogo .modal-botoes button {
-    min-width: 120px;
-}
-
-/* Garantir que o modal fique sempre visível */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    overflow: auto;
-}
-
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 30px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    position: relative;
+@media (max-width: 480px) {
+    .opcao-campeonato {
+        min-width: 85px;
+        padding: 6px 8px;
+    }
+    
+    .nome-campeonato {
+        font-size: 0.75rem;
+    }
+    
+    .opcoes-campeonato {
+        gap: 4px;
+        padding: 4px 2px;
+    }
+    
+    .container {
+        padding: 8px;
+    }
+    
+    .card {
+        padding: 12px;
+    }
+    
+    header {
+        padding: 15px 10px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
 }
