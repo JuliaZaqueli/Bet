@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gerenciar Apostas</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .admin-panel {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .campeonato-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #8A05BE;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .campeonato-tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .campeonato-tab.active {
+            background: #8A05BE;
+            color: white;
+        }
+        .campeonato-tab:hover {
+            background: #6D0B9E;
+            color: white;
+        }
+        .jogo-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #fafafa;
+        }
+        .jogo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .jogo-times {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8A05BE;
+        }
+        .jogo-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .odds-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #8A05BE;
+        }
+        .odds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .odd-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .odd-input-group label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #6D0B9E;
+        }
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .btn-success {
+            background: #28a745;
+        }
+        .btn-info {
+            background: #17a2b8;
+        }
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .form-row input {
+            flex: 1;
+        }
+        .hidden {
+            display: none;
+        }
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .admin-actions button {
+            padding: 10px 15px;
+        }
+        .novo-campeonato-form {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 2px dashed #8A05BE;
+        }
+        .novo-campeonato-form h4 {
+            color: #8A05BE;
+            margin-bottom: 10px;
+        }
+        .campeonato-actions {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        /* Estilos para o input datetime-local */
+        input[type="datetime-local"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+            background: white;
+        }
+
+        input[type="datetime-local"]:focus {
+            border-color: #8A05BE;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(138, 5, 190, 0.2);
+        }
+
+        /* Customização para navegadores que suportam pseudo-elementos */
+        input[type="datetime-local"]::-webkit-datetime-edit {
+            padding: 0;
+        }
+
+        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            color: #8A05BE;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Para quando o input estiver vazio */
+        input[type="datetime-local"]:invalid {
+            border-color: #ffc107;
+        }
+
+        /* Estilo para o small de ajuda */
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <header>
+            <h1>🛠️ Painel Administrativo - Apostas</h1>
+            <p class="subtitle">Gerencie jogos e odds facilmente</p>
+        </header>
+
+        <div class="admin-panel">
+            <!-- Formulário para Novo Campeonato -->
+            <div class="novo-campeonato-form">
+                <h4>🏆 Adicionar Novo Campeonato</h4>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ID do Campeonato (sem espaços):</label>
+                        <input type="text" id="novo-campeonato-id" placeholder="Ex: copa-do-brasil">
+                    </div>
+                    <div class="form-group">
+                        <label>Nome do Campeonato:</label>
+                        <input type="text" id="novo-campeonato-nome" placeholder="Ex: Copa do Brasil">
+                    </div>
+                </div>
+                <button class="btn-info" id="btn-adicionar-campeonato">➕ Adicionar Campeonato</button>
+            </div>
+
+            <div class="campeonato-tabs" id="campeonato-tabs">
+                <!-- Tabs serão geradas dinamicamente -->
+            </div>
+
+            <div class="admin-actions">
+                <button id="btn-novo-jogo" class="btn-success">➕ Adicionar Novo Jogo</button>
+                <button id="btn-salvar-tudo" class="btn">💾 Salvar Todas as Alterações</button>
+                <button id="btn-exportar-dados" class="btn-info">📤 Exportar Dados</button>
+                <button id="btn-importar-dados" class="btn-info">📥 Importar Dados</button>
+            </div>
+
+            <div id="lista-jogos-admin">
+                <!-- Jogos serão carregados aqui -->
+            </div>
+        </div>
+
+    <!-- Modal para novo jogo - VERSÃO COM CALENDÁRIO -->
+    <div id="modal-novo-jogo" class="modal">
+        <div class="modal-content" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
+            <h3>➕ Adicionar Novo Jogo</h3>
+            <div class="form-group">
+                <label>Time da Casa:</label>
+                <input type="text" id="novo-time-casa" placeholder="Ex: Flamengo">
+            </div>
+            <div class="form-group">
+                <label>Time Visitante:</label>
+                <input type="text" id="novo-time-fora" placeholder="Ex: Palmeiras">
+            </div>
+            <div class="form-group">
+                <label>Data e Hora:</label>
+                <input type="datetime-local" id="novo-data" 
+                    min="${new Date().toISOString().slice(0, 16)}">
+                <small style="color: #666; font-size: 0.8rem;">
+                    Selecione a data e horário do jogo
+                </small>
+            </div>
+            <div class="odds-section">
+                <h4>Odds Principais</h4>
+                <div class="form-row">
+                    <div class="odd-input-group">
+                        <label>Casa:</label>
+                        <input type="number" id="novo-odd-casa" step="0.01" value="1.80">
+                    </div>
+                    <div class="odd-input-group">
+                        <label>Empate:</label>
+                        <input type="number" id="novo-odd-empate" step="0.01" value="3.40">
+                    </div>
+                    <div class="odd-input-group">
+                        <label>Fora:</label>
+                        <input type="number" id="novo-odd-fora" step="0.01" value="4.20">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-botoes" style="position: sticky; bottom: 0; background: white; padding: 15px 0; border-top: 1px solid #ddd; margin-top: 10px;">
+                <button class="btn-cancelar" id="btn-cancelar-novo">Cancelar</button>
+                <button class="btn-success" id="btn-confirmar-novo">Adicionar Jogo</button>
+            </div>
+        </div>
+    </div>
+
+        <!-- Modal para importar dados -->
+        <div id="modal-importar" class="modal">
+            <div class="modal-content" style="max-width: 500px;">
+                <h3>📥 Importar Dados</h3>
+                <div class="form-group">
+                    <label>Cole os dados JSON aqui:</label>
+                    <textarea id="dados-importar" rows="10" style="width: 100%; font-family: monospace; padding: 10px;" placeholder="Cole o JSON completo dos campeonatos..."></textarea>
+                </div>
+                <div class="modal-botoes">
+                    <button class="btn-cancelar" id="btn-cancelar-importar">Cancelar</button>
+                    <button class="btn-success" id="btn-confirmar-importar">Importar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-admin.js"></script>
+</body>
+</html>
