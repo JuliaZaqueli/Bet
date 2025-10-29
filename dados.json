@@ -1,0 +1,1632 @@
+{
+  "champions": {
+    "nome": "Champions League",
+    "jogos": []
+  },
+  "serie-a": {
+    "nome": "Série A",
+    "jogos": [
+      {
+        "id": 1761741214483,
+        "timeCasa": "Fluminense",
+        "timeFora": "Ceará",
+        "data": "29/10/2023 19:00",
+        "odds": {
+          "casa": 1.57,
+          "empate": 3.6,
+          "fora": 6.25
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.08
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.44
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.3
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 7.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.25
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761741398971,
+        "timeCasa": "Cruzeiro",
+        "timeFora": "Vitória",
+        "data": "01/11/2025 16:00",
+        "odds": {
+          "casa": 1.48,
+          "empate": 4.1,
+          "fora": 7
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.11
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.5
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 6.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.25
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.4
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761741499959,
+        "timeCasa": "Santos",
+        "timeFora": "Fortaleza",
+        "data": "01/11/2025 16:00",
+        "odds": {
+          "casa": 1.7,
+          "empate": 3.8,
+          "fora": 4.5
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.8
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.4
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.2
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 8
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.5
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761741627360,
+        "timeCasa": "Mirassol",
+        "timeFora": "Botafogo",
+        "data": "01/11/2025 18:30",
+        "odds": {
+          "casa": 2.15,
+          "empate": 3.5,
+          "fora": 3.2
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.33
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 10
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.6
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.4
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761741780050,
+        "timeCasa": "Flamengo",
+        "timeFora": "Sport Recife",
+        "data": "01/11/2025 21:00",
+        "odds": {
+          "casa": 1.18,
+          "empate": 7,
+          "fora": 13
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.03
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.2
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 1.65
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 15
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 5.5
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 2.87
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.05
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.75
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761741866567,
+        "timeCasa": "Bahia",
+        "timeFora": "Bragantino",
+        "data": "02/11/2025 16:00",
+        "odds": {
+          "casa": 1.17,
+          "empate": 3.8,
+          "fora": 4.75
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.3
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 1.95
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 10
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4.5
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.6
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.5
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761741974584,
+        "timeCasa": "Ceara",
+        "timeFora": "Fluminense",
+        "data": "02/11/2025 16:00",
+        "odds": {
+          "casa": 2.7,
+          "empate": 3,
+          "fora": 2.75
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.1
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.44
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.4
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 7
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.25
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.2
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761742080318,
+        "timeCasa": "Corinthians",
+        "timeFora": "Grêmio",
+        "data": "02/11/2025 16:00",
+        "odds": {
+          "casa": 1.72,
+          "empate": 3.7,
+          "fora": 4.75
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.08
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.44
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.3
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 8
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.2
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761742269433,
+        "timeCasa": "Internacional",
+        "timeFora": "Atlético Mineiro",
+        "data": "02/11/2025 18:30",
+        "odds": {
+          "casa": 2.05,
+          "empate": 3.25,
+          "fora": 3.75
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.1
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.44
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.4
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 7
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.2
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761742364427,
+        "timeCasa": "Juventude",
+        "timeFora": "Palmeiras",
+        "data": "02/11/2025 20:30",
+        "odds": {
+          "casa": 6,
+          "empate": 4.2,
+          "fora": 1.5
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.33
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 10
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4.5
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.6
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.4
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761742445041,
+        "timeCasa": "Vasco da Gama",
+        "timeFora": "São Paulo",
+        "data": "02/11/2025 20:30",
+        "odds": {
+          "casa": 2.2,
+          "empate": 3.2,
+          "fora": 3.3
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.08
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.44
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.35
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 7.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.2
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 3.2
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "sul-americana": {
+    "nome": "Copa Sul-Americana",
+    "jogos": [
+      {
+        "id": 1761742546380,
+        "timeCasa": "Lanús",
+        "timeFora": "Universidad de Chile",
+        "data": "30/10/2025 19:00",
+        "odds": {
+          "casa": 1.85,
+          "empate": 3.5,
+          "fora": 4.33
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.4
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.25
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 9
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.25
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "libertadores": {
+    "nome": "Copa Libertadores",
+    "jogos": [
+      {
+        "id": 1761742722600,
+        "timeCasa": "Racing Club",
+        "timeFora": "Flamengo",
+        "data": "29/10/2025 21:30",
+        "odds": {
+          "casa": 2.9,
+          "empate": 3.3,
+          "fora": 2.5
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.08
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.44
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.35
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 7.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.2
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.06
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.28
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.83
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761743087415,
+        "timeCasa": "Palmeiras",
+        "timeFora": "LDU Quito",
+        "data": "30/10/2025 21:30",
+        "odds": {
+          "casa": 1.22,
+          "empate": 6.5,
+          "fora": 12
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.03
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.18
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 1.61
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 15
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 6
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 2.8
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.5
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.002
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.05
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.2
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "serie-b": {
+    "nome": "Série B",
+    "jogos": [
+      {
+        "id": 1761743305549,
+        "timeCasa": "Atlético GO",
+        "timeFora": "Paysandu",
+        "data": "31/10/2025 19:00",
+        "odds": {
+          "casa": 1.6,
+          "empate": 4.1,
+          "fora": 5.25
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.36
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.15
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 9
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.25
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.05
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.11
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.4
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761743434259,
+        "timeCasa": "Coritiba",
+        "timeFora": "CRB",
+        "data": "31/10/2025 19:00",
+        "odds": {
+          "casa": 1.83,
+          "empate": 3.5,
+          "fora": 4.33
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.4
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.25
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 9
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.25
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.03
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.08
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.16
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761743634106,
+        "timeCasa": "Ferroviária",
+        "timeFora": "Criciúma",
+        "data": "31/10/2025 21:35",
+        "odds": {
+          "casa": 2.87,
+          "empate": 3.1,
+          "fora": 2.55
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.08
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.4
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.25
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 8
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.25
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.1
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.4
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761743937526,
+        "timeCasa": "Goiás",
+        "timeFora": "Athletico Paranaense",
+        "data": "01/11/2025 16:00",
+        "odds": {
+          "casa": 2.4,
+          "empate": 3.1,
+          "fora": 3.1
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.1
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.6
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 7
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.6
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.1
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.04
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.1
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.36
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761744221872,
+        "timeCasa": "Avaí",
+        "timeFora": "Athletic Club MG",
+        "data": "01/11/2025 18:30",
+        "odds": {
+          "casa": 1.8,
+          "empate": 3.3,
+          "fora": 4.75
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.36
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.15
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 9
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.4
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.03
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.08
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.3
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761744357516,
+        "timeCasa": "Amazonas",
+        "timeFora": "Cuiabá EC",
+        "data": "02/11/205 16:00",
+        "odds": {
+          "casa": 2.62,
+          "empate": 2.9,
+          "fora": 2.9
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.11
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.44
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.5
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 6.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.25
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.2
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.2
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.04
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.11
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.44
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761744517465,
+        "timeCasa": "Remo",
+        "timeFora": "Chapecoense",
+        "data": "02/11/2025 18:30",
+        "odds": {
+          "casa": 2,
+          "empate": 3.4,
+          "fora": 3.5
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.36
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.15
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 8.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.4
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 1.28
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1761744660036,
+        "timeCasa": "Operário PR",
+        "timeFora": "Vila Nova",
+        "data": "02/11/2025 20:30",
+        "odds": {
+          "casa": 1.95,
+          "empate": 3.2,
+          "fora": 4.33
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.3
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.8
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.5
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 3.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.2
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 2.8
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.5
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4.5",
+                "odd": 1.6
+              },
+              {
+                "tipo": "Mais que 6.5",
+                "odd": 2
+              },
+              {
+                "tipo": "Mais que 8.5",
+                "odd": 2.6
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -2,37 +2,73 @@
 let campeonatos = {};
 
 // Função para carregar dados do localStorage ou usar padrão
-function carregarDadosCampeonatos() {
+async function carregarDadosCampeonatos() {
+    // Primeiro tenta carregar do localStorage (dados do admin)
     const dadosAdmin = localStorage.getItem('campeonatosSistema');
     const dadosAdmin2 = localStorage.getItem('campeonatosAdmin');
     
-    // Priorizar dados do admin
     if (dadosAdmin) {
         campeonatos = JSON.parse(dadosAdmin);
         console.log('✅ Dados carregados do sistema admin');
+        return;
     } else if (dadosAdmin2) {
         campeonatos = JSON.parse(dadosAdmin2);
         console.log('✅ Dados carregados do localStorage admin');
-    } else {
-        // Usar estrutura básica se não houver dados
+        return;
+    }
+    
+    // Se não tem dados no localStorage, carrega do arquivo JSON
+    try {
+        console.log('🔄 Tentando carregar dados do arquivo JSON...');
+        const response = await fetch('dados.json');
+        
+        if (!response.ok) {
+            throw new Error('Arquivo dados.json não encontrado');
+        }
+        
+        const dadosJson = await response.json();
+        
+        // Verifica a estrutura do arquivo
+        if (dadosJson.campeonatos) {
+            campeonatos = dadosJson.campeonatos;
+            console.log('✅ Dados carregados do arquivo dados.json');
+        } else {
+            campeonatos = dadosJson; // Assume que é direto os campeonatos
+            console.log('✅ Dados carregados do arquivo JSON (estrutura direta)');
+        }
+        
+        // Salva no localStorage para futuras sessões
+        localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
+        
+    } catch (error) {
+        console.warn('❌ Erro ao carregar dados.json:', error);
+        
+        // Fallback: estrutura básica
         campeonatos = {
             "serie-a": {
                 nome: "Série A",
                 jogos: []
             },
             "champions": {
-                nome: "Champions League", 
+                nome: "Champions League",
                 jogos: []
             },
             "sul-americana": {
-                nome: "Copa Sul-Americana",
+                nome: "Copa Sul-Americana", 
+                jogos: []
+            },
+            "libertadores": {
+                nome: "Copa Libertadores", 
+                jogos: []
+            },
+            "serie-b": {
+                nome: "Série B", 
                 jogos: []
             }
         };
         console.log('ℹ️ Usando estrutura básica de campeonatos');
     }
 }
-
 function configurarSincronizacao() {
     window.addEventListener('storage', function(e) {
         if (e.key === 'campeonatosSistema' || e.key === 'campeonatosAdmin') {
