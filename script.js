@@ -1,6 +1,118 @@
 // Dados dos campeonatos com odds adicionais
 let campeonatos = {};
 
+// FUNÇÃO PARA CORRIGIR OS DADOS CARREGADOS DO JSON
+function corrigirDadosCarregados(dados) {
+    console.log('🔄 Aplicando correção de estrutura de dados...');
+    
+    Object.keys(dados).forEach(campeonatoId => {
+        const campeonato = dados[campeonatoId];
+        if (campeonato.jogos) {
+            campeonato.jogos.forEach(jogo => {
+                // Garantir que oddsAdicionais existe
+                if (!jogo.oddsAdicionais) {
+                    jogo.oddsAdicionais = {
+                        gols: { mais: [], exato: [], menos: [] },
+                        escanteios: { mais: [], exato: [], menos: [] },
+                        tempoGols: []
+                    };
+                }
+
+                // CORRIGIR GOLS - usar números 0, 1, 2, 3, 4
+                const padroesGols = {
+                    '0': { mais: 1.30, exato: 3.50, menos: 2.10 },
+                    '1': { mais: 1.80, exato: 3.20, menos: 1.60 },
+                    '2': { mais: 2.50, exato: 3.50, menos: 1.30 },
+                    '3': { mais: 3.20, exato: 4.20, menos: 1.15 },
+                    '4': { mais: 4.50, exato: 5.00, menos: 1.05 }
+                };
+
+                // CORRIGIR ESCANTEIOS - usar números 4, 5, 6, 7, 8
+                const padroesEscanteios = {
+                    '4': { mais: 1.60, exato: 4.50, menos: 1.90 },
+                    '5': { mais: 2.00, exato: 4.00, menos: 1.50 },
+                    '6': { mais: 2.60, exato: 3.80, menos: 1.25 },
+                    '7': { mais: 3.20, exato: 4.20, menos: 1.10 },
+                    '8': { mais: 4.00, exato: 5.00, menos: 1.05 }
+                };
+
+                // Verificar se precisa corrigir gols
+                if (!jogo.oddsAdicionais.gols || 
+                    !jogo.oddsAdicionais.gols.mais || 
+                    jogo.oddsAdicionais.gols.mais.length === 0 ||
+                    !jogo.oddsAdicionais.gols.mais.some(op => op.tipo === "Mais que 3")) {
+                    
+                    console.log(`🔧 Corrigindo gols do jogo: ${jogo.timeCasa} vs ${jogo.timeFora}`);
+                    
+                    jogo.oddsAdicionais.gols = {
+                        mais: [],
+                        exato: [], 
+                        menos: []
+                    };
+
+                    // Preencher gols
+                    Object.keys(padroesGols).forEach(numero => {
+                        jogo.oddsAdicionais.gols.mais.push({
+                            tipo: `Mais que ${numero}`,
+                            odd: padroesGols[numero].mais
+                        });
+                        jogo.oddsAdicionais.gols.exato.push({
+                            tipo: `Exatamente ${numero}`,
+                            odd: padroesGols[numero].exato
+                        });
+                        jogo.oddsAdicionais.gols.menos.push({
+                            tipo: `Menos que ${numero}`,
+                            odd: padroesGols[numero].menos
+                        });
+                    });
+                }
+
+                // Verificar se precisa corrigir escanteios
+                if (!jogo.oddsAdicionais.escanteios || 
+                    !jogo.oddsAdicionais.escanteios.mais || 
+                    jogo.oddsAdicionais.escanteios.mais.length === 0 ||
+                    !jogo.oddsAdicionais.escanteios.mais.some(op => op.tipo === "Mais que 6")) {
+                    
+                    console.log(`🔧 Corrigindo escanteios do jogo: ${jogo.timeCasa} vs ${jogo.timeFora}`);
+                    
+                    jogo.oddsAdicionais.escanteios = {
+                        mais: [],
+                        exato: [],
+                        menos: []
+                    };
+
+                    // Preencher escanteios
+                    Object.keys(padroesEscanteios).forEach(numero => {
+                        jogo.oddsAdicionais.escanteios.mais.push({
+                            tipo: `Mais que ${numero}`,
+                            odd: padroesEscanteios[numero].mais
+                        });
+                        jogo.oddsAdicionais.escanteios.exato.push({
+                            tipo: `Exatamente ${numero}`,
+                            odd: padroesEscanteios[numero].exato
+                        });
+                        jogo.oddsAdicionais.escanteios.menos.push({
+                            tipo: `Menos que ${numero}`,
+                            odd: padroesEscanteios[numero].menos
+                        });
+                    });
+                }
+
+                // Garantir tempo de gols
+                if (!jogo.oddsAdicionais.tempoGols || jogo.oddsAdicionais.tempoGols.length === 0) {
+                    jogo.oddsAdicionais.tempoGols = [
+                        { tipo: "1º Tempo", odd: 2.80 },
+                        { tipo: "2º Tempo", odd: 2.20 },
+                        { tipo: "Empate", odd: 3.50 }
+                    ];
+                }
+            });
+        }
+    });
+    
+    console.log('✅ Correção de dados aplicada com sucesso');
+    return dados;
+}
 
 // Função para carregar dados do localStorage ou usar padrão
 async function carregarDadosCampeonatos() {
@@ -42,8 +154,11 @@ async function carregarDadosCampeonatos() {
         }
         
         const dadosJson = await response.json();
-        campeonatos = dadosJson;
-        console.log('✅ Dados carregados do arquivo JSON:', Object.keys(campeonatos));
+        
+        // APLICAR CORREÇÃO NOS DADOS CARREGADOS
+        campeonatos = corrigirDadosCarregados(dadosJson);
+        
+        console.log('✅ Dados carregados e corrigidos do arquivo JSON:', Object.keys(campeonatos));
         
         // Salva no localStorage do sistema para futuras sessões
         localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
