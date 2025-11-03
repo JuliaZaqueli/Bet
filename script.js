@@ -116,81 +116,84 @@ function corrigirDadosCarregados(dados) {
 
 // Função para carregar dados do localStorage ou usar padrão
 async function carregarDadosCampeonatos() {
-    console.log('🔄 Iniciando carregamento de dados...');
+    console.log('🔄 ===== INICIANDO CARREGAMENTO DE DADOS =====');
     console.log('📍 URL atual:', window.location.href);
+    console.log('🕒 Hora:', new Date().toLocaleString());
     
-    // PRIORIDADE 1: Dados do admin no localStorage (modificações do usuário)
+    // VERIFICAR TODAS AS FONTES POSSÍVEIS
     const dadosAdmin = localStorage.getItem('campeonatosAdmin');
+    const dadosSistema = localStorage.getItem('campeonatosSistema');
     
     console.log('📦 localStorage campeonatosAdmin:', dadosAdmin ? 'EXISTE' : 'NÃO EXISTE');
+    console.log('📦 localStorage campeonatosSistema:', dadosSistema ? 'EXISTE' : 'NÃO EXISTE');
     
     if (dadosAdmin) {
         try {
-            campeonatos = JSON.parse(dadosAdmin);
-            console.log('✅ Dados carregados do localStorage admin:', Object.keys(campeonatos));
-            console.log('📊 Total de jogos:', Object.values(campeonatos).reduce((total, camp) => total + (camp.jogos ? camp.jogos.length : 0), 0));
+            const parsed = JSON.parse(dadosAdmin);
+            console.log('✅ Dados carregados do localStorage admin');
+            console.log('📊 Campeonatos:', Object.keys(parsed));
+            console.log('🎯 Total de jogos:', Object.values(parsed).reduce((total, camp) => total + (camp.jogos ? camp.jogos.length : 0), 0));
+            
+            campeonatos = parsed;
             return;
         } catch (error) {
             console.error('❌ Erro ao parsear dados do admin:', error);
         }
     }
     
-    // PRIORIDADE 2: Dados do sistema no localStorage (backup)
-    const dadosSistema = localStorage.getItem('campeonatosSistema');
     if (dadosSistema) {
         try {
-            campeonatos = JSON.parse(dadosSistema);
-            console.log('✅ Dados carregados do localStorage sistema:', Object.keys(campeonatos));
+            const parsed = JSON.parse(dadosSistema);
+            console.log('✅ Dados carregados do localStorage sistema');
+            console.log('📊 Campeonatos:', Object.keys(parsed));
+            console.log('🎯 Total de jogos:', Object.values(parsed).reduce((total, camp) => total + (camp.jogos ? camp.jogos.length : 0), 0));
+            
+            campeonatos = parsed;
             return;
         } catch (error) {
             console.error('❌ Erro ao parsear dados do sistema:', error);
         }
     }
     
-    // PRIORIDADE 3: Carregar do arquivo dados.json (dados iniciais)
+    // Tentar carregar do JSON
     try {
-        console.log('🔄 Tentando carregar dados do arquivo JSON...');
+        console.log('🔄 Tentando carregar dados.json...');
         const response = await fetch('dados.json');
         
+        console.log('📡 Status da resposta:', response.status, response.statusText);
+        
         if (!response.ok) {
-            throw new Error('Arquivo dados.json não encontrado');
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
         
         const dadosJson = await response.json();
+        console.log('✅ dados.json carregado com sucesso!');
+        console.log('📊 Estrutura do JSON:', Object.keys(dadosJson));
+        console.log('🎯 Jogos no JSON:', Object.values(dadosJson).reduce((total, camp) => total + (camp.jogos ? camp.jogos.length : 0), 0));
         
-        // APLICAR CORREÇÃO NOS DADOS CARREGADOS
+        // APLICAR CORREÇÃO
         campeonatos = corrigirDadosCarregados(dadosJson);
         
-        console.log('✅ Dados carregados e corrigidos do arquivo JSON:', Object.keys(campeonatos));
-        
-        // Salva no localStorage do sistema para futuras sessões
+        // Salvar no localStorage
         localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
+        console.log('💾 Dados salvos no localStorage');
         
     } catch (error) {
-        console.warn('❌ Erro ao carregar dados.json:', error);
+        console.error('❌ ERRO ao carregar dados.json:', error);
+        console.log('🔄 Usando estrutura básica...');
         
-        // Fallback: estrutura básica
+        // Fallback
         campeonatos = {
-            "serie-a": {
-                nome: "Série A",
-                jogos: []
-            },
-            "champions": {
-                nome: "Champions League",
-                jogos: []
-            },
-            "sul-americana": {
-                nome: "Copa Sul-Americana", 
-                jogos: []
-            }
+            "serie-a": { nome: "Série A", jogos: [] },
+            "champions": { nome: "Champions League", jogos: [] },
+            "sul-americana": { nome: "Copa Sul-Americana", jogos: [] }
         };
-        console.log('ℹ️ Usando estrutura básica de campeonatos');
         
-        // Salva a estrutura básica
         localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
     }
+    
+    console.log('======= FIM DO CARREGAMENTO =======');
 }
-
 function configurarSincronizacao() {
     // Ouvir mudanças no localStorage
     window.addEventListener('storage', function(e) {
@@ -1864,3 +1867,21 @@ function adicionarNovoJogo() {
     
     alert('✅ Jogo adicionado com sucesso!');
 }
+
+// Função para forçar recarregamento dos dados (pode ser chamada no console)
+function forcarRecarregamentoDados() {
+    console.log('🔄 FORÇANDO RECARREGAMENTO DE DADOS...');
+    localStorage.removeItem('campeonatosAdmin');
+    localStorage.removeItem('campeonatosSistema');
+    
+    carregarDadosCampeonatos().then(() => {
+        carregarOpcoesCampeonato();
+        if (campeonatoSelecionadoGlobal) {
+            carregarJogos();
+        }
+        alert('Dados recarregados!');
+    });
+}
+
+// Adicionar ao escopo global para poder chamar pelo console
+window.forcarRecarregamentoDados = forcarRecarregamentoDados;
