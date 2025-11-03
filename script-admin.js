@@ -949,27 +949,26 @@ function excluirJogo(index) {
     }
 }
 
-// Mostrar modal para novo jogo
 function mostrarModalNovoJogo() {
-    if (modalNovoJogo) {
-        modalNovoJogo.style.display = 'block';
+    const modal = document.getElementById('modal-novo-jogo');
+    if (modal) {
+        modal.style.display = 'block';
+        
+        // Definir data mínima como hoje
+        const dataInput = document.getElementById('novo-data');
+        if (dataInput) {
+            const hoje = new Date().toISOString().slice(0, 16);
+            dataInput.min = hoje;
+        }
     }
 }
-
 // Fechar modal
 function fecharModalNovoJogo() {
-    if (modalNovoJogo) {
-        modalNovoJogo.style.display = 'none';
-        // Limpar formulário
-        document.getElementById('novo-time-casa').value = '';
-        document.getElementById('novo-time-fora').value = '';
-        document.getElementById('novo-data').value = '';
-        document.getElementById('novo-odd-casa').value = '1.80';
-        document.getElementById('novo-odd-empate').value = '3.40';
-        document.getElementById('novo-odd-fora').value = '4.20';
+    const modal = document.getElementById('modal-novo-jogo');
+    if (modal) {
+        modal.style.display = 'none';
     }
 }
-
 function adicionarNovoJogo() {
     const timeCasa = document.getElementById('novo-time-casa')?.value.trim();
     const timeFora = document.getElementById('novo-time-fora')?.value.trim();
@@ -1050,14 +1049,22 @@ function adicionarNovoJogo() {
     };
 
     // Garantir que o array de jogos existe
+    if (!campeonatos[campeonatoAtual]) {
+        alert('Erro: Campeonato atual não encontrado');
+        return;
+    }
+    
     if (!campeonatos[campeonatoAtual].jogos) {
         campeonatos[campeonatoAtual].jogos = [];
     }
 
+    // Adicionar o jogo
     campeonatos[campeonatoAtual].jogos.push(novoJogo);
+    
+    // Salvar e atualizar a interface
+    salvarNoLocalStorage();
     carregarJogosCampeonato();
     fecharModalNovoJogo();
-    salvarNoLocalStorage();
     
     alert('✅ Jogo adicionado com sucesso!');
 }
