@@ -466,7 +466,7 @@ function toggleJogo(header, jogo) {
     carregarConteudoJogo(jogo, conteudo);
 }
 
-// Substituir a função carregarConteudoJogo por esta versão corrigida:
+// Substituir as seções de gols e escanteios por esta versão com 5 opções:
 function carregarConteudoJogo(jogo, conteudo) {
     if (!conteudo) return;
     
@@ -490,67 +490,183 @@ function carregarConteudoJogo(jogo, conteudo) {
         </div>
     `;
     
-    // Adicionar odds adicionais se existirem e tiverem a estrutura correta
+    // Adicionar odds adicionais como tabelas em acordeões
     if (jogo.oddsAdicionais) {
-        // Categoria de Gols - com verificação de segurança
-        if (jogo.oddsAdicionais.gols && jogo.oddsAdicionais.gols.mais && jogo.oddsAdicionais.gols.exato) {
+        // Categoria de Gols - Tabela com 5 opções
+        if (jogo.oddsAdicionais.gols) {
             html += `
-                <div class="categoria-aposta">
-                    <div class="categoria-titulo">⚽ Quantidade de Gols</div>
-                    <div class="opcoes-multiplas" id="gols-${jogo.id}">
+                <div class="categoria-acordeao">
+                    <div class="categoria-header" data-categoria="gols">
+                        <div class="categoria-titulo-acordeao">
+                            ⚽ Total de Gols
+                            <span class="acordeao-seta">▼</span>
+                        </div>
+                    </div>
+                    <div class="categoria-conteudo" id="gols-${jogo.id}">
+                        <div class="tabela-apostas">
+                            <table class="tabela-odds">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Mais que</th>
+                                        <th>Exatamente</th>
+                                        <th>Menos que</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
             `;
 
-            // Combinar TODAS as opções de gols em uma única categoria
-            const todasOpcoesGols = [
-                ...(jogo.oddsAdicionais.gols.mais || []).map(opcao => ({...opcao, subcategoria: 'mais'})),
-                ...(jogo.oddsAdicionais.gols.exato || []).map(opcao => ({...opcao, subcategoria: 'exato'}))
-            ];
-
-            // Adicionar todas as opções de gols como uma única categoria
-            todasOpcoesGols.forEach(opcao => {
+            // USAR NÚMEROS FIXOS: 0, 1, 2, 3, 4
+            const numerosGols = ['0', '1', '2', '3', '4'];
+            
+            // Criar linhas da tabela
+            numerosGols.forEach(numero => {
+                // Encontrar odds existentes
+                const maisOpcao = jogo.oddsAdicionais.gols.mais?.find(opcao => opcao.tipo === `Mais que ${numero}`);
+                const exatoOpcao = jogo.oddsAdicionais.gols.exato?.find(opcao => opcao.tipo === `Exatamente ${numero}`);
+                const menosOpcao = jogo.oddsAdicionais.gols.menos?.find(opcao => opcao.tipo === `Menos que ${numero}`);
+                
                 html += `
-                    <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="gols" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
-                        ${opcao.tipo}
-                        <div class="odd-opcao">${opcao.odd}</div>
-                    </div>
+                    <tr>
+                        <td class="numero-gol">${numero} gols</td>
+                        <td class="celula-odd ${maisOpcao ? 'com-odd' : 'sem-odd'}">
+                            ${maisOpcao ? `
+                                <div class="opcao-tabela" data-jogo="${jogo.id}" data-categoria="gols" data-tipo="${maisOpcao.tipo}" data-valor="${maisOpcao.odd}">
+                                        ${maisOpcao.odd}
+                                </div>
+                            ` : '-'}
+                        </td>
+                        <td class="celula-odd ${exatoOpcao ? 'com-odd' : 'sem-odd'}">
+                            ${exatoOpcao ? `
+                                <div class="opcao-tabela" data-jogo="${jogo.id}" data-categoria="gols" data-tipo="${exatoOpcao.tipo}" data-valor="${exatoOpcao.odd}">
+                                        ${exatoOpcao.odd}
+                                </div>
+                            ` : '-'}
+                        </td>
+                        <td class="celula-odd ${menosOpcao ? 'com-odd' : 'sem-odd'}">
+                            ${menosOpcao ? `
+                                <div class="opcao-tabela" data-jogo="${jogo.id}" data-categoria="gols" data-tipo="${menosOpcao.tipo}" data-valor="${menosOpcao.odd}">
+                                        ${menosOpcao.odd}
+                                </div>
+                            ` : '-'}
+                        </td>
+                    </tr>
                 `;
             });
 
             html += `
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             `;
         }
-        
-        // Categoria de Tempo de Gols - com verificação de segurança
+
+        // Categoria de Tempo de Gols - Tabela simples (mantida)
         if (jogo.oddsAdicionais.tempoGols && Array.isArray(jogo.oddsAdicionais.tempoGols)) {
             html += `
-                <div class="categoria-aposta">
-                    <div class="categoria-titulo">⏰ Tempo com Mais Gols</div>
-                    <div class="opcoes-multiplas" id="tempo-gols-${jogo.id}">
-                        ${jogo.oddsAdicionais.tempoGols.map(opcao => `
-                            <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="tempo_gols" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
-                                ${opcao.tipo}
-                                <div class="odd-opcao">${opcao.odd}</div>
+                <div class="categoria-acordeao">
+                    <div class="categoria-header" data-categoria="tempo_gols">
+                        <div class="categoria-titulo-acordeao">
+                            ⏰ Tempo com Mais Gols
+                            <span class="acordeao-seta">▼</span>
+                        </div>
+                    </div>
+                    <div class="categoria-conteudo" id="tempo-gols-${jogo.id}">
+                        <div class="tabela-apostas">
+                            <table class="tabela-odds tabela-simples">
+                                <tbody>
+            `;
+
+            jogo.oddsAdicionais.tempoGols.forEach(opcao => {
+                html += `
+                    <tr>
+                        <td class="descricao-opcao">${opcao.tipo}</td>
+                        <td class="celula-odd com-odd">
+                            <div class="opcao-tabela" data-jogo="${jogo.id}" data-categoria="tempo_gols" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
+                                ${opcao.odd}
                             </div>
-                        `).join('')}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             `;
         }
         
-        // Categoria de Escanteios - com verificação de segurança
-        if (jogo.oddsAdicionais.escanteios && jogo.oddsAdicionais.escanteios.mais) {
+        // Para Escanteios - usar números: 4, 5, 6, 7, 8
+        if (jogo.oddsAdicionais.escanteios) {
             html += `
-                <div class="categoria-aposta">
-                    <div class="categoria-titulo">📐 Total de Escanteios</div>
-                    <div class="opcoes-multiplas" id="escanteios-${jogo.id}">
-                        ${(jogo.oddsAdicionais.escanteios.mais || []).map(opcao => `
-                            <div class="opcao-multipla" data-jogo="${jogo.id}" data-categoria="escanteios" data-tipo="${opcao.tipo}" data-valor="${opcao.odd}">
-                                ${opcao.tipo}
-                                <div class="odd-opcao">${opcao.odd}</div>
-                            </div>
-                        `).join('')}
+                <div class="categoria-acordeao">
+                    <div class="categoria-header" data-categoria="escanteios">
+                        <div class="categoria-titulo-acordeao">
+                            📐 Total de Escanteios
+                            <span class="acordeao-seta">▼</span>
+                        </div>
+                    </div>
+                    <div class="categoria-conteudo" id="escanteios-${jogo.id}">
+                        <div class="tabela-apostas">
+                            <table class="tabela-odds">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Mais que</th>
+                                        <th>Exatamente</th>
+                                        <th>Menos que</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+            `;
+
+            // USAR NÚMEROS FIXOS: 4, 5, 6, 7, 8
+            const numerosEscanteios = ['4', '5', '6', '7', '8'];
+            
+            // Criar linhas da tabela
+            numerosEscanteios.forEach(numero => {
+                // Encontrar odds existentes
+                const maisOpcao = jogo.oddsAdicionais.escanteios.mais?.find(opcao => opcao.tipo === `Mais que ${numero}`);
+                const exatoOpcao = jogo.oddsAdicionais.escanteios.exato?.find(opcao => opcao.tipo === `Exatamente ${numero}`);
+                const menosOpcao = jogo.oddsAdicionais.escanteios.menos?.find(opcao => opcao.tipo === `Menos que ${numero}`);
+                
+                html += `
+                    <tr>
+                        <td class="numero-escanteio">${numero} escanteios</td>
+                        <td class="celula-odd ${maisOpcao ? 'com-odd' : 'sem-odd'}">
+                            ${maisOpcao ? `
+                                <div class="opcao-tabela" data-jogo="${jogo.id}" data-categoria="escanteios" data-tipo="${maisOpcao.tipo}" data-valor="${maisOpcao.odd}">
+                                    ${maisOpcao.odd}
+                                </div>
+                            ` : '-'}
+                        </td>
+                        <td class="celula-odd ${exatoOpcao ? 'com-odd' : 'sem-odd'}">
+                            ${exatoOpcao ? `
+                                <div class="opcao-tabela" data-jogo="${jogo.id}" data-categoria="escanteios" data-tipo="${exatoOpcao.tipo}" data-valor="${exatoOpcao.odd}">
+                                    ${exatoOpcao.odd}
+                                </div>
+                            ` : '-'}
+                        </td>
+                        <td class="celula-odd ${menosOpcao ? 'com-odd' : 'sem-odd'}">
+                            ${menosOpcao ? `
+                                <div class="opcao-tabela" data-jogo="${jogo.id}" data-categoria="escanteios" data-tipo="${menosOpcao.tipo}" data-valor="${menosOpcao.odd}">
+                                    ${menosOpcao.odd}
+                                </div>
+                            ` : '-'}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             `;
@@ -561,19 +677,26 @@ function carregarConteudoJogo(jogo, conteudo) {
     
     conteudo.innerHTML = html;
     
-    // Adicionar event listeners
-        conteudo.querySelectorAll('.odd').forEach(odd => {
-            odd.addEventListener('click', function() {
-                selecionarApostaPrincipal(this, jogo);
-            });
+    // Adicionar event listeners para odds principais
+    conteudo.querySelectorAll('.odd').forEach(odd => {
+        odd.addEventListener('click', function() {
+            selecionarApostaPrincipal(this, jogo);
         });
-
-        // ADICIONAR ESTAS LINhas - Event listeners para apostas adicionais
-        conteudo.querySelectorAll('.opcao-multipla').forEach(opcao => {
-            opcao.addEventListener('click', function() {
-                selecionarApostaAdicional(this, jogo);
-            });
+    });
+    
+    // Event listeners para as opções da tabela
+    conteudo.querySelectorAll('.opcao-tabela').forEach(opcao => {
+        opcao.addEventListener('click', function() {
+            selecionarApostaAdicional(this, jogo);
         });
+    });
+    
+    // Event listeners para os cabeçalhos do acordeão
+    conteudo.querySelectorAll('.categoria-header').forEach(header => {
+        header.addEventListener('click', function() {
+            toggleCategoriaAcordeao(this);
+        });
+    });
     
     const btnAdicionar = conteudo.querySelector('.btn-adicionar-carrinho');
     if (btnAdicionar) {
@@ -584,15 +707,51 @@ function carregarConteudoJogo(jogo, conteudo) {
     
     // Atualizar seleções atuais
     atualizarSelecoesJogo(jogo);
+    // Na função carregarConteudoJogo, adicione esta linha no final:
+    atualizarOpcoesBloqueadas(jogo);
 }
 
-// ... (o resto das funções permanecem iguais - selecionarApostaPrincipal, selecionarApostaAdicional, etc.)
+// NOVA FUNÇÃO: Alternar acordeão das categorias
+function toggleCategoriaAcordeao(header) {
+    const acordeao = header.parentElement;
+    const conteudo = header.nextElementSibling;
+    const seta = header.querySelector('.acordeao-seta');
+    
+    // Alternar classe ativa
+    acordeao.classList.toggle('ativo');
+    
+    // Alternar visibilidade do conteúdo
+    if (acordeao.classList.contains('ativo')) {
+        conteudo.style.maxHeight = conteudo.scrollHeight + "px";
+        seta.textContent = '▲';
+    } else {
+        conteudo.style.maxHeight = "0";
+        seta.textContent = '▼';
+    }
+}
 
-// Selecionar aposta principal
+// Selecionar aposta principal (toggle)
 function selecionarApostaPrincipal(elemento, jogo) {
     const jogoId = jogo.id;
     const tipo = elemento.dataset.tipo;
     const valor = parseFloat(elemento.dataset.valor);
+    
+    // Verificar se está bloqueada
+    if (elemento.classList.contains('bloqueada')) {
+        console.log(`🚫 Aposta principal bloqueada: ${tipo}`);
+        return;
+    }
+    
+    // Verificar se já está selecionada (toggle)
+    if (elemento.classList.contains('selecionada')) {
+        // Desselecionar esta odd
+        elemento.classList.remove('selecionada');
+        console.log(`❌ Desselecionada aposta principal: ${tipo}`);
+        
+        // Atualizar estado das opções bloqueadas
+        atualizarOpcoesBloqueadas(jogo);
+        return;
+    }
     
     // Desselecionar outras odds principais deste jogo
     document.querySelectorAll(`#conteudo-${jogoId} .odd`).forEach(odd => {
@@ -601,29 +760,255 @@ function selecionarApostaPrincipal(elemento, jogo) {
     
     // Selecionar esta odd
     elemento.classList.add('selecionada');
+    console.log(`✅ Aposta principal selecionada: ${tipo} - Odd: ${valor}`);
+    
+    // Atualizar estado das opções bloqueadas
+    atualizarOpcoesBloqueadas(jogo);
+}
+
+
+function atualizarOpcoesBloqueadas(jogo) {
+    const jogoId = jogo.id;
+    const apostaPrincipal = document.querySelector(`#conteudo-${jogoId} .odd.selecionada`);
+    const tipoPrincipal = apostaPrincipal ? apostaPrincipal.dataset.tipo : null;
+    
+    // Verificar se há "Menos que 1 gol" selecionado
+    const menosQue1GolSelecionado = document.querySelector(`#conteudo-${jogoId} .opcao-tabela[data-tipo="Menos que 1"].selecionada`);
+    
+    // Remover todos os bloqueios anteriores (exceto "Menos que 0" que é permanente)
+    document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela, #conteudo-${jogoId} .celula-odd`).forEach(el => {
+        // Não remover bloqueio permanente de "Menos que 0"
+        if (!el.dataset.tipo || el.dataset.tipo !== "Menos que 0") {
+            el.classList.remove('bloqueada', 'opcao-bloqueada');
+        }
+    });
+    
+    // BLOQUEIO PERMANENTE: "Menos que 0 gols" SEMPRE bloqueado (impossível em qualquer cenário)
+    document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela[data-tipo="Menos que 0"]`).forEach(opcao => {
+        opcao.classList.add('opcao-bloqueada');
+        opcao.parentElement.classList.add('bloqueada');
+    });
+    
+    // BLOQUEIO: Quando "Menos que 1 gol" está selecionado
+    if (menosQue1GolSelecionado) {
+        // Bloquear "1º Tempo" e "2º Tempo" na categoria tempo_gols
+        document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela[data-categoria="tempo_gols"][data-tipo="1º Tempo"]`).forEach(opcao => {
+            opcao.classList.add('opcao-bloqueada');
+            opcao.parentElement.classList.add('bloqueada');
+        });
+        
+        document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela[data-categoria="tempo_gols"][data-tipo="2º Tempo"]`).forEach(opcao => {
+            opcao.classList.add('opcao-bloqueada');
+            opcao.parentElement.classList.add('bloqueada');
+        });
+        
+        console.log('🚫 "Menos que 1 gol" selecionado - Bloqueando 1º e 2º Tempo');
+    }
+    
+    // Se não há aposta principal selecionada, não bloquear outras coisas
+    if (!tipoPrincipal) return;
+    
+    // BLOQUEIOS PARA VITÓRIA DA CASA OU FORA
+    if (tipoPrincipal === 'casa' || tipoPrincipal === 'fora') {
+        // Bloquear todas as opções de "Menos que 1 gols" (impossível com vitória)
+        document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela[data-tipo="Menos que 1"]`).forEach(opcao => {
+            opcao.classList.add('opcao-bloqueada');
+            opcao.parentElement.classList.add('bloqueada');
+        });
+        
+        // Bloquear todas as opções de "Exatamente 0 gols" (impossível com vitória)
+        document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela[data-tipo="Exatamente 0"]`).forEach(opcao => {
+            opcao.classList.add('opcao-bloqueada');
+            opcao.parentElement.classList.add('bloqueada');
+        });
+        
+        // Bloquear todas as opções de "Mais que 0 gols" (redundante - pelo menos 1 gol é necessário para vitória)
+        document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela[data-tipo="Mais que 0"]`).forEach(opcao => {
+            opcao.classList.add('opcao-bloqueada');
+            opcao.parentElement.classList.add('bloqueada');
+        });
+    }
+    
+    // BLOQUEIOS PARA EMPATE
+    if (tipoPrincipal === 'empate') {
+        // Bloquear números ímpares em "Exatamente" (empate só pode ter números pares de gols)
+        const numerosImpares = ['1', '3']; // 0, 2, 4 são pares (0 é considerado par no contexto de empate)
+        numerosImpares.forEach(numero => {
+            document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela[data-tipo="Exatamente ${numero}"]`).forEach(opcao => {
+                opcao.classList.add('opcao-bloqueada');
+                opcao.parentElement.classList.add('bloqueada');
+            });
+        });
+    }
 }
 
 function selecionarApostaAdicional(elemento, jogo) {
     const jogoId = jogo.id;
+    const categoria = elemento.dataset.categoria;
+    
+    // Verificar se está bloqueada
+    if (elemento.classList.contains('opcao-bloqueada')) {
+        console.log(`🚫 Opção bloqueada: ${elemento.dataset.tipo}`);
+        
+        // Mostrar mensagem explicativa
+        const apostaPrincipal = document.querySelector(`#conteudo-${jogoId} .odd.selecionada`);
+        const menosQue1GolSelecionado = document.querySelector(`#conteudo-${jogoId} .opcao-tabela[data-tipo="Menos que 1"].selecionada`);
+        
+        let mensagem = '';
+        
+        if (elemento.dataset.tipo === "Menos que 0") {
+            mensagem = "Não é possível ter menos que 0 gols em uma partida! Esta opção está permanentemente bloqueada.";
+        } else if (elemento.dataset.tipo === "Menos que 1" && (apostaPrincipal && (apostaPrincipal.dataset.tipo === 'casa' || apostaPrincipal.dataset.tipo === 'fora'))) {
+            mensagem = "Não é possível ter menos que 1 gol quando um time vence!";
+        } else if (elemento.dataset.tipo === "Exatamente 0" && (apostaPrincipal && (apostaPrincipal.dataset.tipo === 'casa' || apostaPrincipal.dataset.tipo === 'fora'))) {
+            mensagem = "Não é possível terminar com 0 gols quando um time vence!";
+        } else if (elemento.dataset.tipo.includes("Exatamente") && apostaPrincipal && apostaPrincipal.dataset.tipo === 'empate') {
+            const numero = elemento.dataset.tipo.split(' ')[1];
+            if (['1', '3'].includes(numero)) {
+                mensagem = "Empate só pode ter número par de gols (0, 2, 4)!";
+            }
+        } else if ((elemento.dataset.tipo === "1º Tempo" || elemento.dataset.tipo === "2º Tempo") && menosQue1GolSelecionado) {
+            mensagem = "Com 'Menos que 1 gol' selecionado, só é possível apostar em 'Empate' para tempo com mais gols!";
+        }
+        
+        if (mensagem) {
+            alert(`🚫 ${mensagem}`);
+        }
+        return;
+    }
     
     // Verificar se já está selecionada (toggle)
     if (elemento.classList.contains('selecionada')) {
         elemento.classList.remove('selecionada');
+        console.log(`❌ Desselecionada: ${elemento.dataset.tipo}`);
+        
+        // Atualizar bloqueios quando desselecionar "Menos que 1 gol"
+        if (elemento.dataset.tipo === "Menos que 1") {
+            atualizarOpcoesBloqueadas(jogo);
+        }
         return;
     }
     
-    // Desselecionar outras opções da MESMA CATEGORIA
-    const categoria = elemento.dataset.categoria;
-    document.querySelectorAll(`#conteudo-${jogoId} .opcao-multipla[data-categoria="${categoria}"]`).forEach(opcao => {
+    // CORREÇÃO: Desselecionar TODAS as outras opções da MESMA CATEGORIA
+    document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela[data-categoria="${categoria}"]`).forEach(opcao => {
         opcao.classList.remove('selecionada');
     });
     
-    // Selecionar esta opção
+    // Selecionar apenas esta opção
     elemento.classList.add('selecionada');
     
-    console.log(`✅ Aposta adicional selecionada: ${elemento.dataset.tipo} - Odd: ${elemento.dataset.valor}`);
+    console.log(`✅ Aposta adicional selecionada: ${elemento.dataset.tipo} - Odd: ${elemento.dataset.valor} (Categoria: ${categoria})`);
+    
+    // Atualizar bloqueios quando selecionar "Menos que 1 gol"
+    if (elemento.dataset.tipo === "Menos que 1") {
+        atualizarOpcoesBloqueadas(jogo);
+    }
 }
-// Adicionar apostas selecionadas ao carrinho - VERSÃO SIMPLIFICADA
+
+function adicionarApostasAoCarrinho(jogo) {
+    const jogoId = jogo.id;
+    
+    // Remover apostas anteriores deste jogo
+    carrinho = carrinho.filter(item => item.jogo.id !== jogoId);
+    
+    // Coletar todas as seleções deste jogo
+    const selecoesDoJogo = [];
+    
+    // Adicionar aposta principal se selecionada
+    const apostaPrincipal = document.querySelector(`#conteudo-${jogoId} .odd.selecionada`);
+    if (apostaPrincipal) {
+        selecoesDoJogo.push({
+            tipo: apostaPrincipal.dataset.tipo,
+            valor: parseFloat(apostaPrincipal.dataset.valor),
+            nome: apostaPrincipal.dataset.tipo === 'casa' ? jogo.timeCasa : 
+                  apostaPrincipal.dataset.tipo === 'fora' ? jogo.timeFora : 'Empate',
+            categoria: 'principal'
+        });
+    }
+    
+    // CORREÇÃO: Validar que não há múltiplas seleções na mesma categoria
+    const selecoesPorCategoria = {};
+    
+    document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela.selecionada`).forEach(opcao => {
+        const categoria = opcao.dataset.categoria;
+        
+        // Se já existe uma seleção nesta categoria, mostrar erro
+        if (selecoesPorCategoria[categoria]) {
+            alert(`❌ Erro: Você só pode selecionar UMA opção por categoria.\nJá existe uma seleção em "${categoria}".`);
+            return;
+        }
+        
+        selecoesPorCategoria[categoria] = true;
+        
+        selecoesDoJogo.push({
+            tipo: opcao.dataset.tipo,
+            valor: parseFloat(opcao.dataset.valor),
+            nome: opcao.dataset.tipo,
+            categoria: categoria
+        });
+    });
+    
+    // Verificar se há pelo menos uma seleção (principal ou adicional)
+    if (selecoesDoJogo.length === 0) {
+        alert('Selecione pelo menos uma aposta para este jogo');
+        return;
+    }
+    
+    // Calcular odd combinada para este jogo (multiplica todas as odds do mesmo jogo)
+    let oddCombinada = 1;
+    selecoesDoJogo.forEach(selecao => {
+        oddCombinada *= selecao.valor;
+    });
+    
+    // Adicionar como UMA aposta combinada no carrinho
+    carrinho.push({
+        jogo: jogo,
+        selecoes: selecoesDoJogo, // Todas as seleções deste jogo
+        valor: oddCombinada, // Odd combinada de todas as seleções
+        nome: `${jogo.timeCasa} vs ${jogo.timeFora}`, // Nome do jogo
+        quantidadeSelecoes: selecoesDoJogo.length // Quantidade de seleções combinadas
+    });
+    
+    atualizarCarrinho();
+    atualizarSelecoesJogo(jogo);
+    
+    // Fechar o jogo após adicionar ao carrinho
+    const header = document.querySelector(`.jogo-header[data-jogo="${jogoId}"]`);
+    if (header) {
+        header.classList.remove('ativo');
+        jogoAberto = null;
+    }
+    
+    console.log(`✅ Aposta adicionada ao carrinho: ${jogo.timeCasa} vs ${jogo.timeFora} - ${selecoesDoJogo.length} seleção(ões)`);
+}
+
+function atualizarSelecoesJogo(jogo) {
+    const jogoId = jogo.id;
+    const apostaDoJogo = carrinho.find(item => item.jogo.id === jogoId);
+    
+    // Limpar seleções
+    document.querySelectorAll(`#conteudo-${jogoId} .odd, #conteudo-${jogoId} .opcao-tabela`).forEach(el => {
+        el.classList.remove('selecionada');
+    });
+    
+    // Aplicar seleções atuais se houver aposta deste jogo
+    if (apostaDoJogo) {
+        apostaDoJogo.selecoes.forEach(selecao => {
+            if (selecao.categoria === 'principal') {
+                const elemento = document.querySelector(`#conteudo-${jogoId} .odd[data-tipo="${selecao.tipo}"]`);
+                if (elemento) {
+                    elemento.classList.add('selecionada');
+                }
+            } else {
+                // CORREÇÃO: Buscar por categoria E tipo para apostas adicionais
+                const elemento = document.querySelector(`#conteudo-${jogoId} .opcao-tabela[data-categoria="${selecao.categoria}"][data-tipo="${selecao.tipo}"]`);
+                if (elemento) {
+                    elemento.classList.add('selecionada');
+                }
+            }
+        });
+    }
+}
 function adicionarApostasAoCarrinho(jogo) {
     const jogoId = jogo.id;
     
@@ -691,7 +1076,7 @@ function atualizarSelecoesJogo(jogo) {
     const apostaDoJogo = carrinho.find(item => item.jogo.id === jogoId);
     
     // Limpar seleções
-    document.querySelectorAll(`#conteudo-${jogoId} .odd, #conteudo-${jogoId} .opcao-multipla`).forEach(el => {
+    document.querySelectorAll(`#conteudo-${jogoId} .odd, #conteudo-${jogoId} .opcao-tabela`).forEach(el => {
         el.classList.remove('selecionada');
     });
     
@@ -704,7 +1089,7 @@ function atualizarSelecoesJogo(jogo) {
                     elemento.classList.add('selecionada');
                 }
             } else {
-                const elemento = document.querySelector(`#conteudo-${jogoId} .opcao-multipla[data-categoria="${selecao.categoria}"][data-tipo="${selecao.tipo}"]`);
+                const elemento = document.querySelector(`#conteudo-${jogoId} .opcao-tabela[data-categoria="${selecao.categoria}"][data-tipo="${selecao.tipo}"]`);
                 if (elemento) {
                     elemento.classList.add('selecionada');
                 }
@@ -1308,4 +1693,96 @@ function carregarJogos() {
     } else {
         carregarJogosDeHoje();
     }
+}
+
+function adicionarNovoJogo() {
+    const timeCasa = document.getElementById('novo-time-casa')?.value.trim();
+    const timeFora = document.getElementById('novo-time-fora')?.value.trim();
+    const dataInput = document.getElementById('novo-data')?.value;
+
+    if (!timeCasa || !timeFora || !dataInput) {
+        alert('Preencha todos os campos obrigatórios');
+        return;
+    }
+
+    // Converter datetime-local para o formato brasileiro
+    const dataObj = new Date(dataInput);
+    const dataFormatada = formatarDataBrasileira(dataObj);
+
+    const novoJogo = {
+        id: Date.now(),
+        timeCasa: timeCasa,
+        timeFora: timeFora,
+        data: dataFormatada,
+        odds: {
+            casa: parseFloat(document.getElementById('novo-odd-casa')?.value) || 1.80,
+            empate: parseFloat(document.getElementById('novo-odd-empate')?.value) || 3.40,
+            fora: parseFloat(document.getElementById('novo-odd-fora')?.value) || 4.20
+        },
+        oddsAdicionais: {
+            gols: {
+                mais: [
+                    { tipo: "Mais que 0.5", odd: 1.30 },
+                    { tipo: "Mais que 1.5", odd: 1.80 },
+                    { tipo: "Mais que 2.5", odd: 2.50 },
+                    { tipo: "Mais que 3.5", odd: 3.20 },
+                    { tipo: "Mais que 4.5", odd: 4.50 }
+                ],
+                exato: [
+                    { tipo: "Exatamente 0", odd: 3.50 },
+                    { tipo: "Exatamente 1", odd: 3.20 },
+                    { tipo: "Exatamente 2", odd: 3.50 },
+                    { tipo: "Exatamente 3", odd: 4.20 },
+                    { tipo: "Exatamente 4", odd: 5.00 }
+                ],
+                menos: [
+                    { tipo: "Menos que 1.5", odd: 2.10 },
+                    { tipo: "Menos que 2.5", odd: 1.60 },
+                    { tipo: "Menos que 3.5", odd: 1.30 },
+                    { tipo: "Menos que 4.5", odd: 1.15 },
+                    { tipo: "Menos que 5.5", odd: 1.05 }
+                ]
+            },
+            tempoGols: [
+                { tipo: "1º Tempo", odd: 2.80 },
+                { tipo: "2º Tempo", odd: 2.20 },
+                { tipo: "Empate", odd: 3.50 }
+            ],
+            escanteios: {
+                mais: [
+                    { tipo: "Mais que 4.5", odd: 1.60 },
+                    { tipo: "Mais que 6.5", odd: 2.00 },
+                    { tipo: "Mais que 8.5", odd: 2.60 },
+                    { tipo: "Mais que 10.5", odd: 3.20 },
+                    { tipo: "Mais que 12.5", odd: 4.00 }
+                ],
+                exato: [
+                    { tipo: "Exatamente 4", odd: 4.50 },
+                    { tipo: "Exatamente 5", odd: 4.00 },
+                    { tipo: "Exatamente 6", odd: 3.80 },
+                    { tipo: "Exatamente 7", odd: 4.20 },
+                    { tipo: "Exatamente 8", odd: 5.00 }
+                ],
+                menos: [
+                    { tipo: "Menos que 5.5", odd: 1.90 },
+                    { tipo: "Menos que 7.5", odd: 1.50 },
+                    { tipo: "Menos que 9.5", odd: 1.25 },
+                    { tipo: "Menos que 11.5", odd: 1.10 },
+                    { tipo: "Menos que 13.5", odd: 1.05 }
+                ]
+            }
+        }
+    };
+
+    // Garantir que o array de jogos existe
+    if (!campeonatos[campeonatoAtual].jogos) {
+        campeonatos[campeonatoAtual].jogos = [];
+    }
+
+    campeonatos[campeonatoAtual].jogos.push(novoJogo);
+    carregarJogosCampeonato();
+    fecharModalNovoJogo();
+    salvarNoLocalStorage();
+    
+    alert('✅ Jogo adicionado com sucesso!');
 }
