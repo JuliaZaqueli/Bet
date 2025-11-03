@@ -1,6 +1,38 @@
 // Dados dos campeonatos com odds adicionais
 let campeonatos = {};
 
+// No script.js
+async function verificarAtualizacoesDados() {
+    try {
+        const response = await fetch('dados.json?t=' + Date.now());
+        const dadosAtuais = await response.json();
+        
+        const versaoAtual = dadosAtuais._version;
+        const versaoLocal = localStorage.getItem('dadosVersion');
+        
+        if (versaoAtual !== versaoLocal) {
+            console.log(`🔄 Nova versão detectada: ${versaoAtual} (era: ${versaoLocal})`);
+            
+            // Remover dados antigos
+            localStorage.removeItem('campeonatosAdmin');
+            localStorage.removeItem('campeonatosSistema');
+            
+            // Salvar novos dados
+            campeonatos = corrigirDadosCarregados(dadosAtuais);
+            localStorage.setItem('campeonatosSistema', JSON.stringify(campeonatos));
+            localStorage.setItem('dadosVersion', versaoAtual);
+            
+            return true;
+        }
+        
+        return false;
+        
+    } catch (error) {
+        console.error('❌ Erro ao verificar atualizações:', error);
+        return false;
+    }
+}
+
 // FUNÇÃO PARA CORRIGIR OS DADOS CARREGADOS DO JSON
 function corrigirDadosCarregados(dados) {
     console.log('🔄 Aplicando correção de estrutura de dados...');
