@@ -307,9 +307,16 @@ function inicializarElementosDOM() {
 // Inicializar
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Sistema de Apostas - Página Principal - Iniciando...');
+    console.log('📍 URL:', window.location.href);
     
     // Inicializar elementos DOM
     inicializarElementosDOM();
+    
+    console.log('🔍 Elementos DOM:', {
+        selecaoCampeonato: !!selecaoCampeonato,
+        listaJogos: !!listaJogos,
+        carrinhoFlutuante: !!carrinhoFlutuante
+    });
     
     // Carregar dados primeiro
     carregarDadosCampeonatos().then(() => {
@@ -317,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
         configurarSincronizacao();
         
         // Carregar opções de campeonato (isso já vai carregar os jogos de hoje automaticamente)
+        console.log('🔄 Carregando opções de campeonato...');
         carregarOpcoesCampeonato();
         
         // Event listeners para seleção de campeonato (delegado)
