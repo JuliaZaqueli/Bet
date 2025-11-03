@@ -1202,3 +1202,418 @@ footer {
         font-size: 1.6rem;
     }
 }
+
+/* ===== ACORDEÃO PARA CATEGORIAS DE APOSTAS ===== */
+.categoria-acordeao {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: white;
+}
+
+.categoria-header {
+    padding: 15px;
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.categoria-header:active {
+    background-color: #e9ecef;
+}
+
+.categoria-acordeao.ativo .categoria-header {
+    background-color: #f3e6f8;
+    border-bottom-color: #e0e0e0;
+}
+
+.categoria-titulo-acordeao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: #6D0B9E;
+    font-size: 0.9rem;
+}
+
+.acordeao-seta {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+    color: #8A05BE;
+}
+
+.categoria-acordeao.ativo .acordeao-seta {
+    transform: rotate(180deg);
+}
+
+.categoria-conteudo {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 15px;
+}
+
+.categoria-acordeao.ativo .categoria-conteudo {
+    max-height: 500px;
+    padding: 15px;
+}
+
+/* Ajuste para as opções dentro do acordeão */
+.categoria-conteudo .opcoes-multiplas {
+    margin-top: 0;
+}
+
+/* Manter os estilos existentes das opções múltiplas */
+.opcoes-multiplas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 6px;
+}
+
+.opcao-multipla {
+    text-align: center;
+    padding: 10px 6px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+    background: white;
+}
+
+.opcao-multipla:active {
+    transform: scale(0.95);
+}
+
+.opcao-multipla.selecionada {
+    background-color: #8A05BE;
+    color: white;
+    border-color: #8A05BE;
+}
+
+.odd-opcao {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.opcao-multipla.selecionada .odd-opcao {
+    color: white;
+}
+
+/* ===== TABELAS DE APOSTAS ===== */
+.tabela-apostas {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabela-odds {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tabela-odds th {
+    background: #8A05BE;
+    color: white;
+    padding: 10px 6px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+
+.tabela-odds td {
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tabela-odds tr:last-child td {
+    border-bottom: none;
+}
+
+/* Células com odds */
+.celula-odd.com-odd {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.celula-odd.com-odd:hover {
+    background-color: #f8f9fa;
+}
+
+.opcao-tabela {
+    padding: 8px 4px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: white;
+    transition: all 0.2s ease;
+    font-weight: 600;
+    color: #8A05BE;
+    font-size: 0.75rem;
+}
+
+.opcao-tabela.selecionada {
+    background-color: #8A05BE;
+    color: white;
+    border-color: #6D0B9E;
+    transform: scale(0.95);
+}
+
+/* Células sem odds */
+.celula-odd.sem-odd {
+    color: #999;
+    background-color: #f9f9f9;
+    font-size: 0.7rem;
+}
+
+/* Números de gols */
+.numero-gol, .numero-escanteio {
+    font-weight: bold;
+    color: #6D0B9E;
+    background-color: #f3e6f8;
+    font-size: 0.75rem;
+    padding: 8px 4px;
+    text-align: center;
+    min-width: 70px;
+}
+
+/* Descrição das opções */
+.descricao-opcao {
+    text-align: left;
+    padding-left: 12px;
+    font-weight: 500;
+    color: #333;
+    font-size: 0.75rem;
+}
+/* Tabelas simples (1 coluna) */
+.tabela-simples {
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.tabela-simples th {
+    background: #6D0B9E;
+}
+
+@media (max-width: 768px) {
+    .tabela-odds {
+        font-size: 0.7rem;
+    }
+    
+    .tabela-odds th,
+    .tabela-odds td {
+        padding: 6px 3px;
+    }
+    
+    .opcao-tabela {
+        padding: 6px 3px;
+        font-size: 0.7rem;
+    }
+    
+    .numero-gol, .numero-escanteio {
+        font-size: 0.7rem;
+        min-width: 60px;
+        padding: 6px 3px;
+    }
+    
+    /* Esconder coluna "Menos que" em mobile para economizar espaço */
+    .tabela-odds th:nth-child(4),
+    .tabela-odds td:nth-child(4) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabela-apostas {
+        font-size: 0.65rem;
+    }
+    
+    .tabela-odds th,
+    .tabela-odds td {
+        padding: 4px 2px;
+    }
+    
+    .opcao-tabela {
+        padding: 4px 2px;
+        font-size: 0.65rem;
+    }
+    
+    .numero-gol, .numero-escanteio {
+        font-size: 0.65rem;
+        min-width: 55px;
+        padding: 4px 2px;
+    }
+    
+    /* Em telas muito pequenas, esconder também "Exatamente" */
+    .tabela-odds th:nth-child(3),
+    .tabela-odds td:nth-child(3) {
+        display: none;
+    }
+}
+/* Estilo específico para números de escanteios */
+.numero-escanteio {
+    font-weight: bold;
+    color: #8A05BE;
+    background-color: #f3e6f8;
+    font-size: 0.9rem;
+}
+
+/* Destaque para as tabelas de escanteios */
+.tabela-odds .celula-odd.com-odd .opcao-tabela {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border: 1px solid #ddd;
+}
+
+.tabela-odds .celula-odd.com-odd .opcao-tabela:hover {
+    background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    transform: translateY(-1px);
+}
+
+.tabela-odds .celula-odd.com-odd .opcao-tabela.selecionada {
+    background: linear-gradient(135deg, #8A05BE, #6D0B9E);
+    color: white;
+    border-color: #5a0a8a;
+    box-shadow: 0 2px 8px rgba(138, 5, 190, 0.3);
+}
+
+/* Melhorar a visualização das tabelas em mobile */
+@media (max-width: 768px) {
+    .tabela-odds th:nth-child(4),
+    .tabela-odds td:nth-child(4) {
+        display: none; /* Esconde "Menos que" em mobile para economizar espaço */
+    }
+    
+    .tabela-odds th:nth-child(3),
+    .tabela-odds td:nth-child(3) {
+        border-right: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabela-odds th:nth-child(2),
+    .tabela-odds td:nth-child(2),
+    .tabela-odds th:nth-child(3),
+    .tabela-odds td:nth-child(3) {
+        font-size: 0.65rem;
+    }
+    
+    .numero-gol,
+    .numero-escanteio {
+        font-size: 0.75rem;
+        padding: 4px 2px;
+    }
+}
+
+/* Ajustar o CSS das tabelas no admin */
+.numero-admin {
+    font-weight: bold;
+    color: #8A05BE;
+    background-color: #f3e6f8;
+    font-size: 0.85rem;
+    min-width: 80px;
+    padding: 8px 4px;
+    text-align: center;
+}
+
+.tabela-odds-admin th {
+    background: #8A05BE;
+    color: white;
+    padding: 12px 6px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.tabela-odds-admin td {
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.input-admin input {
+    width: 100%;
+    padding: 8px 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    text-align: center;
+    min-width: 60px;
+}
+
+/* Responsividade para tabelas no admin */
+@media (max-width: 768px) {
+    .tabela-odds-admin {
+        font-size: 0.75rem;
+    }
+    
+    .tabela-odds-admin th,
+    .tabela-odds-admin td {
+        padding: 6px 3px;
+    }
+    
+    .input-admin input {
+        padding: 6px 3px;
+        font-size: 0.7rem;
+        min-width: 50px;
+    }
+    
+    .numero-admin {
+        font-size: 0.75rem;
+        min-width: 70px;
+        padding: 6px 3px;
+    }
+}
+
+/* Estilos para opções bloqueadas */
+.opcao-bloqueada {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    position: relative;
+}
+
+.opcao-bloqueada::after {
+    content: "🔒";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    background: rgba(0,0,0,0.7);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.celula-odd.bloqueada {
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+.celula-odd.bloqueada::after {
+    content: "🔒";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.odd.bloqueada {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.odd.bloqueada::after {
+    content: "🔒";
+    margin-left: 8px;
+    font-size: 0.9rem;
+}
