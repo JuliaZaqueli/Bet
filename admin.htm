@@ -27,13 +27,14 @@
             flex-wrap: wrap;
         }
         .campeonato-tab {
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: #f0f0f0;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
         .campeonato-tab.active {
             background: #8A05BE;
@@ -89,17 +90,28 @@
             color: #6D0B9E;
         }
         .btn-small {
-            padding: 5px 10px;
+            padding: 6px 12px;
             font-size: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
         }
         .btn-danger {
             background: #dc3545;
+            color: white;
         }
         .btn-success {
             background: #28a745;
+            color: white;
         }
         .btn-info {
             background: #17a2b8;
+            color: white;
+        }
+        .btn-primary {
+            background: #8A05BE;
+            color: white;
         }
         .form-row {
             display: flex;
@@ -120,6 +132,7 @@
         }
         .admin-actions button {
             padding: 10px 15px;
+            font-size: 0.9rem;
         }
         .novo-campeonato-form {
             background: #f8f9fa;
@@ -137,12 +150,13 @@
             gap: 5px;
             margin-top: 10px;
         }
+        
         /* Estilos para o input datetime-local */
         input[type="datetime-local"] {
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             width: 100%;
             background: white;
         }
@@ -153,28 +167,135 @@
             box-shadow: 0 0 0 2px rgba(138, 5, 190, 0.2);
         }
 
-        /* Customização para navegadores que suportam pseudo-elementos */
-        input[type="datetime-local"]::-webkit-datetime-edit {
-            padding: 0;
+        /* Botões principais do admin */
+        .admin-main-actions {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #8A05BE;
         }
 
-        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-            background: transparent;
-            color: #8A05BE;
+        .admin-main-actions button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
             cursor: pointer;
-            padding: 5px;
+            transition: all 0.3s ease;
         }
 
-        /* Para quando o input estiver vazio */
-        input[type="datetime-local"]:invalid {
-            border-color: #ffc107;
+        .admin-main-actions .btn-primary {
+            background: #8A05BE;
+            color: white;
         }
 
-        /* Estilo para o small de ajuda */
-        .form-group small {
-            display: block;
-            margin-top: 5px;
-            color: #6c757d;
+        .admin-main-actions .btn-primary:hover {
+            background: #6D0B9E;
+        }
+
+        .admin-main-actions .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .admin-main-actions .btn-success:hover {
+            background: #218838;
+        }
+
+        /* Tabelas no admin */
+        .tabela-admin {
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .tabela-odds-admin {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tabela-odds-admin th {
+            background: #8A05BE;
+            color: white;
+            padding: 10px 6px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .tabela-odds-admin td {
+            padding: 8px 6px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .numero-admin {
+            font-weight: bold;
+            color: #8A05BE;
+            background-color: #f3e6f8;
+            font-size: 0.8rem;
+            min-width: 80px;
+            padding: 8px 4px;
+            text-align: center;
+        }
+
+        .input-admin input {
+            width: 100%;
+            padding: 6px 4px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 10px;
+            }
+            
+            .admin-panel {
+                padding: 15px;
+            }
+            
+            .campeonato-tabs {
+                gap: 5px;
+            }
+            
+            .campeonato-tab {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .admin-actions {
+                flex-direction: column;
+            }
+            
+            .admin-actions button {
+                width: 100%;
+            }
+            
+            .admin-main-actions {
+                flex-direction: column;
+            }
+            
+            .admin-main-actions button {
+                width: 100%;
+            }
+            
+            .form-row {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -186,6 +307,12 @@
         </header>
 
         <div class="admin-panel">
+            <!-- Botões principais do admin -->
+            <div class="admin-main-actions">
+                <button class="btn-primary" id="btn-novo-jogo">➕ Adicionar Novo Jogo</button>
+                <button class="btn-success" id="btn-salvar-tudo">💾 Salvar Todas as Alterações</button>
+            </div>
+
             <!-- Formulário para Novo Campeonato -->
             <div class="novo-campeonato-form">
                 <h4>🏆 Adicionar Novo Campeonato</h4>
@@ -208,9 +335,9 @@
 
             <!-- Botões de gerenciamento no admin -->
             <div class="admin-actions">
-                <button onclick="sistemaApostas.exportarDados()">📥 Exportar Dados</button>
-                <button onclick="document.getElementById('importFile').click()">📤 Importar Dados</button>
-                <button onclick="sistemaApostas.resetarParaDadosOriginais()">🔄 Resetar para Original</button>
+                <button class="btn-info" onclick="sistemaApostas.exportarDados()">📥 Exportar Dados</button>
+                <button class="btn-info" onclick="document.getElementById('importFile').click()">📤 Importar Dados</button>
+                <button class="btn-danger" onclick="sistemaApostas.resetarParaDadosOriginais()">🔄 Resetar para Original</button>
                 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="sistemaApostas.importarDados(event)">
             </div>
 
@@ -219,7 +346,7 @@
             </div>
         </div>
 
-    <!-- Modal para novo jogo - VERSÃO COM CALENDÁRIO -->
+    <!-- Modal para novo jogo -->
     <div id="modal-novo-jogo" class="modal">
         <div class="modal-content" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
             <h3>➕ Adicionar Novo Jogo</h3>
