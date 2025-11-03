@@ -21,7 +21,110 @@ const btnConfirmarImportar = document.getElementById('btn-confirmar-importar');
 document.addEventListener('DOMContentLoaded', function() {
     carregarDados();
     carregarInterface();
-    
+    function migrarParaNovoFormato() {
+        let migrou = false;
+        
+        Object.keys(campeonatos).forEach(campeonatoId => {
+            const campeonato = campeonatos[campeonatoId];
+            if (campeonato.jogos) {
+                campeonato.jogos.forEach(jogo => {
+                    // Verificar se precisa migrar
+                    if (!jogo.oddsAdicionais || 
+                        !jogo.oddsAdicionais.gols || 
+                        !jogo.oddsAdicionais.escanteios ||
+                        jogo.oddsAdicionais.gols.mais.length < 5 ||
+                        jogo.oddsAdicionais.escanteios.mais.length < 5) {
+                        
+                        migrou = true;
+                        
+                        // Garantir estrutura
+                        if (!jogo.oddsAdicionais) {
+                            jogo.oddsAdicionais = {
+                                gols: { mais: [], exato: [], menos: [] },
+                                escanteios: { mais: [], exato: [], menos: [] },
+                                tempoGols: []
+                            };
+                        }
+
+                        // Padrões para GOLS (0, 1, 2, 3, 4)
+                        const padroesGols = {
+                            '0': { mais: 1.30, exato: 3.50, menos: 2.10 },
+                            '1': { mais: 1.80, exato: 3.20, menos: 1.60 },
+                            '2': { mais: 2.50, exato: 3.50, menos: 1.30 },
+                            '3': { mais: 3.20, exato: 4.20, menos: 1.15 },
+                            '4': { mais: 4.50, exato: 5.00, menos: 1.05 }
+                        };
+
+                        // Padrões para ESCANTEIOS (4, 5, 6, 7, 8)
+                        const padroesEscanteios = {
+                            '4': { mais: 1.60, exato: 4.50, menos: 1.90 },
+                            '5': { mais: 2.00, exato: 4.00, menos: 1.50 },
+                            '6': { mais: 2.60, exato: 3.80, menos: 1.25 },
+                            '7': { mais: 3.20, exato: 4.20, menos: 1.10 },
+                            '8': { mais: 4.00, exato: 5.00, menos: 1.05 }
+                        };
+
+                        // Limpar arrays existentes
+                        jogo.oddsAdicionais.gols.mais = [];
+                        jogo.oddsAdicionais.gols.exato = [];
+                        jogo.oddsAdicionais.gols.menos = [];
+                        jogo.oddsAdicionais.escanteios.mais = [];
+                        jogo.oddsAdicionais.escanteios.exato = [];
+                        jogo.oddsAdicionais.escanteios.menos = [];
+
+                        // Preencher GOLS
+                        Object.keys(padroesGols).forEach(numero => {
+                            jogo.oddsAdicionais.gols.mais.push({
+                                tipo: `Mais que ${numero}`,
+                                odd: padroesGols[numero].mais
+                            });
+                            jogo.oddsAdicionais.gols.exato.push({
+                                tipo: `Exatamente ${numero}`,
+                                odd: padroesGols[numero].exato
+                            });
+                            jogo.oddsAdicionais.gols.menos.push({
+                                tipo: `Menos que ${numero}`,
+                                odd: padroesGols[numero].menos
+                            });
+                        });
+
+                        // Preencher ESCANTEIOS
+                        Object.keys(padroesEscanteios).forEach(numero => {
+                            jogo.oddsAdicionais.escanteios.mais.push({
+                                tipo: `Mais que ${numero}`,
+                                odd: padroesEscanteios[numero].mais
+                            });
+                            jogo.oddsAdicionais.escanteios.exato.push({
+                                tipo: `Exatamente ${numero}`,
+                                odd: padroesEscanteios[numero].exato
+                            });
+                            jogo.oddsAdicionais.escanteios.menos.push({
+                                tipo: `Menos que ${numero}`,
+                                odd: padroesEscanteios[numero].menos
+                            });
+                        });
+
+                        // Garantir tempo de gols
+                        if (!jogo.oddsAdicionais.tempoGols || jogo.oddsAdicionais.tempoGols.length === 0) {
+                            jogo.oddsAdicionais.tempoGols = [
+                                { tipo: "1º Tempo", odd: 2.80 },
+                                { tipo: "2º Tempo", odd: 2.20 },
+                                { tipo: "Empate", odd: 3.50 }
+                            ];
+                        }
+                    }
+                });
+            }
+        });
+        
+        if (migrou) {
+            salvarNoLocalStorage();
+            console.log('✅ Dados migrados para o novo formato (5 opções)');
+        }
+        
+        return migrou;
+    }
+        
     // Event listeners para tabs (agora delegado)
     campeonatoTabs.addEventListener('click', function(e) {
         if (e.target.classList.contains('campeonato-tab')) {
@@ -180,10 +283,12 @@ function carregarDados() {
         salvarNoLocalStorage();
     }
     
-    // MIGRAR JOGOS EXISTENTES PARA 5 OPÇÕES
-    migrarJogosPara5Opcoes();
+    // MIGRAR AUTOMATICAMENTE PARA O NOVO FORMATO
+    const migrou = migrarParaNovoFormato();
+    if (migrou) {
+        console.log('🔄 Dados migrados automaticamente para 5 opções');
+    }
 }
-
 function carregarDados() {
     const dadosAdmin = localStorage.getItem('campeonatosAdmin');
     const dadosSistema = localStorage.getItem('campeonatosSistema');
@@ -826,11 +931,11 @@ function adicionarNovoJogo() {
         oddsAdicionais: {
             gols: {
                 mais: [
-                    { tipo: "Mais que 0.5", odd: 1.30 },
-                    { tipo: "Mais que 1.5", odd: 1.80 },
-                    { tipo: "Mais que 2.5", odd: 2.50 },
-                    { tipo: "Mais que 3.5", odd: 3.20 },
-                    { tipo: "Mais que 4.5", odd: 4.50 }
+                    { tipo: "Mais que 0", odd: 1.30 },
+                    { tipo: "Mais que 1", odd: 1.80 },
+                    { tipo: "Mais que 2", odd: 2.50 },
+                    { tipo: "Mais que 3", odd: 3.20 },
+                    { tipo: "Mais que 4", odd: 4.50 }
                 ],
                 exato: [
                     { tipo: "Exatamente 0", odd: 3.50 },
@@ -840,11 +945,11 @@ function adicionarNovoJogo() {
                     { tipo: "Exatamente 4", odd: 5.00 }
                 ],
                 menos: [
-                    { tipo: "Menos que 1.5", odd: 2.10 },
-                    { tipo: "Menos que 2.5", odd: 1.60 },
-                    { tipo: "Menos que 3.5", odd: 1.30 },
-                    { tipo: "Menos que 4.5", odd: 1.15 },
-                    { tipo: "Menos que 5.5", odd: 1.05 }
+                    { tipo: "Menos que 0", odd: 2.10 },
+                    { tipo: "Menos que 1", odd: 1.60 },
+                    { tipo: "Menos que 2", odd: 1.30 },
+                    { tipo: "Menos que 3", odd: 1.15 },
+                    { tipo: "Menos que 4", odd: 1.05 }
                 ]
             },
             tempoGols: [
@@ -854,11 +959,11 @@ function adicionarNovoJogo() {
             ],
             escanteios: {
                 mais: [
-                    { tipo: "Mais que 4.5", odd: 1.60 },
-                    { tipo: "Mais que 6.5", odd: 2.00 },
-                    { tipo: "Mais que 8.5", odd: 2.60 },
-                    { tipo: "Mais que 10.5", odd: 3.20 },
-                    { tipo: "Mais que 12.5", odd: 4.00 }
+                    { tipo: "Mais que 4", odd: 1.60 },
+                    { tipo: "Mais que 5", odd: 2.00 },
+                    { tipo: "Mais que 6", odd: 2.60 },
+                    { tipo: "Mais que 7", odd: 3.20 },
+                    { tipo: "Mais que 8", odd: 4.00 }
                 ],
                 exato: [
                     { tipo: "Exatamente 4", odd: 4.50 },
@@ -868,11 +973,11 @@ function adicionarNovoJogo() {
                     { tipo: "Exatamente 8", odd: 5.00 }
                 ],
                 menos: [
-                    { tipo: "Menos que 5.5", odd: 1.90 },
-                    { tipo: "Menos que 7.5", odd: 1.50 },
-                    { tipo: "Menos que 9.5", odd: 1.25 },
-                    { tipo: "Menos que 11.5", odd: 1.10 },
-                    { tipo: "Menos que 13.5", odd: 1.05 }
+                    { tipo: "Menos que 4", odd: 1.90 },
+                    { tipo: "Menos que 5", odd: 1.50 },
+                    { tipo: "Menos que 6", odd: 1.25 },
+                    { tipo: "Menos que 7", odd: 1.10 },
+                    { tipo: "Menos que 8", odd: 1.05 }
                 ]
             }
         }
