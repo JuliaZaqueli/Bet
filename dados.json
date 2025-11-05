@@ -1,229 +1,62 @@
 {
-  "_version": "20251103T200947",
+  "_version": "20251105T184239",
   "serie-a": {
     "nome": "Série A",
-    "jogos": []
-  },
-  "champions": {
-    "nome": "Champions League",
     "jogos": [
       {
-        "id": 1762197562938,
-        "timeCasa": "Liverpool",
-        "timeFora": "Real Madrid",
-        "data": "04/11/2025 17:00",
+        "id": 1762363292200,
+        "timeCasa": "Bragantino",
+        "timeFora": "Corinthians",
+        "data": "05/11/2025 19:00",
         "odds": {
-          "casa": 2.5,
-          "empate": 3.75,
-          "fora": 2.6
+          "casa": 2.62,
+          "empate": 3.3,
+          "fora": 2.7
         },
         "oddsAdicionais": {
           "gols": {
             "mais": [
               {
                 "tipo": "Mais que 0",
-                "odd": 1.02
+                "odd": 1.07
               },
               {
                 "tipo": "Mais que 1",
-                "odd": 1.12
-              },
-              {
-                "tipo": "Mais que 2",
-                "odd": 1.44
-              },
-              {
-                "tipo": "Mais que 3",
-                "odd": 2
-              },
-              {
-                "tipo": "Mais que 4",
-                "odd": 3.4
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 0",
-                "odd": 19
-              },
-              {
-                "tipo": "Exatamente 1",
-                "odd": 8
-              },
-              {
-                "tipo": "Exatamente 2",
-                "odd": 4.5
-              },
-              {
-                "tipo": "Exatamente 3",
-                "odd": 4.5
-              },
-              {
-                "tipo": "Exatamente 4",
-                "odd": 4.75
-              }
-            ],
-            "menos": [
-              {
-                "tipo": "Menos que 0",
-                "odd": 0
-              },
-              {
-                "tipo": "Menos que 1",
-                "odd": 19
-              },
-              {
-                "tipo": "Menos que 2",
-                "odd": 6
-              },
-              {
-                "tipo": "Menos que 3",
-                "odd": 2.75
-              },
-              {
-                "tipo": "Menos que 4",
-                "odd": 1.8
-              }
-            ]
-          },
-          "tempoGols": [
-            {
-              "tipo": "1º Tempo",
-              "odd": 3
-            },
-            {
-              "tipo": "2º Tempo",
-              "odd": 1.95
-            },
-            {
-              "tipo": "Empate",
-              "odd": 4
-            }
-          ],
-          "escanteios": {
-            "mais": [
-              {
-                "tipo": "Mais que 4",
-                "odd": 1.03
-              },
-              {
-                "tipo": "Mais que 5",
-                "odd": 1.08
-              },
-              {
-                "tipo": "Mais que 6",
-                "odd": 1.16
-              },
-              {
-                "tipo": "Mais que 7",
                 "odd": 1.3
               },
               {
-                "tipo": "Mais que 8",
-                "odd": 1.53
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 4",
-                "odd": 19
-              },
-              {
-                "tipo": "Exatamente 5",
-                "odd": 15
-              },
-              {
-                "tipo": "Exatamente 6",
-                "odd": 11
-              },
-              {
-                "tipo": "Exatamente 7",
-                "odd": 9
-              },
-              {
-                "tipo": "Exatamente 8",
-                "odd": 8.5
-              }
-            ],
-            "menos": [
-              {
-                "tipo": "Menos que 4",
-                "odd": 21
-              },
-              {
-                "tipo": "Menos que 5",
-                "odd": 15
-              },
-              {
-                "tipo": "Menos que 6",
-                "odd": 8
-              },
-              {
-                "tipo": "Menos que 7",
-                "odd": 5
-              },
-              {
-                "tipo": "Menos que 8",
-                "odd": 3.4
-              }
-            ]
-          }
-        }
-      },
-      {
-        "id": 1762197876689,
-        "timeCasa": "Napoli",
-        "timeFora": "Eintracht Frankfurt",
-        "data": "04/11/2025 14:45",
-        "odds": {
-          "casa": 1.6,
-          "empate": 4.2,
-          "fora": 5.25
-        },
-        "oddsAdicionais": {
-          "gols": {
-            "mais": [
-              {
-                "tipo": "Mais que 0",
-                "odd": 1.3
-              },
-              {
-                "tipo": "Mais que 1",
-                "odd": 1.16
-              },
-              {
                 "tipo": "Mais que 2",
-                "odd": 1.57
+                "odd": 2.15
               },
               {
                 "tipo": "Mais que 3",
-                "odd": 2.37
-              },
-              {
-                "tipo": "Mais que 4",
-                "odd": 4.33
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 0",
-                "odd": 15
-              },
-              {
-                "tipo": "Exatamente 1",
-                "odd": 6.5
-              },
-              {
-                "tipo": "Exatamente 2",
                 "odd": 4
               },
               {
+                "tipo": "Mais que 4",
+                "odd": 8
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 9
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              },
+              {
                 "tipo": "Exatamente 3",
                 "odd": 4.33
               },
               {
                 "tipo": "Exatamente 4",
-                "odd": 5
+                "odd": 6.5
               }
             ],
             "menos": [
@@ -233,34 +66,34 @@
               },
               {
                 "tipo": "Menos que 1",
-                "odd": 15
+                "odd": 9
               },
               {
                 "tipo": "Menos que 2",
-                "odd": 5
+                "odd": 3.2
               },
               {
                 "tipo": "Menos que 3",
-                "odd": 2.37
+                "odd": 1.66
               },
               {
                 "tipo": "Menos que 4",
-                "odd": 1.57
+                "odd": 1.25
               }
             ]
           },
           "tempoGols": [
             {
               "tipo": "1º Tempo",
-              "odd": 3
+              "odd": 3.1
             },
             {
               "tipo": "2º Tempo",
-              "odd": 2
+              "odd": 2.1
             },
             {
               "tipo": "Empate",
-              "odd": 3.75
+              "odd": 3.25
             }
           ],
           "escanteios": {
@@ -271,7 +104,7 @@
               },
               {
                 "tipo": "Mais que 5",
-                "odd": 1.06
+                "odd": 1.05
               },
               {
                 "tipo": "Mais que 6",
@@ -289,7 +122,7 @@
             "exato": [
               {
                 "tipo": "Exatamente 4",
-                "odd": 21
+                "odd": 12
               },
               {
                 "tipo": "Exatamente 5",
@@ -301,7 +134,333 @@
               },
               {
                 "tipo": "Exatamente 7",
+                "odd": 9.5
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 8.5
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 19
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 11
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 6
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 2.62
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1762363553824,
+        "timeCasa": "Sport Recife",
+        "timeFora": "Juventude",
+        "data": "05/11/2025 19:00",
+        "odds": {
+          "casa": 1.85,
+          "empate": 3.7,
+          "fora": 4.1
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.05
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.28
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 1.85
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 3.2
+              },
+              {
+                "tipo": "Mais que 4",
+                "odd": 6
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 11
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 5
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.6
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 5.5
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 0
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 11
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 1.95
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 1.36
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.05
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.6
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 1.05
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 1.11
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 1.22
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 1.4
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 16
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 17
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 13
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 9.5
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 8.5
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 21
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 11
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 6.5
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 4
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 2.75
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1762367421496,
+        "timeCasa": "Vitória",
+        "timeFora": "Internacional",
+        "data": "05/11/2025 19:00",
+        "odds": {
+          "casa": 2.5,
+          "empate": 3.2,
+          "fora": 2.9
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.08
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.4
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.25
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Mais que 4",
                 "odd": 9
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 7.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.4
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 7
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 0
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 3
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 1.61
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 1.22
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 7.5
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.25
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 1.16
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 1.3
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 1.52
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 19
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 15
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 11
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 8.5
               },
               {
                 "tipo": "Exatamente 8",
@@ -311,37 +470,37 @@
             "menos": [
               {
                 "tipo": "Menos que 4",
-                "odd": 29
+                "odd": 26
               },
               {
                 "tipo": "Menos que 5",
-                "odd": 19
+                "odd": 17
               },
               {
                 "tipo": "Menos que 6",
-                "odd": 10
+                "odd": 9
               },
               {
                 "tipo": "Menos que 7",
-                "odd": 6
+                "odd": 5
               },
               {
                 "tipo": "Menos que 8",
-                "odd": 3.75
+                "odd": 3.4
               }
             ]
           }
         }
       },
       {
-        "id": 1762198066827,
-        "timeCasa": "Slavia Praga",
-        "timeFora": "Arsenal",
-        "data": "04/11/2025 14:45",
+        "id": 1762367669623,
+        "timeCasa": "Botafogo",
+        "timeFora": "Vasco da Gama",
+        "data": "05/11/2025 19:30",
         "odds": {
-          "casa": 11,
-          "empate": 6,
-          "fora": 1.27
+          "casa": 1.85,
+          "empate": 3.7,
+          "fora": 4.1
         },
         "oddsAdicionais": {
           "gols": {
@@ -356,7 +515,7 @@
               },
               {
                 "tipo": "Mais que 2",
-                "odd": 1.72
+                "odd": 1.7
               },
               {
                 "tipo": "Mais que 3",
@@ -378,11 +537,11 @@
               },
               {
                 "tipo": "Exatamente 2",
-                "odd": 4
+                "odd": 3.75
               },
               {
                 "tipo": "Exatamente 3",
-                "odd": 4
+                "odd": 4.33
               },
               {
                 "tipo": "Exatamente 4",
@@ -415,7 +574,170 @@
           "tempoGols": [
             {
               "tipo": "1º Tempo",
-              "odd": 2.87
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.05
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.6
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 1.16
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 1.3
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 1.53
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 19
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 15
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 10
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 8.5
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 8
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 26
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 17
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 9
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 5
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 3.4
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1762367904926,
+        "timeCasa": "Atlético Mineiro",
+        "timeFora": "Bahia",
+        "data": "05/11/2025 20:00",
+        "odds": {
+          "casa": 2.2,
+          "empate": 3.3,
+          "fora": 3.3
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.36
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.15
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 4
+              },
+              {
+                "tipo": "Mais que 4",
+                "odd": 8
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 9
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 6.5
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 0
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 9
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 3.2
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 1.66
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 1.25
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
             },
             {
               "tipo": "2º Tempo",
@@ -423,7 +745,664 @@
             },
             {
               "tipo": "Empate",
+              "odd": 3.4
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 1.16
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 1.3
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 1.53
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 19
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 15
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 11
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 8.5
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 8
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 26
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 17
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 9
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 5
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 3.4
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1762368124443,
+        "timeCasa": "Grêmio",
+        "timeFora": "Cruzeiro",
+        "data": "05/11/2025 20:00",
+        "odds": {
+          "casa": 3.2,
+          "empate": 3.25,
+          "fora": 2.3
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.3
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.8
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.5
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 3.2
+              },
+              {
+                "tipo": "Mais que 4",
+                "odd": 4.5
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 3.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.2
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.5
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 4.2
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 5
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 2.1
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 1.6
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 1.3
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 1.15
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 1.05
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 2.8
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.5
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.6
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 2
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 2.6
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 3.2
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 4
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 4.5
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 4
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 3.8
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 4.2
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 5
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 1.9
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 1.25
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 1.1
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 1.05
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "champions": {
+    "nome": "Champions League",
+    "jogos": [
+      {
+        "id": 1762359442089,
+        "timeCasa": "Ajax",
+        "timeFora": "Galatasaray SK",
+        "data": "05/11/2025 17:00",
+        "odds": {
+          "casa": 3.1,
+          "empate": 3.8,
+          "fora": 2.1
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.14
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 2.1
+              },
+              {
+                "tipo": "Mais que 4",
+                "odd": 3.75
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 17
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 7.5
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 4.75
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 0
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 17
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 5.5
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 2.62
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 1.72
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 1.95
+            },
+            {
+              "tipo": "Empate",
+              "odd": 4
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 1.16
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 1.33
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 1.57
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 19
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 15
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 10
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 8.5
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 8
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 23
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 17
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 9
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 5
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 3.25
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1762359674558,
+        "timeCasa": "Benfica",
+        "timeFora": "Bayer Leverkusen",
+        "data": "05/11/2025 17:00",
+        "odds": {
+          "casa": 1.9,
+          "empate": 3.6,
+          "fora": 4
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.04
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.22
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 1.72
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 2.62
+              },
+              {
+                "tipo": "Mais que 4",
+                "odd": 5
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 13
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 6
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 5
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 2.1
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 13
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 4.33
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 2.1
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 1.5
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2
+            },
+            {
+              "tipo": "Empate",
               "odd": 3.75
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 1.07
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 1.16
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 1.33
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 1.57
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 19
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 15
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 10
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 8.5
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 8
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 26
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 17
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 9
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 5
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 3.25
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1762359879940,
+        "timeCasa": "Club Brungge",
+        "timeFora": "Barcelona",
+        "data": "05/11/2025 17:00",
+        "odds": {
+          "casa": 5,
+          "empate": 4.75,
+          "fora": 1.53
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.1
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.33
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 1.8
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 2.75
+              },
+              {
+                "tipo": "Mais que 4",
+                "odd": 4.5
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 10
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 5.5
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 4.5
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 4.5
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 6
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 0
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 29
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 7
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 3.4
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 2
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 2.8
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.2
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.5
             }
           ],
           "escanteios": {
@@ -497,21 +1476,184 @@
         }
       },
       {
-        "id": 1762198416175,
-        "timeCasa": "Atlético de Madrid",
-        "timeFora": "Union Saint-Giloise",
-        "data": "04/11/2025 17:00",
+        "id": 1762360083882,
+        "timeCasa": "Inter de Milão",
+        "timeFora": "Kairat Almaty",
+        "data": "05/11/2025 17:00",
         "odds": {
-          "casa": 1.27,
-          "empate": 6.5,
-          "fora": 9
+          "casa": 1.02,
+          "empate": 17,
+          "fora": 51
         },
         "oddsAdicionais": {
           "gols": {
             "mais": [
               {
                 "tipo": "Mais que 0",
-                "odd": 1.01
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.05
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 1.2
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 4",
+                "odd": 2.1
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 13
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 12
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 7
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 5
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 4.75
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 0
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 29
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 11
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 4.5
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 2.62
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 2.75
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 1.9
+            },
+            {
+              "tipo": "Empate",
+              "odd": 4.5
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.02
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 1.05
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 1.12
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 1.25
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 1.44
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 21
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 15
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 12
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 9.5
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 8.5
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 29
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 19
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 11
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 6
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 3.75
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1762360307624,
+        "timeCasa": "Man City",
+        "timeFora": "Borussia Dortmund",
+        "data": "05/11/2025 17:00",
+        "odds": {
+          "casa": 1.4,
+          "empate": 5.25,
+          "fora": 6.5
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.02
               },
               {
                 "tipo": "Mais que 1",
@@ -533,7 +1675,7 @@
             "exato": [
               {
                 "tipo": "Exatamente 0",
-                "odd": 21
+                "odd": 17
               },
               {
                 "tipo": "Exatamente 1",
@@ -541,7 +1683,7 @@
               },
               {
                 "tipo": "Exatamente 2",
-                "odd": 4.5
+                "odd": 4.33
               },
               {
                 "tipo": "Exatamente 3",
@@ -549,7 +1691,7 @@
               },
               {
                 "tipo": "Exatamente 4",
-                "odd": 4.75
+                "odd": 5
               }
             ],
             "menos": [
@@ -559,7 +1701,7 @@
               },
               {
                 "tipo": "Menos que 1",
-                "odd": 21
+                "odd": 17
               },
               {
                 "tipo": "Menos que 2",
@@ -567,7 +1709,7 @@
               },
               {
                 "tipo": "Menos que 3",
-                "odd": 2.62
+                "odd": 2.6
               },
               {
                 "tipo": "Menos que 4",
@@ -578,7 +1720,7 @@
           "tempoGols": [
             {
               "tipo": "1º Tempo",
-              "odd": 2.87
+              "odd": 2.8
             },
             {
               "tipo": "2º Tempo",
@@ -601,178 +1743,15 @@
               },
               {
                 "tipo": "Mais que 6",
-                "odd": 1.14
-              },
-              {
-                "tipo": "Mais que 7",
-                "odd": 1.28
-              },
-              {
-                "tipo": "Mais que 8",
-                "odd": 1.5
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 4",
-                "odd": 21
-              },
-              {
-                "tipo": "Exatamente 5",
-                "odd": 15
-              },
-              {
-                "tipo": "Exatamente 6",
-                "odd": 11
-              },
-              {
-                "tipo": "Exatamente 7",
-                "odd": 9
-              },
-              {
-                "tipo": "Exatamente 8",
-                "odd": 8
-              }
-            ],
-            "menos": [
-              {
-                "tipo": "Menos que 4",
-                "odd": 29
-              },
-              {
-                "tipo": "Menos que 5",
-                "odd": 19
-              },
-              {
-                "tipo": "Menos que 6",
-                "odd": 10
-              },
-              {
-                "tipo": "Menos que 7",
-                "odd": 5.5
-              },
-              {
-                "tipo": "Menos que 8",
-                "odd": 3.5
-              }
-            ]
-          }
-        }
-      },
-      {
-        "id": 1762198604453,
-        "timeCasa": "Bodo/Glimt",
-        "timeFora": "Monaco",
-        "data": "04/11/2025 17:00",
-        "odds": {
-          "casa": 2.2,
-          "empate": 3.75,
-          "fora": 3
-        },
-        "oddsAdicionais": {
-          "gols": {
-            "mais": [
-              {
-                "tipo": "Mais que 0",
-                "odd": 1.02
-              },
-              {
-                "tipo": "Mais que 1",
                 "odd": 1.12
               },
               {
-                "tipo": "Mais que 2",
-                "odd": 1.44
-              },
-              {
-                "tipo": "Mais que 3",
-                "odd": 2.1
-              },
-              {
-                "tipo": "Mais que 4",
-                "odd": 3.5
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 0",
-                "odd": 19
-              },
-              {
-                "tipo": "Exatamente 1",
-                "odd": 8
-              },
-              {
-                "tipo": "Exatamente 2",
-                "odd": 4.5
-              },
-              {
-                "tipo": "Exatamente 3",
-                "odd": 4.33
-              },
-              {
-                "tipo": "Exatamente 4",
-                "odd": 4.75
-              }
-            ],
-            "menos": [
-              {
-                "tipo": "Menos que 0",
-                "odd": 0
-              },
-              {
-                "tipo": "Menos que 1",
-                "odd": 19
-              },
-              {
-                "tipo": "Menos que 2",
-                "odd": 6
-              },
-              {
-                "tipo": "Menos que 3",
-                "odd": 2.75
-              },
-              {
-                "tipo": "Menos que 4",
-                "odd": 1.72
-              }
-            ]
-          },
-          "tempoGols": [
-            {
-              "tipo": "1º Tempo",
-              "odd": 3
-            },
-            {
-              "tipo": "2º Tempo",
-              "odd": 1.95
-            },
-            {
-              "tipo": "Empate",
-              "odd": 4
-            }
-          ],
-          "escanteios": {
-            "mais": [
-              {
-                "tipo": "Mais que 4",
-                "odd": 1.02
-              },
-              {
-                "tipo": "Mais que 5",
-                "odd": 1.06
-              },
-              {
-                "tipo": "Mais que 6",
-                "odd": 1.44
-              },
-              {
                 "tipo": "Mais que 7",
-                "odd": 1.28
+                "odd": 1.25
               },
               {
                 "tipo": "Mais que 8",
-                "odd": 1.5
+                "odd": 1.44
               }
             ],
             "exato": [
@@ -786,7 +1765,7 @@
               },
               {
                 "tipo": "Exatamente 6",
-                "odd": 11
+                "odd": 12
               },
               {
                 "tipo": "Exatamente 7",
@@ -812,25 +1791,25 @@
               },
               {
                 "tipo": "Menos que 7",
-                "odd": 5.5
+                "odd": 6
               },
               {
                 "tipo": "Menos que 8",
-                "odd": 3.5
+                "odd": 3.75
               }
             ]
           }
         }
       },
       {
-        "id": 1762199482165,
-        "timeCasa": "Juventus",
-        "timeFora": "Sporting",
-        "data": "04/11/2025 17:00",
+        "id": 1762360543249,
+        "timeCasa": "Marselha",
+        "timeFora": "Atalanta",
+        "data": "05/11/2025 17:00",
         "odds": {
-          "casa": 1.9,
+          "casa": 2.75,
           "empate": 3.5,
-          "fora": 4
+          "fora": 2.75
         },
         "oddsAdicionais": {
           "gols": {
@@ -863,11 +1842,11 @@
               },
               {
                 "tipo": "Exatamente 1",
-                "odd": 5.5
+                "odd": 5
               },
               {
                 "tipo": "Exatamente 2",
-                "odd": 3.6
+                "odd": 3.75
               },
               {
                 "tipo": "Exatamente 3",
@@ -904,7 +1883,7 @@
           "tempoGols": [
             {
               "tipo": "1º Tempo",
-              "odd": 3
+              "odd": 3.1
             },
             {
               "tipo": "2º Tempo",
@@ -919,200 +1898,37 @@
             "mais": [
               {
                 "tipo": "Mais que 4",
-                "odd": 1.02
+                "odd": 1.04
               },
               {
                 "tipo": "Mais que 5",
-                "odd": 1.62
+                "odd": 1.11
               },
               {
                 "tipo": "Mais que 6",
-                "odd": 1.14
+                "odd": 1.25
               },
               {
                 "tipo": "Mais que 7",
-                "odd": 1.28
+                "odd": 1.44
               },
               {
                 "tipo": "Mais que 8",
-                "odd": 1.5
+                "odd": 1.8
               }
             ],
             "exato": [
               {
                 "tipo": "Exatamente 4",
-                "odd": 21
-              },
-              {
-                "tipo": "Exatamente 5",
                 "odd": 15
               },
               {
-                "tipo": "Exatamente 6",
-                "odd": 11
-              },
-              {
-                "tipo": "Exatamente 7",
-                "odd": 9
-              },
-              {
-                "tipo": "Exatamente 8",
-                "odd": 8
-              }
-            ],
-            "menos": [
-              {
-                "tipo": "Menos que 4",
-                "odd": 29
-              },
-              {
-                "tipo": "Menos que 5",
-                "odd": 19
-              },
-              {
-                "tipo": "Menos que 6",
-                "odd": 10
-              },
-              {
-                "tipo": "Menos que 7",
-                "odd": 5.5
-              },
-              {
-                "tipo": "Menos que 8",
-                "odd": 3.9
-              }
-            ]
-          }
-        }
-      },
-      {
-        "id": 1762199669952,
-        "timeCasa": "Olympikos",
-        "timeFora": "PSV",
-        "data": "04/11/2025 17:00",
-        "odds": {
-          "casa": 2.55,
-          "empate": 3.5,
-          "fora": 2.7
-        },
-        "oddsAdicionais": {
-          "gols": {
-            "mais": [
-              {
-                "tipo": "Mais que 0",
-                "odd": 1.04
-              },
-              {
-                "tipo": "Mais que 1",
-                "odd": 1.22
-              },
-              {
-                "tipo": "Mais que 2",
-                "odd": 1.72
-              },
-              {
-                "tipo": "Mais que 3",
-                "odd": 2.62
-              },
-              {
-                "tipo": "Mais que 4",
-                "odd": 5
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 0",
-                "odd": 13
-              },
-              {
-                "tipo": "Exatamente 1",
-                "odd": 6
-              },
-              {
-                "tipo": "Exatamente 2",
-                "odd": 3.75
-              },
-              {
-                "tipo": "Exatamente 3",
-                "odd": 4.33
-              },
-              {
-                "tipo": "Exatamente 4",
-                "odd": 5
-              }
-            ],
-            "menos": [
-              {
-                "tipo": "Menos que 0",
-                "odd": 0
-              },
-              {
-                "tipo": "Menos que 1",
-                "odd": 13
-              },
-              {
-                "tipo": "Menos que 2",
-                "odd": 4.33
-              },
-              {
-                "tipo": "Menos que 3",
-                "odd": 2.1
-              },
-              {
-                "tipo": "Menos que 4",
-                "odd": 1.5
-              }
-            ]
-          },
-          "tempoGols": [
-            {
-              "tipo": "1º Tempo",
-              "odd": 3
-            },
-            {
-              "tipo": "2º Tempo",
-              "odd": 2
-            },
-            {
-              "tipo": "Empate",
-              "odd": 3.75
-            }
-          ],
-          "escanteios": {
-            "mais": [
-              {
-                "tipo": "Mais que 4",
-                "odd": 1.04
-              },
-              {
-                "tipo": "Mais que 5",
-                "odd": 1.1
-              },
-              {
-                "tipo": "Mais que 6",
-                "odd": 1.2
-              },
-              {
-                "tipo": "Mais que 7",
-                "odd": 1.4
-              },
-              {
-                "tipo": "Mais que 8",
-                "odd": 1.66
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 4",
-                "odd": 17
-              },
-              {
                 "tipo": "Exatamente 5",
-                "odd": 13
+                "odd": 12
               },
               {
                 "tipo": "Exatamente 6",
-                "odd": 9.5
+                "odd": 9
               },
               {
                 "tipo": "Exatamente 7",
@@ -1126,7 +1942,7 @@
             "menos": [
               {
                 "tipo": "Menos que 4",
-                "odd": 26
+                "odd": 23
               },
               {
                 "tipo": "Menos que 5",
@@ -1134,74 +1950,74 @@
               },
               {
                 "tipo": "Menos que 6",
-                "odd": 7
+                "odd": 6.5
               },
               {
                 "tipo": "Menos que 7",
-                "odd": 4.33
+                "odd": 3.75
               },
               {
                 "tipo": "Menos que 8",
-                "odd": 2.75
+                "odd": 2.62
               }
             ]
           }
         }
       },
       {
-        "id": 1762199845560,
-        "timeCasa": "PSG",
-        "timeFora": "Bayer de Munique",
-        "data": "04/11/2025 17:00",
+        "id": 1762360765468,
+        "timeCasa": "Newcastle",
+        "timeFora": "Athletic Bilbao",
+        "data": "05/11/2025 17:00",
         "odds": {
-          "casa": 2.5,
-          "empate": 3.6,
-          "fora": 2.62
+          "casa": 1.36,
+          "empate": 4.75,
+          "fora": 9
         },
         "oddsAdicionais": {
           "gols": {
             "mais": [
               {
                 "tipo": "Mais que 0",
-                "odd": 1.01
+                "odd": 1.05
               },
               {
                 "tipo": "Mais que 1",
-                "odd": 1.1
+                "odd": 1.25
               },
               {
                 "tipo": "Mais que 2",
-                "odd": 1.36
+                "odd": 1.8
               },
               {
                 "tipo": "Mais que 3",
-                "odd": 1.9
+                "odd": 3
               },
               {
                 "tipo": "Mais que 4",
-                "odd": 3.2
+                "odd": 5.5
               }
             ],
             "exato": [
               {
                 "tipo": "Exatamente 0",
-                "odd": 21
+                "odd": 11
               },
               {
                 "tipo": "Exatamente 1",
-                "odd": 9.5
+                "odd": 5
               },
               {
                 "tipo": "Exatamente 2",
-                "odd": 4.75
+                "odd": 3.75
               },
               {
                 "tipo": "Exatamente 3",
-                "odd": 4.75
+                "odd": 4
               },
               {
                 "tipo": "Exatamente 4",
-                "odd": 4.5
+                "odd": 5.5
               }
             ],
             "menos": [
@@ -1211,19 +2027,19 @@
               },
               {
                 "tipo": "Menos que 1",
-                "odd": 21
+                "odd": 11
               },
               {
                 "tipo": "Menos que 2",
-                "odd": 7
+                "odd": 4
               },
               {
                 "tipo": "Menos que 3",
-                "odd": 3.2
+                "odd": 2
               },
               {
                 "tipo": "Menos que 4",
-                "odd": 1.9
+                "odd": 1.4
               }
             ]
           },
@@ -1234,11 +2050,11 @@
             },
             {
               "tipo": "2º Tempo",
-              "odd": 1.9
+              "odd": 2.1
             },
             {
               "tipo": "Empate",
-              "odd": 4.33
+              "odd": 3.6
             }
           ],
           "escanteios": {
@@ -1257,11 +2073,11 @@
               },
               {
                 "tipo": "Mais que 7",
-                "odd": 1.28
+                "odd": 1.25
               },
               {
                 "tipo": "Mais que 8",
-                "odd": 1.5
+                "odd": 1.15
               }
             ],
             "exato": [
@@ -1305,170 +2121,7 @@
               },
               {
                 "tipo": "Menos que 8",
-                "odd": 3.5
-              }
-            ]
-          }
-        }
-      },
-      {
-        "id": 1762200302928,
-        "timeCasa": "Tottenham",
-        "timeFora": "FC Copenhagen",
-        "data": "04/11/2025 17:00",
-        "odds": {
-          "casa": 1.33,
-          "empate": 5,
-          "fora": 10
-        },
-        "oddsAdicionais": {
-          "gols": {
-            "mais": [
-              {
-                "tipo": "Mais que 0",
-                "odd": 1.04
-              },
-              {
-                "tipo": "Mais que 1",
-                "odd": 1.2
-              },
-              {
-                "tipo": "Mais que 2",
-                "odd": 1.66
-              },
-              {
-                "tipo": "Mais que 3",
-                "odd": 2.62
-              },
-              {
-                "tipo": "Mais que 4",
-                "odd": 4.5
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 0",
-                "odd": 13
-              },
-              {
-                "tipo": "Exatamente 1",
-                "odd": 6
-              },
-              {
-                "tipo": "Exatamente 2",
-                "odd": 4
-              },
-              {
-                "tipo": "Exatamente 3",
-                "odd": 4.33
-              },
-              {
-                "tipo": "Exatamente 4",
-                "odd": 5
-              }
-            ],
-            "menos": [
-              {
-                "tipo": "Menos que 0",
-                "odd": 0
-              },
-              {
-                "tipo": "Menos que 1",
-                "odd": 13
-              },
-              {
-                "tipo": "Menos que 2",
-                "odd": 4.5
-              },
-              {
-                "tipo": "Menos que 3",
-                "odd": 2.2
-              },
-              {
-                "tipo": "Menos que 4",
-                "odd": 1.5
-              }
-            ]
-          },
-          "tempoGols": [
-            {
-              "tipo": "1º Tempo",
-              "odd": 3
-            },
-            {
-              "tipo": "2º Tempo",
-              "odd": 2.05
-            },
-            {
-              "tipo": "Empate",
-              "odd": 3.75
-            }
-          ],
-          "escanteios": {
-            "mais": [
-              {
-                "tipo": "Mais que 4",
-                "odd": 1.02
-              },
-              {
-                "tipo": "Mais que 5",
-                "odd": 1.05
-              },
-              {
-                "tipo": "Mais que 6",
-                "odd": 1.11
-              },
-              {
-                "tipo": "Mais que 7",
-                "odd": 1.22
-              },
-              {
-                "tipo": "Mais que 8",
-                "odd": 1.4
-              }
-            ],
-            "exato": [
-              {
-                "tipo": "Exatamente 4",
-                "odd": 23
-              },
-              {
-                "tipo": "Exatamente 5",
-                "odd": 17
-              },
-              {
-                "tipo": "Exatamente 6",
-                "odd": 13
-              },
-              {
-                "tipo": "Exatamente 7",
-                "odd": 9.5
-              },
-              {
-                "tipo": "Exatamente 8",
-                "odd": 8.5
-              }
-            ],
-            "menos": [
-              {
-                "tipo": "Menos que 4",
-                "odd": 34
-              },
-              {
-                "tipo": "Menos que 5",
-                "odd": 19
-              },
-              {
-                "tipo": "Menos que 6",
-                "odd": 11
-              },
-              {
-                "tipo": "Menos que 7",
-                "odd": 6.5
-              },
-              {
-                "tipo": "Menos que 8",
-                "odd": 4
+                "odd": 375
               }
             ]
           }
