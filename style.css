@@ -1701,3 +1701,126 @@ footer {
         padding: 6px 3px;
     }
 }
+
+/* ===== CORREÇÃO PARA TABELAS NO MOBILE ===== */
+.tabela-apostas {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 10px -15px;
+    padding: 0 15px;
+}
+
+.tabela-odds {
+    width: 100%;
+    min-width: 500px; /* Largura mínima para garantir que todas as colunas cabem */
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Ajustes específicos para mobile */
+@media (max-width: 768px) {
+    .tabela-apostas {
+        margin: 10px -10px;
+        padding: 0 10px;
+    }
+    
+    .tabela-odds {
+        min-width: 450px;
+        font-size: 0.7rem;
+    }
+    
+    .tabela-odds th,
+    .tabela-odds td {
+        padding: 8px 4px;
+    }
+    
+    .opcao-tabela {
+        padding: 6px 3px;
+        font-size: 0.7rem;
+    }
+    
+    .numero-gol, .numero-escanteio {
+        font-size: 0.7rem;
+        min-width: 60px;
+        padding: 6px 3px;
+    }
+    
+    /* Em mobile, manter todas as colunas visíveis */
+    .tabela-odds th:nth-child(1),
+    .tabela-odds td:nth-child(1),
+    .tabela-odds th:nth-child(2),
+    .tabela-odds td:nth-child(2),
+    .tabela-odds th:nth-child(3),
+    .tabela-odds td:nth-child(3),
+    .tabela-odds th:nth-child(4),
+    .tabela-odds td:nth-child(4) {
+        display: table-cell;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabela-odds {
+        min-width: 400px;
+        font-size: 0.65rem;
+    }
+    
+    .tabela-odds th,
+    .tabela-odds td {
+        padding: 6px 3px;
+    }
+    
+    .opcao-tabela {
+        padding: 5px 2px;
+        font-size: 0.65rem;
+    }
+    
+    .numero-gol, .numero-escanteio {
+        font-size: 0.65rem;
+        min-width: 55px;
+        padding: 5px 2px;
+    }
+}
+
+/* Melhorar a visualização do scroll horizontal */
+.tabela-apostas::-webkit-scrollbar {
+    height: 6px;
+}
+
+.tabela-apostas::-webkit-scrollbar-thumb {
+    background: #8A05BE;
+    border-radius: 3px;
+}
+
+.tabela-apostas::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+/* Indicador visual de que há mais conteúdo para rolar */
+.tabela-apostas {
+    position: relative;
+}
+
+.tabela-apostas::after {
+    content: "→";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8A05BE;
+    font-weight: bold;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+@media (min-width: 769px) {
+    .tabela-apostas::after {
+        display: none;
+    }
+}
