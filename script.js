@@ -840,8 +840,8 @@ function carregarConteudoJogo(jogo, conteudo) {
     
     // Atualizar seleções atuais
     atualizarSelecoesJogo(jogo);
-    // Na função carregarConteudoJogo, adicione esta linha no final:
     atualizarOpcoesBloqueadas(jogo);
+    setTimeout(melhorarExperienciaTabelasMobile, 100);
 }
 
 // NOVA FUNÇÃO: Alternar acordeão das categorias
@@ -1942,3 +1942,4 @@ async function forcarAtualizacaoDados() {
 
 // Também adicione ao escopo global
 window.forcarAtualizacaoDados = forcarAtualizacaoDados;
+
