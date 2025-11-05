@@ -319,10 +319,54 @@ async function enviarEmailApostaIndividual(apostaIndividual, numeroAposta) {
             return false;
         }
 
-        // SOLUÇÃO: Criar texto formatado com quebras de linha normais
-        const selecoesTexto = jogo.selecoes.map(selecao => 
-            `• ${selecao.nome} (Odd: ${selecao.valor})`
-        ).join('\n'); // Usando \n para quebras de linha
+        // SOLUÇÃO: Organizar seleções por categoria com títulos
+        const selecoesPorCategoria = {};
+        
+        jogo.selecoes.forEach(selecao => {
+            if (!selecoesPorCategoria[selecao.categoria]) {
+                selecoesPorCategoria[selecao.categoria] = [];
+            }
+            selecoesPorCategoria[selecao.categoria].push(selecao);
+        });
+
+        // Criar texto formatado com categorias
+        let selecoesTexto = '';
+        
+        // Aposta Principal primeiro
+        if (selecoesPorCategoria['principal']) {
+            selecoesTexto += `🎯 APOSTA PRINCIPAL:\n`;
+            selecoesPorCategoria['principal'].forEach(selecao => {
+                selecoesTexto += `• ${selecao.nome} (Odd: ${selecao.valor})\n`;
+            });
+            selecoesTexto += `\n`;
+        }
+
+        // Gols
+        if (selecoesPorCategoria['gols']) {
+            selecoesTexto += `⚽ TOTAL DE GOLS:\n`;
+            selecoesPorCategoria['gols'].forEach(selecao => {
+                selecoesTexto += `• ${selecao.tipo} (Odd: ${selecao.valor})\n`;
+            });
+            selecoesTexto += `\n`;
+        }
+
+        // Escanteios
+        if (selecoesPorCategoria['escanteios']) {
+            selecoesTexto += `📐 TOTAL DE ESCANTEIOS:\n`;
+            selecoesPorCategoria['escanteios'].forEach(selecao => {
+                selecoesTexto += `• ${selecao.tipo} (Odd: ${selecao.valor})\n`;
+            });
+            selecoesTexto += `\n`;
+        }
+
+        // Tempo de Gols
+        if (selecoesPorCategoria['tempo_gols']) {
+            selecoesTexto += `⏰ TEMPO COM MAIS GOLS:\n`;
+            selecoesPorCategoria['tempo_gols'].forEach(selecao => {
+                selecoesTexto += `• ${selecao.tipo} (Odd: ${selecao.valor})\n`;
+            });
+            selecoesTexto += `\n`;
+        }
 
         // Calcular retorno percentual
         const retornoPercentual = ((apostaIndividual.ganhoPotencial / apostaIndividual.valorApostado - 1) * 100).toFixed(1);
@@ -340,11 +384,11 @@ async function enviarEmailApostaIndividual(apostaIndividual, numeroAposta) {
             data: dadosAposta.data || new Date().toLocaleString('pt-BR'),
             aposta_id: apostaId,
             
-            // Dados da aposta específica - FORMATO SIMPLES
+            // Dados da aposta específica - FORMATO ORGANIZADO
             jogo: `${jogo.jogo.timeCasa} vs ${jogo.jogo.timeFora}`,
             jogo_data: jogo.jogo.data || 'Data não informada',
             quantidade_selecoes: jogo.selecoes.length.toString(),
-            selecoes: selecoesTexto, // TEXTO SIMPLES COM \n
+            selecoes: selecoesTexto,
             odd_combinada: jogo.valor.toFixed(2),
             valor_apostado: apostaIndividual.valorApostado.toFixed(2),
             ganho_potencial: apostaIndividual.ganhoPotencial,
@@ -368,23 +412,67 @@ async function enviarEmailApostaIndividual(apostaIndividual, numeroAposta) {
     }
 }
 
-
 async function enviarEmailMultipla() {
     try {
         const apostaId = `AP${Date.now()}-MULT`;
         
         console.log('Enviando email para aposta múltipla:', dadosAposta);
 
-        // Preparar texto simples para as seleções (sem HTML)
+        // Preparar texto organizado por categorias para cada jogo
         let selecoesTexto = '';
+        
         dadosAposta.apostas.forEach((aposta, index) => {
-            const selecoesJogo = aposta.selecoes.map(selecao => 
-                `• ${selecao.nome} (Odd: ${selecao.valor})`
-            ).join('\n');
+            // Organizar seleções por categoria
+            const selecoesPorCategoria = {};
             
-            selecoesTexto += `JOGO ${index + 1}: ${aposta.jogo.timeCasa} vs ${aposta.jogo.timeFora}\n`;
-            selecoesTexto += `${selecoesJogo}\n`;
-            selecoesTexto += `Odd do Jogo: ${aposta.valor.toFixed(2)}\n\n`;
+            aposta.selecoes.forEach(selecao => {
+                if (!selecoesPorCategoria[selecao.categoria]) {
+                    selecoesPorCategoria[selecao.categoria] = [];
+                }
+                selecoesPorCategoria[selecao.categoria].push(selecao);
+            });
+
+            selecoesTexto += `🎮 JOGO ${index + 1}: ${aposta.jogo.timeCasa} vs ${aposta.jogo.timeFora}\n`;
+            selecoesTexto += `📅 Data: ${aposta.jogo.data || 'Não informada'}\n\n`;
+
+            // Aposta Principal
+            if (selecoesPorCategoria['principal']) {
+                selecoesTexto += `🎯 APOSTA PRINCIPAL:\n`;
+                selecoesPorCategoria['principal'].forEach(selecao => {
+                    selecoesTexto += `• ${selecao.nome} (Odd: ${selecao.valor})\n`;
+                });
+                selecoesTexto += `\n`;
+            }
+
+            // Gols
+            if (selecoesPorCategoria['gols']) {
+                selecoesTexto += `⚽ TOTAL DE GOLS:\n`;
+                selecoesPorCategoria['gols'].forEach(selecao => {
+                    selecoesTexto += `• ${selecao.tipo} (Odd: ${selecao.valor})\n`;
+                });
+                selecoesTexto += `\n`;
+            }
+
+            // Escanteios
+            if (selecoesPorCategoria['escanteios']) {
+                selecoesTexto += `📐 TOTAL DE ESCANTEIOS:\n`;
+                selecoesPorCategoria['escanteios'].forEach(selecao => {
+                    selecoesTexto += `• ${selecao.tipo} (Odd: ${selecao.valor})\n`;
+                });
+                selecoesTexto += `\n`;
+            }
+
+            // Tempo de Gols
+            if (selecoesPorCategoria['tempo_gols']) {
+                selecoesTexto += `⏰ TEMPO COM MAIS GOLS:\n`;
+                selecoesPorCategoria['tempo_gols'].forEach(selecao => {
+                    selecoesTexto += `• ${selecao.tipo} (Odd: ${selecao.valor})\n`;
+                });
+                selecoesTexto += `\n`;
+            }
+
+            selecoesTexto += `📊 ODD DO JOGO: ${aposta.valor.toFixed(2)}\n`;
+            selecoesTexto += `────────────────────────────\n\n`;
         });
 
         const templateParams = {
@@ -400,11 +488,11 @@ async function enviarEmailMultipla() {
             data: dadosAposta.data || new Date().toLocaleString('pt-BR'),
             aposta_id: apostaId,
             
-            // Dados da aposta múltipla - USANDO TEXTO SIMPLES
+            // Dados da aposta múltipla - FORMATO ORGANIZADO
             jogo: `APOSTA MÚLTIPLA - ${dadosAposta.apostas.length} JOGOS`,
             jogo_data: 'Todos os jogos listados abaixo',
             quantidade_selecoes: dadosAposta.apostas.reduce((total, aposta) => total + aposta.selecoes.length, 0).toString(),
-            selecoes: selecoesTexto, // TEXTO SIMPLES, SEM HTML
+            selecoes: selecoesTexto,
             odd_combinada: dadosAposta.oddTotal,
             valor_apostado: dadosAposta.valorMultipla.toFixed(2),
             ganho_potencial: dadosAposta.ganhoPotencialMultipla,
@@ -415,7 +503,7 @@ async function enviarEmailMultipla() {
 
         const response = await emailjs.send(
             'service_cnsqjyf',
-            'template_k093fum', // MESMO TEMPLATE
+            'template_k093fum',
             templateParams
         );
         
