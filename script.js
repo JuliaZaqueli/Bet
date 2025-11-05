@@ -1038,110 +1038,8 @@ function selecionarApostaAdicional(elemento, jogo) {
     }
 }
 
-function adicionarApostasAoCarrinho(jogo) {
-    const jogoId = jogo.id;
-    
-    // Remover apostas anteriores deste jogo
-    carrinho = carrinho.filter(item => item.jogo.id !== jogoId);
-    
-    // Coletar todas as seleções deste jogo
-    const selecoesDoJogo = [];
-    
-    // Adicionar aposta principal se selecionada
-    const apostaPrincipal = document.querySelector(`#conteudo-${jogoId} .odd.selecionada`);
-    if (apostaPrincipal) {
-        selecoesDoJogo.push({
-            tipo: apostaPrincipal.dataset.tipo,
-            valor: parseFloat(apostaPrincipal.dataset.valor),
-            nome: apostaPrincipal.dataset.tipo === 'casa' ? jogo.timeCasa : 
-                  apostaPrincipal.dataset.tipo === 'fora' ? jogo.timeFora : 'Empate',
-            categoria: 'principal'
-        });
-    }
-    
-    // CORREÇÃO: Validar que não há múltiplas seleções na mesma categoria
-    const selecoesPorCategoria = {};
-    
-    document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela.selecionada`).forEach(opcao => {
-        const categoria = opcao.dataset.categoria;
-        
-        // Se já existe uma seleção nesta categoria, mostrar erro
-        if (selecoesPorCategoria[categoria]) {
-            alert(`❌ Erro: Você só pode selecionar UMA opção por categoria.\nJá existe uma seleção em "${categoria}".`);
-            return;
-        }
-        
-        selecoesPorCategoria[categoria] = true;
-        
-        selecoesDoJogo.push({
-            tipo: opcao.dataset.tipo,
-            valor: parseFloat(opcao.dataset.valor),
-            nome: opcao.dataset.tipo,
-            categoria: categoria
-        });
-    });
-    
-    // Verificar se há pelo menos uma seleção (principal ou adicional)
-    if (selecoesDoJogo.length === 0) {
-        alert('Selecione pelo menos uma aposta para este jogo');
-        return;
-    }
-    
-    // Calcular odd combinada para este jogo (multiplica todas as odds do mesmo jogo)
-    let oddCombinada = 1;
-    selecoesDoJogo.forEach(selecao => {
-        oddCombinada *= selecao.valor;
-    });
-    
-    // Adicionar como UMA aposta combinada no carrinho
-    carrinho.push({
-        jogo: jogo,
-        selecoes: selecoesDoJogo, // Todas as seleções deste jogo
-        valor: oddCombinada, // Odd combinada de todas as seleções
-        nome: `${jogo.timeCasa} vs ${jogo.timeFora}`, // Nome do jogo
-        quantidadeSelecoes: selecoesDoJogo.length // Quantidade de seleções combinadas
-    });
-    
-    atualizarCarrinho();
-    atualizarSelecoesJogo(jogo);
-    
-    // Fechar o jogo após adicionar ao carrinho
-    const header = document.querySelector(`.jogo-header[data-jogo="${jogoId}"]`);
-    if (header) {
-        header.classList.remove('ativo');
-        jogoAberto = null;
-    }
-    
-    console.log(`✅ Aposta adicionada ao carrinho: ${jogo.timeCasa} vs ${jogo.timeFora} - ${selecoesDoJogo.length} seleção(ões)`);
-}
 
-function atualizarSelecoesJogo(jogo) {
-    const jogoId = jogo.id;
-    const apostaDoJogo = carrinho.find(item => item.jogo.id === jogoId);
-    
-    // Limpar seleções
-    document.querySelectorAll(`#conteudo-${jogoId} .odd, #conteudo-${jogoId} .opcao-tabela`).forEach(el => {
-        el.classList.remove('selecionada');
-    });
-    
-    // Aplicar seleções atuais se houver aposta deste jogo
-    if (apostaDoJogo) {
-        apostaDoJogo.selecoes.forEach(selecao => {
-            if (selecao.categoria === 'principal') {
-                const elemento = document.querySelector(`#conteudo-${jogoId} .odd[data-tipo="${selecao.tipo}"]`);
-                if (elemento) {
-                    elemento.classList.add('selecionada');
-                }
-            } else {
-                // CORREÇÃO: Buscar por categoria E tipo para apostas adicionais
-                const elemento = document.querySelector(`#conteudo-${jogoId} .opcao-tabela[data-categoria="${selecao.categoria}"][data-tipo="${selecao.tipo}"]`);
-                if (elemento) {
-                    elemento.classList.add('selecionada');
-                }
-            }
-        });
-    }
-}
+
 function adicionarApostasAoCarrinho(jogo) {
     const jogoId = jogo.id;
     
@@ -1151,9 +1049,13 @@ function adicionarApostasAoCarrinho(jogo) {
     // Coletar todas as seleções deste jogo
     const selecoesDoJogo = [];
     
+    // DEBUG: Verificar o que está selecionado
+    console.log('🔍 Verificando seleções para o jogo:', jogoId);
+    
     // Adicionar aposta principal se selecionada
     const apostaPrincipal = document.querySelector(`#conteudo-${jogoId} .odd.selecionada`);
     if (apostaPrincipal) {
+        console.log('✅ Aposta principal encontrada:', apostaPrincipal.dataset.tipo, apostaPrincipal.dataset.valor);
         selecoesDoJogo.push({
             tipo: apostaPrincipal.dataset.tipo,
             valor: parseFloat(apostaPrincipal.dataset.valor),
@@ -1161,10 +1063,16 @@ function adicionarApostasAoCarrinho(jogo) {
                   apostaPrincipal.dataset.tipo === 'fora' ? jogo.timeFora : 'Empate',
             categoria: 'principal'
         });
+    } else {
+        console.log('❌ Nenhuma aposta principal selecionada');
     }
     
     // Adicionar apostas adicionais selecionadas
-    document.querySelectorAll(`#conteudo-${jogoId} .opcao-multipla.selecionada`).forEach(opcao => {
+    const apostasAdicionais = document.querySelectorAll(`#conteudo-${jogoId} .opcao-tabela.selecionada`);
+    console.log('📊 Apostas adicionais encontradas:', apostasAdicionais.length);
+    
+    apostasAdicionais.forEach(opcao => {
+        console.log('✅ Aposta adicional:', opcao.dataset.tipo, opcao.dataset.valor);
         selecoesDoJogo.push({
             tipo: opcao.dataset.tipo,
             valor: parseFloat(opcao.dataset.valor),
@@ -1173,25 +1081,33 @@ function adicionarApostasAoCarrinho(jogo) {
         });
     });
     
+    console.log(`🔍 TOTAL de seleções coletadas: ${selecoesDoJogo.length}`, selecoesDoJogo);
+    
     if (selecoesDoJogo.length === 0) {
         alert('Selecione pelo menos uma aposta para este jogo');
         return;
     }
     
-    // Calcular odd combinada para este jogo (multiplica todas as odds do mesmo jogo)
+    // CALCULAR ODD COMBINADA CORRETAMENTE
     let oddCombinada = 1;
     selecoesDoJogo.forEach(selecao => {
         oddCombinada *= selecao.valor;
     });
     
+    console.log(`📊 Odd combinada calculada: ${oddCombinada}`);
+    
     // Adicionar como UMA aposta combinada no carrinho
-    carrinho.push({
+    const novaAposta = {
         jogo: jogo,
-        selecoes: selecoesDoJogo, // Todas as seleções deste jogo
+        selecoes: [...selecoesDoJogo], // Todas as seleções deste jogo
         valor: oddCombinada, // Odd combinada de todas as seleções
-        nome: `${jogo.timeCasa} vs ${jogo.timeFora}`, // Nome do jogo
-        quantidadeSelecoes: selecoesDoJogo.length // Quantidade de seleções combinadas
-    });
+        nome: `${jogo.timeCasa} vs ${jogo.timeFora}`,
+        quantidadeSelecoes: selecoesDoJogo.length
+    };
+    
+    console.log('💾 Nova aposta a ser adicionada:', novaAposta);
+    
+    carrinho.push(novaAposta);
     
     atualizarCarrinho();
     atualizarSelecoesJogo(jogo);
@@ -1202,6 +1118,8 @@ function adicionarApostasAoCarrinho(jogo) {
         header.classList.remove('ativo');
         jogoAberto = null;
     }
+    
+    console.log(`✅ Aposta adicionada ao carrinho: ${jogo.timeCasa} vs ${jogo.timeFora} - ${selecoesDoJogo.length} seleção(ões) - Odd: ${oddCombinada}`);
 }
 
 function atualizarSelecoesJogo(jogo) {
@@ -1231,7 +1149,6 @@ function atualizarSelecoesJogo(jogo) {
     }
 }
 
-// Atualizar carrinho
 function atualizarCarrinho() {
     const totalApostas = carrinho.length;
     
@@ -1256,11 +1173,14 @@ function atualizarCarrinho() {
         return;
     }
     
-    // Calcular odd total para múltipla
+    // CALCULAR ODD TOTAL CORRETAMENTE
     let oddTotalValor = 1;
     carrinho.forEach(aposta => {
+        console.log(`📊 Multiplicando odd do jogo ${aposta.jogo.timeCasa} vs ${aposta.jogo.timeFora}: ${aposta.valor}`);
         oddTotalValor *= aposta.valor;
     });
+    
+    console.log(`🎯 Odd total calculada: ${oddTotalValor}`);
     
     if (oddTotal) {
         oddTotal.textContent = oddTotalValor.toFixed(2);
@@ -1286,6 +1206,9 @@ function atualizarCarrinho() {
     // Mostrar cada JOGO como uma aposta individual (combinada)
     carrinho.forEach((aposta, index) => {
         const apostaId = `jogo-${aposta.jogo.id}`;
+        
+        console.log(`📝 Renderizando aposta ${apostaId}:`, aposta);
+        
         html += `
             <div class="aposta-individual" data-aposta-id="${apostaId}">
                 <div class="aposta-individual-header">
@@ -1297,13 +1220,23 @@ function atualizarCarrinho() {
                     <div class="aposta-individual-odd">${aposta.valor.toFixed(2)}</div>
                 </div>
                 <div class="detalhes-selecoes">
-                    ${aposta.selecoes.map(selecao => `
-                        <div class="selecao-item">
-                            <span class="selecao-nome">${selecao.nome}</span>
-                            <span class="selecao-odd">${selecao.valor}</span>
-                        </div>
-                    `).join('')}
-                </div>
+        `;
+        
+        // Listar TODAS as seleções (principal + adicionais)
+        if (aposta.selecoes && aposta.selecoes.length > 0) {
+            aposta.selecoes.forEach(selecao => {
+                html += `
+                    <div class="selecao-item">
+                        <span class="selecao-nome">${selecao.nome}</span>
+                        <span class="selecao-odd">${selecao.valor}</span>
+                    </div>
+                `;
+            });
+        }
+        
+        html += `</div>`; // Fecha detalhes-selecoes
+        
+        html += `
                 <div class="aposta-individual-valor">
                     <input type="number" 
                            min="5" 
@@ -1320,7 +1253,7 @@ function atualizarCarrinho() {
         `;
     });
     
-    html += `</div></div>`;
+    html += `</div></div>`; // Fecha lista-apostas-individuais e apostas-individuais
     
     // Seção de Aposta Múltipla
     html += `
@@ -1351,6 +1284,7 @@ function atualizarCarrinho() {
     reatribuirEventListeners();
     atualizarGanhoMultipla();
 }
+
 
 // Reatribuir event listeners após atualizar o carrinho
 function reatribuirEventListeners() {
@@ -1496,13 +1430,22 @@ function mostrarFormUsuario() {
     }
     
     const tipoSelecionado = tipoSelecionadoElement.dataset.tipo;
+    
+    // CALCULAR ODD TOTAL CORRETAMENTE
+    let oddTotalValor = 1;
+    carrinho.forEach(aposta => {
+        oddTotalValor *= aposta.valor;
+    });
+    
     let dadosAposta = {
-        campeonato: campeonatos[campeonatoSelecionado]?.nome || 'Campeonato',
-        apostas: [...carrinho],
-        oddTotal: calcularOddTotal(),
+        campeonato: campeonatos[campeonatoSelecionadoGlobal]?.nome || 'Campeonato',
+        apostas: [...carrinho], // Todas as apostas com odds combinadas
+        oddTotal: oddTotalValor.toFixed(2),
         tipo: tipoSelecionado,
         quantidadeJogos: carrinho.length
     };
+    
+    console.log('💾 Preparando dados para usuario.html:', dadosAposta);
     
     if (tipoSelecionado === 'multipla') {
         const valorMultiplaInput = document.getElementById('valor-multipla');
@@ -1513,7 +1456,7 @@ function mostrarFormUsuario() {
             return;
         }
         dadosAposta.valorMultipla = valorMultipla;
-        dadosAposta.ganhoPotencialMultipla = (valorMultipla * dadosAposta.oddTotal).toFixed(2);
+        dadosAposta.ganhoPotencialMultipla = (valorMultipla * oddTotalValor).toFixed(2);
     } else {
         // Para individuais, coletar valores de cada JOGO (aposta combinada)
         const apostasComValor = [];
@@ -1527,11 +1470,13 @@ function mostrarFormUsuario() {
             if (valor >= 5) {
                 temApostaValida = true;
                 const aposta = encontrarApostaPorId(apostaId);
-                apostasComValor.push({
-                    ...aposta,
-                    valorApostado: valor,
-                    ganhoPotencial: (valor * aposta.valor).toFixed(2)
-                });
+                if (aposta) {
+                    apostasComValor.push({
+                        ...aposta,
+                        valorApostado: valor,
+                        ganhoPotencial: (valor * aposta.valor).toFixed(2)
+                    });
+                }
             }
         });
         
@@ -1543,22 +1488,22 @@ function mostrarFormUsuario() {
         dadosAposta.apostasIndividuais = apostasComValor;
     }
     
-    // SALVAR NO LOCALSTORAGE - IMPORTANTE!
+    // SALVAR NO LOCALSTORAGE
     localStorage.setItem('dadosAposta', JSON.stringify(dadosAposta));
+    console.log('💾 Dados salvos no localStorage:', dadosAposta);
     
     // Redirecionar para a página do usuário
     window.location.href = 'usuario.html';
 }
 
-// Calcular odd total
+// Calcular odd total para múltiplas apostas
 function calcularOddTotal() {
     let total = 1;
     carrinho.forEach(aposta => {
-        total *= aposta.valor;
+        total *= aposta.valor; // Já deve ser a odd combinada de cada jogo
     });
     return total.toFixed(2);
 }
-
 // Verificar se há seleções conflitantes
 function verificarSelecoesConflitantes(jogoId) {
     const selecoesGolsMais = document.querySelectorAll(`#conteudo-${jogoId} .opcao-multipla[data-categoria="gols_mais"].selecionada`);
