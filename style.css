@@ -1307,8 +1307,21 @@ footer {
 .tabela-apostas {
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+    margin: 10px -15px;
+    padding: 0 15px;
 }
 
+.tabela-odds {
+    width: 100%;
+    min-width: 500px; /* Largura mínima para garantir que todas as colunas cabem */
+    border-collapse: collapse;
+    font-size: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 .tabela-odds {
     width: 100%;
     border-collapse: collapse;
@@ -1484,18 +1497,7 @@ footer {
     box-shadow: 0 2px 8px rgba(138, 5, 190, 0.3);
 }
 
-/* Melhorar a visualização das tabelas em mobile */
-@media (max-width: 768px) {
-    .tabela-odds th:nth-child(4),
-    .tabela-odds td:nth-child(4) {
-        display: none; /* Esconde "Menos que" em mobile para economizar espaço */
-    }
-    
-    .tabela-odds th:nth-child(3),
-    .tabela-odds td:nth-child(3) {
-        border-right: none;
-    }
-}
+
 
 @media (max-width: 480px) {
     .tabela-odds th:nth-child(2),
@@ -1616,4 +1618,86 @@ footer {
     content: "🔒";
     margin-left: 8px;
     font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .tabela-apostas {
+        margin: 10px -10px;
+        padding: 0 10px;
+    }
+    
+    .tabela-odds {
+        min-width: 450px;
+        font-size: 0.7rem;
+    }
+    
+    .tabela-odds th,
+    .tabela-odds td {
+        padding: 8px 4px;
+    }
+    
+    .opcao-tabela {
+        padding: 6px 3px;
+        font-size: 0.7rem;
+    }
+    
+    .numero-gol, .numero-escanteio {
+        font-size: 0.7rem;
+        min-width: 60px;
+        padding: 6px 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabela-odds {
+        min-width: 400px;
+        font-size: 0.65rem;
+    }
+    
+    .tabela-odds th,
+    .tabela-odds td {
+        padding: 6px 3px;
+    }
+    
+    .opcao-tabela {
+        padding: 5px 2px;
+        font-size: 0.65rem;
+    }
+    
+    .numero-gol, .numero-escanteio {
+        font-size: 0.65rem;
+        min-width: 55px;
+        padding: 5px 2px;
+    }
+}
+/* Responsividade para tabelas no admin */
+@media (max-width: 768px) {
+    .tabela-admin {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 10px -10px;
+        padding: 0 10px;
+    }
+    
+    .tabela-odds-admin {
+        min-width: 500px;
+        font-size: 0.75rem;
+    }
+    
+    .tabela-odds-admin th,
+    .tabela-odds-admin td {
+        padding: 8px 4px;
+    }
+    
+    .input-admin input {
+        padding: 6px 3px;
+        font-size: 0.7rem;
+        min-width: 50px;
+    }
+    
+    .numero-admin {
+        font-size: 0.75rem;
+        min-width: 70px;
+        padding: 6px 3px;
+    }
 }
