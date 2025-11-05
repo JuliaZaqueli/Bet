@@ -1,5 +1,5 @@
 {
-  "_version": "20251105T184239",
+  "_version": "20251105T191725",
   "serie-a": {
     "nome": "Série A",
     "jogos": [
@@ -833,33 +833,33 @@
             "mais": [
               {
                 "tipo": "Mais que 0",
-                "odd": 1.3
+                "odd": 1.07
               },
               {
                 "tipo": "Mais que 1",
-                "odd": 1.8
+                "odd": 1.36
               },
               {
                 "tipo": "Mais que 2",
-                "odd": 2.5
+                "odd": 2.07
               },
               {
                 "tipo": "Mais que 3",
-                "odd": 3.2
+                "odd": 3.75
               },
               {
                 "tipo": "Mais que 4",
-                "odd": 4.5
+                "odd": 8
               }
             ],
             "exato": [
               {
                 "tipo": "Exatamente 0",
-                "odd": 3.5
+                "odd": 9
               },
               {
                 "tipo": "Exatamente 1",
-                "odd": 3.2
+                "odd": 4.5
               },
               {
                 "tipo": "Exatamente 2",
@@ -867,40 +867,203 @@
               },
               {
                 "tipo": "Exatamente 3",
-                "odd": 4.2
+                "odd": 4.33
               },
               {
                 "tipo": "Exatamente 4",
-                "odd": 5
+                "odd": 6
               }
             ],
             "menos": [
               {
                 "tipo": "Menos que 0",
-                "odd": 2.1
+                "odd": 0
               },
               {
                 "tipo": "Menos que 1",
-                "odd": 1.6
+                "odd": 9
               },
               {
                 "tipo": "Menos que 2",
-                "odd": 1.3
+                "odd": 3.2
               },
               {
                 "tipo": "Menos que 3",
-                "odd": 1.15
+                "odd": 1.72
               },
               {
                 "tipo": "Menos que 4",
-                "odd": 1.05
+                "odd": 1.28
               }
             ]
           },
           "tempoGols": [
             {
               "tipo": "1º Tempo",
-              "odd": 2.8
+              "odd": 3.1
+            },
+            {
+              "tipo": "2º Tempo",
+              "odd": 2.1
+            },
+            {
+              "tipo": "Empate",
+              "odd": 3.4
+            }
+          ],
+          "escanteios": {
+            "mais": [
+              {
+                "tipo": "Mais que 4",
+                "odd": 1.05
+              },
+              {
+                "tipo": "Mais que 5",
+                "odd": 1.11
+              },
+              {
+                "tipo": "Mais que 6",
+                "odd": 1.22
+              },
+              {
+                "tipo": "Mais que 7",
+                "odd": 1.44
+              },
+              {
+                "tipo": "Mais que 8",
+                "odd": 1.72
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 4",
+                "odd": 17
+              },
+              {
+                "tipo": "Exatamente 5",
+                "odd": 12
+              },
+              {
+                "tipo": "Exatamente 6",
+                "odd": 9.5
+              },
+              {
+                "tipo": "Exatamente 7",
+                "odd": 8.5
+              },
+              {
+                "tipo": "Exatamente 8",
+                "odd": 8
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 4",
+                "odd": 21
+              },
+              {
+                "tipo": "Menos que 5",
+                "odd": 11
+              },
+              {
+                "tipo": "Menos que 6",
+                "odd": 6.5
+              },
+              {
+                "tipo": "Menos que 7",
+                "odd": 4
+              },
+              {
+                "tipo": "Menos que 8",
+                "odd": 2.62
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": 1762370050189,
+        "timeCasa": "São Paulo",
+        "timeFora": "Flamengo",
+        "data": "05/11/2025 21:30",
+        "odds": {
+          "casa": 3.9,
+          "empate": 3.1,
+          "fora": 2.1
+        },
+        "oddsAdicionais": {
+          "gols": {
+            "mais": [
+              {
+                "tipo": "Mais que 0",
+                "odd": 1.11
+              },
+              {
+                "tipo": "Mais que 1",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Mais que 2",
+                "odd": 2.5
+              },
+              {
+                "tipo": "Mais que 3",
+                "odd": 5
+              },
+              {
+                "tipo": "Mais que 4",
+                "odd": 11
+              }
+            ],
+            "exato": [
+              {
+                "tipo": "Exatamente 0",
+                "odd": 6.5
+              },
+              {
+                "tipo": "Exatamente 1",
+                "odd": 3.75
+              },
+              {
+                "tipo": "Exatamente 2",
+                "odd": 3.25
+              },
+              {
+                "tipo": "Exatamente 3",
+                "odd": 4.75
+              },
+              {
+                "tipo": "Exatamente 4",
+                "odd": 8
+              }
+            ],
+            "menos": [
+              {
+                "tipo": "Menos que 0",
+                "odd": 0
+              },
+              {
+                "tipo": "Menos que 1",
+                "odd": 6.5
+              },
+              {
+                "tipo": "Menos que 2",
+                "odd": 2.62
+              },
+              {
+                "tipo": "Menos que 3",
+                "odd": 1.5
+              },
+              {
+                "tipo": "Menos que 4",
+                "odd": 1.16
+              }
+            ]
+          },
+          "tempoGols": [
+            {
+              "tipo": "1º Tempo",
+              "odd": 3.1
             },
             {
               "tipo": "2º Tempo",
@@ -908,74 +1071,74 @@
             },
             {
               "tipo": "Empate",
-              "odd": 3.5
+              "odd": 3.1
             }
           ],
           "escanteios": {
             "mais": [
               {
                 "tipo": "Mais que 4",
-                "odd": 1.6
+                "odd": 1.02
               },
               {
                 "tipo": "Mais que 5",
-                "odd": 2
+                "odd": 1.07
               },
               {
                 "tipo": "Mais que 6",
-                "odd": 2.6
+                "odd": 1.16
               },
               {
                 "tipo": "Mais que 7",
-                "odd": 3.2
+                "odd": 1.33
               },
               {
                 "tipo": "Mais que 8",
-                "odd": 4
+                "odd": 1.57
               }
             ],
             "exato": [
               {
                 "tipo": "Exatamente 4",
-                "odd": 4.5
+                "odd": 19
               },
               {
                 "tipo": "Exatamente 5",
-                "odd": 4
+                "odd": 15
               },
               {
                 "tipo": "Exatamente 6",
-                "odd": 3.8
+                "odd": 10
               },
               {
                 "tipo": "Exatamente 7",
-                "odd": 4.2
+                "odd": 8.5
               },
               {
                 "tipo": "Exatamente 8",
-                "odd": 5
+                "odd": 8
               }
             ],
             "menos": [
               {
                 "tipo": "Menos que 4",
-                "odd": 1.9
+                "odd": 26
               },
               {
                 "tipo": "Menos que 5",
-                "odd": 1.5
+                "odd": 17
               },
               {
                 "tipo": "Menos que 6",
-                "odd": 1.25
+                "odd": 9
               },
               {
                 "tipo": "Menos que 7",
-                "odd": 1.1
+                "odd": 5
               },
               {
                 "tipo": "Menos que 8",
-                "odd": 1.05
+                "odd": 3.25
               }
             ]
           }
